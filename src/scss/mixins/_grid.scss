@@ -1,0 +1,90 @@
+/*
+-----------------------------------------------------------------------
+Mixin : Grid
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:math';
+@use '../mixins/breakpoint' as breakpoints;
+
+/// Maximum Grid Columns
+$max-cols: 12;
+
+/*----------  Extensions  ----------*/
+
+%col-base {
+    position: relative;
+    width: 100%;
+}
+
+/*----------  Mixin Components  ----------*/
+
+@mixin root() {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+@mixin auto() {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+@mixin indexed($size) {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 #{$size}#{'%'};
+    -ms-flex: 0 0 #{$size}#{'%'};
+    flex: 0 0 #{$size}#{'%'};
+    max-width: #{$size}#{'%'};
+}
+
+@mixin -col-with-breakpoint($bp: '') {
+    $bp: if(str-length($bp) != 0, '-#{$bp}', '');
+
+    .col#{$bp} {
+        @if (str-length($bp) == 0) {
+            @extend %col-base;
+        }
+
+        @include root();
+    }
+
+    .col#{$bp}-auto {
+        @if (str-length($bp) == 0) {
+            @extend %col-base;
+        }
+
+        @include auto();
+    }
+
+    @for $ii from 1 through $max-cols {
+        .col#{$bp}-#{$ii} {
+            @if (str-length($bp) == 0) {
+                @extend %col-base;
+            }
+
+            @include indexed(math.div(100 * $ii, $max-cols));
+        }
+    }
+}
+
+@mixin factory() {
+    // create the non-breakpoint columns
+    @include -col-with-breakpoint();
+
+    // and the breakpoint columns
+    @each $bp in breakpoints.$names {
+        @include breakpoints.with($bp) {
+            @include -col-with-breakpoint($bp);
+        }
+    }
+}

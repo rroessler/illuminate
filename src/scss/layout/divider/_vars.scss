@@ -1,0 +1,15 @@
+/*
+-----------------------------------------------------------------------
+Variables : Dividers
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --divider-color: rgba(0, 0, 0, 0.1);
+    --divider-spacing: 0.75rem;
+    --divider-height: 1px;
+}
+
+@mixin dark-only() {
+    --divider-color: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,123 @@
+/*
+-----------------------------------------------------------------------
+2.2.    Page / Content
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/breakpoint' as breakpoints;
+
+/*----------  Page Styling  ----------*/
+
+.page-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    > .navbar {
+        position: fixed;
+        left: 0;
+        z-index: 50;
+        display: none;
+    }
+
+    > .sidebar {
+        display: none;
+    }
+
+    &.with-navbar {
+        > .navbar {
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        > .content-wrapper {
+            top: var(--navbar-height);
+            height: calc(100% - var(--navbar-height));
+        }
+
+        > .sidebar {
+            top: var(--navbar-height);
+            height: calc(100% - var(--navbar-height));
+        }
+    }
+
+    &.with-sidebar {
+        > .sidebar {
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+        }
+
+        > .content-wrapper {
+            width: calc(100% - var(--sidebar-width));
+
+            @media (max-width: map-get(breakpoints.$values, 'sm')) {
+                width: 100%;
+                left: 0 !important;
+                right: 0 !important;
+            }
+        }
+
+        &:not([data-sidebar-position='right']) > .content-wrapper {
+            left: var(--sidebar-width);
+        }
+
+        &[data-sidebar-position='right'] > .content-wrapper {
+            right: var(--sidebar-width);
+        }
+    }
+
+    &[data-sidebar-hidden='true'] {
+        > .sidebar {
+            &:not(.sidebar-right) {
+                left: -100%;
+            }
+
+            &.sidebar-right {
+                right: -100%;
+            }
+        }
+
+        > .content-wrapper {
+            width: 100%;
+        }
+
+        &:not([data-sidebar-position='right']) > .content-wrapper {
+            left: 0;
+        }
+
+        &[data-sidebar-position='right'] > .content-wrapper {
+            right: 0;
+        }
+    }
+}
+
+/*----------  Content Styling  ----------*/
+
+.content {
+    margin: var(--content-spacing);
+
+    @media (max-width: map-get(breakpoints.$values, 'sm')) {
+        margin: var(--content-sm-spacing);
+    }
+
+    > .title {
+        font-size: var(--content-title-font-size);
+        font-weight: var(--content-title-font-weight);
+        margin-top: 0;
+    }
+}
+
+.content-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: auto;
+    transition-property: left, width;
+    transition-duration: var(--sidebar-animation-duration);
+    transition-timing-function: var(--sidebar-animation-easing);
+}

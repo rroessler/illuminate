@@ -1,0 +1,17 @@
+/*
+-----------------------------------------------------------------------
+Variables : Box Shadows
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --shadow-color: rgba(0, 0, 0, 0.15);
+
+    --shadow-sm: 0 0.1rem 0.2rem var(--shadow-color);
+    --shadow: 0 0.2rem 0.4rem var(--shadow-color);
+    --shadow-lg: 0 0.4rem 0.8rem var(--shadow-color);
+}
+
+@mixin dark-only() {
+    --shadow-color: rgba(0, 0, 0, 0.4);
+}

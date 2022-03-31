@@ -1,0 +1,108 @@
+/*
+-----------------------------------------------------------------------
+1.3.    Button
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/color' as color;
+@use '../../mixins/button' as button;
+@use '../../mixins/shadows' as shadows;
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+    -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+button::-moz-focusring,
+[type='button']::-moz-focusring,
+[type='reset']::-moz-focusring,
+[type='submit']::-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+.btn {
+    font-family: inherit;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: var(--button-border-radius);
+    border-width: var(--button-border-width);
+    border-style: solid;
+    text-transform: none;
+    overflow: visible;
+
+    color: var(--button-text-color);
+    background-color: var(--button-bg-color);
+    background-image: var(--button-bg-image);
+    border-color: var(--button-border-color);
+    @include shadows.box(var(--button-box-shadow));
+
+    height: var(--button-height);
+    line-height: var(--button-line-height);
+    padding: var(--button-padding);
+    font-size: var(--button-font-size);
+
+    /// Different sized buttons
+    @include button.base('sm');
+    @include button.base('lg');
+
+    /// Context buttons
+    @each $context in color.$contexts {
+        @include button.variant($context);
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: var(--button-text-color-hover);
+        background-color: var(--button-bg-color-hover);
+        background-image: var(--button-bg-image-hover);
+        border-color: var(--button-border-color-hover);
+        @include shadows.box(var(--button-box-shadow-hover));
+    }
+
+    &:focus,
+    &.active {
+        color: var(--button-text-color-focus);
+        background-color: var(--button-bg-color-focus);
+        background-image: var(--button-bg-image-focus);
+        border-color: var(--button-border-color-focus);
+        @include shadows.box(var(--button-box-shadow-focus));
+    }
+
+    &:focus:hover,
+    &.active:hover {
+        color: var(--button-text-color-hover);
+        background-color: var(--button-bg-color-hover);
+        background-image: var(--button-bg-image-hover);
+    }
+
+    &.disabled,
+    &:disabled {
+        cursor: auto;
+        opacity: 0.6;
+
+        &:hover,
+        &:focus,
+        &.active {
+            color: unset;
+            background-color: unset;
+            background-image: unset;
+            border-color: unset;
+            outline: none;
+
+            @include shadows.box(unset);
+        }
+    }
+}

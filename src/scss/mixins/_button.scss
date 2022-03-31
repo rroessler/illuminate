@@ -1,0 +1,86 @@
+/*
+-----------------------------------------------------------------------
+Mixin : Button
+-----------------------------------------------------------------------
+*/
+
+@use './shadows' as shadows;
+
+/*----------  Variable Mixins  ----------*/
+
+@mixin variable(
+    $name: '',
+    $text-color,
+    $bg-color,
+    $border-color,
+    $box-shadow,
+    $text-color-hover: null,
+    $bg-color-hover: null,
+    $border-color-hover: null,
+    $box-shadow-hover: null,
+    $border-color-focus: null,
+    $box-shadow-focus: null
+) {
+    $name: if($name != '', '-#{$name}', '');
+
+    --button#{$name}-text-color: #{$text-color};
+    --button#{$name}-bg-color: #{$bg-color};
+    --button#{$name}-bg-image: none;
+    --button#{$name}-border-color: #{$border-color};
+    --button#{$name}-box-shadow: #{$box-shadow};
+    --button#{$name}-text-color-hover: #{if($text-color-hover, $text-color-hover, #{$text-color})};
+    --button#{$name}-bg-color-hover: #{if($bg-color-hover, $bg-color-hover, $bg-color)};
+    --button#{$name}-bg-image-hover: none;
+    --button#{$name}-border-color-hover: #{if($border-color-hover, $border-color-hover, $border-color)};
+    --button#{$name}-box-shadow-hover: #{if($box-shadow-hover, $box-shadow-hover, $box-shadow)};
+    --button#{$name}-text-color-focus: #{$text-color};
+    --button#{$name}-bg-color-focus: #{$bg-color};
+    --button#{$name}-bg-image-focus: none;
+    --button#{$name}-border-color-focus: #{if($border-color-focus, $border-color-focus, $border-color)};
+    --button#{$name}-box-shadow-focus: #{if($box-shadow-focus, $box-shadow-focus, $box-shadow)};
+}
+
+/*----------  Component Mixins  ----------*/
+
+@mixin base($size: '') {
+    &.btn-#{size} {
+        height: var(--button-#{$size}-height);
+        line-height: var(--button-#{$size}-line-height);
+        padding: var(--button-#{$size}-padding);
+        font-size: var(--button-#{$size}-font-size);
+    }
+}
+
+@mixin variant($name) {
+    &#{'.btn-#{$name}' } {
+        color: var(--button-#{$name}-text-color);
+        background-color: var(--button-#{$name}-bg-color);
+        background-image: var(--button-#{$name}-bg-image);
+        border-color: var(--button-#{$name}-border-color);
+        @include shadows.box(var(--button-#{$name}-box-shadow));
+
+        &:hover {
+            color: var(--button-#{$name}-text-color-hover);
+            background-color: var(--button-#{$name}-bg-color-hover);
+            background-image: var(--button-#{$name}-bg-image-hover);
+            border-color: var(--button-#{$name}-border-color-hover);
+            @include shadows.box(var(--button-#{$name}-box-shadow-hover));
+        }
+
+        &:focus,
+        &.active {
+            color: var(--button-#{$name}-text-color-focus);
+            background-color: var(--button-#{$name}-bg-color-focus);
+            background-image: var(--button-#{$name}-bg-image-focus);
+            border-color: var(--button-#{$name}-border-color-focus);
+            @include shadows.box(var(--button-#{$name}-box-shadow-focus));
+        }
+
+        &:focus:hover,
+        &.active:hover {
+            color: var(--button-#{$name}-text-color-hover);
+            background-color: var(--button-#{$name}-bg-color-hover);
+            background-image: var(--button-#{$name}-bg-image-hover);
+        }
+    }
+}

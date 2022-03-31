@@ -1,0 +1,25 @@
+{
+    "name": "illuminate",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "scripts": {
+        "example": "npm run dist && node ./example/server.js",
+        "dist": "npm run clean && npm run build && npm run minify",
+        "build": "npm run build:css",
+        "minify": "npm run minify:css",
+        "build:css": "sass --no-source-map src/scss/illuminate.scss prebuild/illuminate.css",
+        "minify:css": "cleancss -o dist/illuminate.min.css prebuild/illuminate.css -O2",
+        "clean": "rimraf dist prebuild"
+    },
+    "keywords": [],
+    "author": "rroesslerio",
+    "license": "MIT",
+    "devDependencies": {
+        "clean-css-cli": "^5.5.2",
+        "express": "^4.17.3",
+        "rimraf": "^3.0.2",
+        "sass": "^1.49.10",
+        "typescript": "^4.6.3"
+    }
+}

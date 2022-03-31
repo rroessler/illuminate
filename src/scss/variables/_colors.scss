@@ -1,0 +1,51 @@
+/*
+-----------------------------------------------------------------------
+Variables : Colors
+-----------------------------------------------------------------------
+*/
+
+@use '../mixins/color' as c;
+
+@mixin globals() {
+    /*----------  White/Black Colors  ----------*/
+    @include c.variable('white', #ffffff);
+    @include c.variable('black', #000000);
+
+    /*----------  Dark Theme Base  ----------*/
+    @include c.variable('dusk-light', #40474f);
+    @include c.variable('dusk', #2d3339);
+    @include c.variable('dusk-dark', #1b1e22);
+
+    /*----------  Light Theme Base  ----------*/
+    @include c.variable('dawn-light', #f8f9fa);
+    @include c.variable('dawn', #e7ebee);
+    @include c.variable('dawn-dark', #ced4da);
+
+    /*----------  System Colors  ----------*/
+    @include c.system('steel', #325971, #386480, #2c4e63, #ffffff);
+    @include c.system('sky', #22d3ee, #67e8f9, #06b6d4, #ffffff);
+    @include c.system('blue', #38bdf8, #7dd3fc, #0ea5e9, #ffffff);
+    @include c.system('indigo', #818cf8, #a5b4fc, #6366f1, #ffffff);
+    @include c.system('turqoise', #72efdd, #91f3e4, #6cefdb, var(--dusk-dark-color, 0.85));
+    @include c.system('green', #00cca0, #00e0b0, #00b890, var(--dusk-dark-color, 0.85));
+    @include c.system('yellow', #f8e16c, #f9e78a, #f8df62, var(--dusk-dark-color, 0.85));
+    @include c.system('orange', #ffbf69, #ffca85, #ffb85c, var(--dusk-dark-color, 0.85));
+    @include c.system('red', #e76f51, #eb886f, #e76a4b, #ffffff);
+    @include c.system('pink', #fbb1bd, #fcc5ce, #fa9ead, #ffffff);
+
+    /*----------  Context Colors  ----------*/
+    @include c.context('primary', 'sky');
+    @include c.context('secondary', 'steel');
+    @include c.context('success', 'green');
+    @include c.context('warning', 'yellow');
+    @include c.context('danger', 'red');
+    @include c.context('info', 'blue');
+
+    /*----------  Global Colors  ----------*/
+    --base-body-bg-color: #fff;
+    --base-body-bg-image: none;
+}
+
+@mixin dark-only() {
+    --base-body-bg-color: var(--dusk-light-color);
+}

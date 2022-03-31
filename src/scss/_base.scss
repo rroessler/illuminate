@@ -1,0 +1,77 @@
+/*
+-----------------------------------------------------------------------
+0.  Base Styling
+-----------------------------------------------------------------------
+*/
+
+/*======================================
+=            Base Variables            =
+=======================================*/
+
+@import './variables';
+
+/*====================================
+=            Base Styling            =
+=====================================*/
+
+html {
+    font-size: var(--base-html-font-size);
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1600px) {
+    html {
+        font-size: var(--base-html-font-size-1600);
+    }
+}
+
+@media (min-width: 1920px) {
+    html {
+        font-size: var(--base-html-font-size-1920);
+    }
+}
+
+p {
+    margin-block-start: var(--paragraph-margin-start);
+    margin-block-end: var(--paragraph-margin-end);
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-weight: var(--base-font-weight);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
+    color: var(--base-text-color);
+    background-color: var(--base-body-bg-color);
+    background-image: var(--base-body-bg-image);
+}
+
+[data-theme='dark'] body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+}

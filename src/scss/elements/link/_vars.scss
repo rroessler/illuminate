@@ -1,0 +1,10 @@
+/*
+-----------------------------------------------------------------------
+Variables : Links
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --link-text-color: var(--primary-color);
+    --link-text-color-hover: var(--primary-light-color);
+}

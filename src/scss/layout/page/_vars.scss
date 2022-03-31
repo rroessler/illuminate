@@ -1,0 +1,19 @@
+/*
+-----------------------------------------------------------------------
+Variables : Page / Content
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --content-spacing: 2.5rem;
+    --content-sm-spacing: 1.75rem;
+
+    --content-title-font-size: 2rem;
+    --content-title-font-weight: 500;
+
+    --sidebar-animation-duration: 0.2s;
+    --sidebar-animation-easing: ease-in-out;
+
+    --navbar-height: 4.5rem;
+    --sidebar-width: 24rem;
+}

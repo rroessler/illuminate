@@ -1,0 +1,45 @@
+/*
+-----------------------------------------------------------------------
+5.2.    Borders
+-----------------------------------------------------------------------
+*/
+
+.border,
+.border-top {
+    border-top: var(--base-border-width) solid var(--border-color) !important;
+}
+
+.border,
+.border-bottom {
+    border-bottom: var(--base-border-width) solid var(--border-color) !important;
+}
+
+.border,
+.border-left {
+    border-left: var(--base-border-width) solid var(--border-color) !important;
+}
+
+.border,
+.border-right {
+    border-right: var(--base-border-width) solid var(--border-color) !important;
+}
+
+.border-none,
+.border-top-none {
+    border-top: none !important;
+}
+
+.border-none,
+.border-bottom-none {
+    border-bottom: none !important;
+}
+
+.border-none,
+.border-left-none {
+    border-left: none !important;
+}
+
+.border-none,
+.border-right-none {
+    border-right: none !important;
+}

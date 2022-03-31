@@ -1,0 +1,76 @@
+/*
+-----------------------------------------------------------------------
+2.4.    Cards
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/breakpoint' as breakpoints;
+@use '../../mixins/shadows' as shadows;
+
+%card-title-margin {
+    margin-top: 0;
+}
+
+%card-title {
+    font-size: var(--card-title-font-size);
+    font-weight: var(--card-title-font-weight);
+    @extend %card-title-margin;
+}
+
+%card-subtitle {
+    font-size: var(--card-subtitle-font-size);
+    font-weight: var(--card-subtitle-font-weight);
+    color: var(--card-subtitle-color);
+    @extend %card-title-margin;
+}
+
+%card-header {
+    > .title {
+        @extend %card-title;
+    }
+
+    > .subtitle {
+        @extend %card-subtitle;
+    }
+}
+
+.card {
+    position: relative;
+    margin: var(--card-margin);
+    padding: var(--card-padding);
+
+    color: var(--card-text-color);
+    background-color: var(--card-bg-color);
+    background-image: var(--card-bg-image);
+
+    border: var(--card-border);
+    border-radius: var(--card-border-radius);
+
+    @include shadows.box(var(--card-box-shadow));
+
+    @media (max-width: map-get(breakpoints.$values,'sm')) {
+        margin: var(--card-margin-sm);
+        padding: var(--card-padding-sm);
+    }
+
+    @extend %card-header;
+    > .header {
+        @extend %card-header;
+
+        &::after {
+            position: relative;
+            display: block;
+            content: '';
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--card-header-divider-width);
+            margin: var(--card-header-divider-margin) 0;
+            background-color: var(--card-header-divider-color);
+        }
+
+        + .body {
+            margin-top: var(--card-header-divider-margin);
+        }
+    }
+}

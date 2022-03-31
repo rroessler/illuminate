@@ -1,0 +1,30 @@
+/*
+-----------------------------------------------------------------------
+Mixin : Breakpoints
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:list';
+
+/// Breakpoint modifiers.
+$names: 'sm', 'md', 'lg', 'xl';
+
+/// Breakpoint values.
+$values: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+
+/*----------  With Includer  ----------*/
+
+@mixin with($bp) {
+    @if map-has-key($values, $bp) {
+        @media (min-width: map-get($values, $bp)) {
+            @content;
+        }
+    } @else {
+        @warn "Invalid break point given of `#{$bp}`.";
+    }
+}

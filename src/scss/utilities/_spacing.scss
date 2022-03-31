@@ -1,0 +1,69 @@
+/*
+-----------------------------------------------------------------------
+5.#.    Spacing
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:math';
+@use '../mixins/breakpoint' as breakpoints;
+
+/// Spacing Sizes
+$spacings: 0, 1, 2, 5, 10, 12, 15, 20, 25, auto;
+
+/// Spacing Kinds
+$kinds: (
+    'p': padding,
+    'm': margin
+);
+
+/*----------  Spacing Mixins  ----------*/
+
+@mixin -spacing($kind, $size, $mboth, $mone) {
+    #{'.#{$kind}-#{$size}'},
+    #{'.#{$kind}#{$mboth}-#{$size}'},
+    #{'.#{$kind}#{$mone}-#{$size}'} {
+        @content;
+    }
+
+    @media (max-width: map-get(breakpoints.$values, 'sm')) {
+        #{'.#{$kind}-xs-#{$size}'},
+        #{'.#{$kind}#{$mboth}-xs-#{$size}'},
+        #{'.#{$kind}#{$mone}-xs-#{$size}'} {
+            @content;
+        }
+    }
+
+    @each $bp in breakpoints.$names {
+        #{'.#{$kind}-#{$bp}-#{$size}'},
+        #{'.#{$kind}#{$mboth}-#{$bp}-#{$size}'},
+        #{'.#{$kind}#{$mone}-#{$bp}-#{$size}'} {
+            @include breakpoints.with($bp) {
+                @content;
+            }
+        }
+    }
+}
+
+/*----------  Spacing Factory  ----------*/
+
+@each $kind, $prop in $kinds {
+    @each $size in $spacings {
+        // determine the current value to use
+        $value: if($size == auto, auto, #{math.div($size, 10)}rem);
+
+        @include -spacing($kind, $size, 'y', 't') {
+            #{$prop}-top: #{$value} !important;
+        }
+
+        @include -spacing($kind, $size, 'y', 'b') {
+            #{$prop}-bottom: #{$value} !important;
+        }
+
+        @include -spacing($kind, $size, 'x', 'l') {
+            #{$prop}-left: #{$value} !important;
+        }
+        @include -spacing($kind, $size, 'x', 'r') {
+            #{$prop}-right: #{$value} !important;
+        }
+    }
+}

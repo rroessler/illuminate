@@ -1,0 +1,94 @@
+/*
+-----------------------------------------------------------------------
+Variables : Button
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/button' as button;
+@use '../../mixins/color' as color;
+
+@mixin globals() {
+    --button-height: 3.2rem;
+    --button-line-height: var(--base-line-height);
+    --button-padding: 0 1.5rem;
+    --button-border-width: var(--base-border-width);
+    --button-border-radius: var(--base-border-radius);
+    --button-outline-width: 1px;
+    --button-outline-type: dotted;
+    --button-outline-offset: 2rem;
+
+    --button-sm-height: 2.6rem;
+    --button-sm-line-height: var(--base-line-height);
+    --button-sm-padding: 0 1rem;
+    --button-sm-font-size: 1.2rem;
+
+    --button-lg-height: 4rem;
+    --button-lg-line-height: var(--base-line-height);
+    --button-lg-padding: 0 2rem;
+    --button-lg-font-size: 1.8rem;
+
+    /*----------  Base Button Variables  ----------*/
+    @include button.variable(
+        $text-color: var(--base-text-light-color),
+        $bg-color: #ffffff,
+        $border-color: var(--base-border-color),
+        $box-shadow: 0 0.1rem 0 rgba(0, 0, 0, 0.1),
+        $text-color-hover: var(--base-text-color),
+        $bg-color-hover: var(--dawn-color),
+        $border-color-focus: rgba(var(--dawn-dark-rgb), 0.4),
+        $box-shadow-focus: 0 0 0 0.2rem var(--shadow-color)
+    );
+
+    /*----------  Inverted Button Variable  ----------*/
+    @include button.variable(
+        'inverted',
+        $text-color: var(--white-color),
+        $bg-color: var(--dusk-color),
+        $border-color: var(--dusk-color),
+        $box-shadow: 0 0.1rem 0 rgba(0, 0, 0, 0.1),
+        $bg-color-hover: var(--dusk-light-color),
+        $border-color-hover: var(--dusk-dark-color),
+        $border-color-focus: rgba(0, 0, 0, 0.4),
+        $box-shadow-focus: 0 0 0 0.2rem var(--shadow-color)
+    );
+
+    /*----------  Context Colors  ----------*/
+    @each $context in color.$contexts {
+        @include button.variable(
+            $context,
+            $text-color: var(--#{$context}-text-color),
+            $bg-color: var(--#{$context}-color),
+            $border-color: var(--#{$context}-color),
+            $box-shadow: var(--button-box-shadow),
+            $bg-color-hover: var(--#{$context}-light-color),
+            $border-color-hover: var(--#{$context}-light-color),
+            $box-shadow-focus: 0 0 0 0.2rem var(--#{$context}-box-shadow-color)
+        );
+    }
+}
+
+@mixin dark-only() {
+    /*----------  Base Button Variables  ----------*/
+    @include button.variable(
+        $text-color: var(--base-text-light-color),
+        $bg-color: rgba(255, 255, 255, 0.05),
+        $border-color: rgba(255, 255, 255, 0.025) transparent transparent transparent,
+        $box-shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.1),
+        $bg-color-hover: rgba(255, 255, 255, 0.1),
+        $border-color-focus: rgba(0, 0, 0, 0.4),
+        $box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 0.2)
+    );
+
+    /*----------  Inverted Button Variable  ----------*/
+    @include button.variable(
+        'inverted',
+        $text-color: var(--dusk-color),
+        $bg-color: #ffffff,
+        $border-color: var(--base-border-color) transparent transparent transparent,
+        $box-shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.1),
+        $text-color-hover: var(--dusk-color),
+        $bg-color-hover: var(--dawn-color),
+        $border-color-focus: rgba(0, 0, 0, 0.4),
+        $box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 0.2)
+    );
+}

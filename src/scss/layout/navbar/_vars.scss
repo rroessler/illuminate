@@ -1,0 +1,31 @@
+/*
+-----------------------------------------------------------------------
+Variables : Navbar
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --navbar-height: 4.5rem;
+    --navbar-padding: 0 1.5rem;
+    --navbar-text-color: var(--base-text-light-color);
+    --navbar-bg-color: var(--dawn-dark-color);
+    --navbar-bg-image: none;
+    --navbar-border: none;
+    --navbar-box-shadow: 0 0.1rem 0.4rem var(--shadow-color);
+
+    --navbar-horizontal-spacing: 1rem;
+
+    --navbar-brand-font-size: 2rem;
+    --navbar-brand-font-weight: 500;
+    --navbar-brand-text-color: var(--base-text-color);
+    --navbar-brand-text-color-hover: var(--base-text-light-color);
+    --navbar-brand-image-height: 2.2rem;
+    --navbar-brand-image-margin-right: 1rem;
+
+    --navbar-action-button-width: 3.6rem;
+    --navbar-action-padding: 0;
+}
+
+@mixin dark-only() {
+    --navbar-bg-color: var(--dusk-dark-color);
+}

@@ -1,0 +1,32 @@
+/*
+-----------------------------------------------------------------------
+Variables : Typography
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --base-html-font-size: 62.5%;
+    --base-html-font-size-1600: 75%;
+    --base-html-font-size-1920: 87.5%;
+
+    --base-font-size: 1.4rem;
+    --base-font-weight: 400;
+    --base-line-height: 1.4;
+
+    --base-text-color: var(--dusk-dark-color);
+    --base-text-light-color: var(--dusk-color);
+    --muted-text-color: var(--dusk-light-color);
+
+    --extra-letter-spacing-size: 0.03rem;
+
+    --heading-font-weight: 500;
+
+    --paragraph-margin-start: 0.75rem;
+    --paragraph-margin-end: 0.75rem;
+}
+
+@mixin dark-only() {
+    --base-text-color: var(--dawn-light-color);
+    --base-text-light-color: var(--dawn-color);
+    --muted-text-color: var(--dawn-dark-color);
+}

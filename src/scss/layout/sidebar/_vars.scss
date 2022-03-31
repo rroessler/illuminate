@@ -1,0 +1,93 @@
+/*
+-----------------------------------------------------------------------
+Variables : Sidebar
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --sidebar-width: 24rem;
+    --sidebar-border-width: var(--base-border-width);
+
+    --sidebar-bg-color: var(--dawn-color);
+    --sidebar-bg-image: none;
+    --sidebar-border-color: rgba(0, 0, 0, 0.2);
+    --sidebar-box-shadow: none;
+
+    --sidebar-animation-duration: 0.2s;
+    --sidebar-animation-easing: ease-in-out;
+
+    --sidebar-menu-vertical-margin: 2.5rem;
+
+    --sidebar-item-vertical-spacing: 0.5rem;
+    --sidebar-item-horizontal-spacing: 2.5rem;
+
+    --sidebar-section-padding: 0;
+    --sidebar-section-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
+
+    --sidebar-link-height: 3rem;
+    --sidebar-link-padding: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
+    --sidebar-link-margin: 0;
+    --sidebar-link-border-width: 0;
+    --sidebar-link-border-radius: 0;
+
+    --sidebar-link-text-color: var(--base-text-light-color);
+    --sidebar-link-text-color-hover: var(--base-text-color);
+    --sidebar-link-text-color-active: var(--primary-color);
+    --sidebar-link-text-color-active-hover: var(--primary-light-color);
+    --sidebar-link-bg-color: transparent;
+    --sidebar-link-bg-color-hover: transparent;
+    --sidebar-link-bg-color-active: transparent;
+    --sidebar-link-bg-color-active-hover: transparent;
+    --sidebar-link-border-color: transparent;
+    --sidebar-link-border-color-hover: transparent;
+    --sidebar-link-border-color-active: transparent;
+    --sidebar-link-border-color-active-hover: transparent;
+
+    --sidebar-title-padding: 0;
+    --sidebar-title-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
+    --sidebar-title-font-size: 1.5rem;
+    --sidebar-title-font-weight: var(--content-title-font-weight);
+    --sidebar-title-text-color: var(--base-text-color);
+
+    --sidebar-icon-dims: 3.2rem;
+    --sidebar-icon-font-size: 1.6rem;
+    --sidebar-icon-margin-right: 1rem;
+    --sidebar-icon-border-width: 1px;
+    --sidebar-icon-border-radius: var(--base-border-radius);
+
+    --sidebar-icon-text-color: var(--base-text-light-color);
+    --sidebar-icon-text-color-hover: var(--base-text-color);
+    --sidebar-icon-text-color-active: var(--primary-color);
+    --sidebar-icon-text-color-active-hover: var(--primary-light-color);
+    --sidebar-icon-bg-color: var(--dawn-dark-color);
+    --sidebar-icon-bg-color-hover: var(--sidebar-icon-bg-color);
+    --sidebar-icon-bg-color-active: var(--sidebar-icon-bg-color);
+    --sidebar-icon-bg-color-active-hover: var(--sidebar-icon-bg-color);
+    --sidebar-icon-border-color: rgba(0, 0, 0, 0.1);
+    --sidebar-icon-border-color-hover: var(--sidebar-icon-border-color);
+    --sidebar-icon-border-color-active: var(--sidebar-icon-border-color);
+    --sidebar-icon-border-color-active-hover: var(--sidebar-icon-border-color);
+
+    --sidebar-brand-padding: 0;
+    --sidebar-brand-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
+    --sidebar-brand-font-size: var(--navbar-brand-font-size);
+    --sidebar-brand-font-weight: var(--navbar-brand-font-weight);
+    --sidebar-brand-text-color: var(--base-text-color);
+    --sidebar-brand-text-color-hover: var(--base-text-light-color);
+    --sidebar-brand-image-height: var(--navbar-brand-image-height);
+    --sidebar-brand-image-margin-right: var(--navbar-brang-image-margin-right);
+
+    --sidebar-divider-padding: 0;
+    --sidebar-divider-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
+}
+
+@mixin dark-only() {
+    --sidebar-bg-color: var(--dusk-color);
+    --sidebar-border-color: rgba(255, 255, 255, 0.2);
+
+    --sidebar-icon-bg-color: rgba(255, 255, 255, 0.1);
+    --sidebar-icon-border-color: transparent;
+    --sidebar-icon-border-color-hover: transparent;
+    --sidebar-icon-border-color-active: transparent;
+    --sidebar-icon-border-color-active-hover: transparent;
+}

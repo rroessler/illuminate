@@ -1,0 +1,22 @@
+/*
+-----------------------------------------------------------------------
+2.5.    Dividers
+-----------------------------------------------------------------------
+*/
+
+hr,
+.divider {
+    display: block;
+    height: var(--divider-height);
+    width: 100%;
+    color: var(--divider-color);
+    background-color: var(--divider-color);
+    margin: var(--divider-spacing) 0;
+    border: none;
+
+    &:not(hr).vertical {
+        height: 100%;
+        width: var(--divider-height);
+        margin: 0 var(--divider-spacing);
+    }
+}

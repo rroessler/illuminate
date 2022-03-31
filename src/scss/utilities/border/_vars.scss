@@ -1,0 +1,16 @@
+/*
+-----------------------------------------------------------------------
+Variables : Borders
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --base-border-width: 1px;
+    --base-border-radius: 0.3rem;
+
+    --base-border-color: rgba(0, 0, 0, 0.2);
+}
+
+@mixin dark-only() {
+    --base-border-color: rgba(255, 255, 255, 0.2);
+}

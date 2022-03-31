@@ -1,0 +1,68 @@
+/*
+-----------------------------------------------------------------------
+2.6.    Navbar
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/shadows' as shadows;
+
+.navbar {
+    position: relative;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    width: 100%;
+    height: var(--navbar-height);
+    padding: var(--navbar-padding);
+    background-color: var(--navbar-bg-color);
+    background-image: var(--navbar-bg-image);
+    border: var(--navbar-border);
+    @include shadows.box(var(--navbar-box-shadow));
+
+    .brand,
+    .text,
+    .section {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        min-width: 0;
+    }
+
+    *:not(:first-child) {
+        margin-left: var(--navbar-horizontal-spacing);
+    }
+
+    .text {
+        color: var(--navbar-text-color);
+    }
+
+    .brand {
+        font-size: var(--navbar-brand-font-size);
+        font-weight: var(--navbar-brand-font-weight);
+        color: var(--navbar-brand-text-color);
+
+        &:hover {
+            color: var(--navbar-brand-text-color-hover);
+            text-decoration: none;
+        }
+
+        > img {
+            height: var(--navbar-brand-image-height);
+
+            &:not(:only-child) {
+                margin-right: var(--navbar-brand-image-margin-right);
+            }
+        }
+    }
+
+    .btn-action {
+        width: var(--navbar-action-button-width);
+        padding: var(--navbar-action-button-padding);
+    }
+}

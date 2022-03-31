@@ -1,0 +1,32 @@
+/*
+-----------------------------------------------------------------------
+2.1.    Containers
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/breakpoint' as breakpoint;
+
+.container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    width: var(--container-fluid-width);
+}
+
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+    margin-left: auto;
+    margin-right: auto;
+    width: var(--container-width);
+}
+
+@each $bp in breakpoint.$names {
+    @include breakpoint.with($bp) {
+        .container,
+        .container-#{$bp} {
+            max-width: var(--container-#{$bp}-max-width);
+        }
+    }
+}

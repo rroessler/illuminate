@@ -1,0 +1,20 @@
+/*
+-----------------------------------------------------------------------
+Variables : Table
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --table-header-font-weight: 600;
+    --table-padding: 1.2rem 1.5rem;
+
+    --table-border-width: 1px;
+    --table-thead-border-bottom-width: 1px;
+    --table-tfoot-border-top-width: 1px;
+
+    --table-border-color: var(--dusk-light-color);
+}
+
+@mixin dark-only() {
+    --table-border-color: var(--dawn-color);
+}

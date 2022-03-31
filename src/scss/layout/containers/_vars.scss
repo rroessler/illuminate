@@ -1,0 +1,14 @@
+/*
+-----------------------------------------------------------------------
+Variables : Containers
+-----------------------------------------------------------------------
+*/
+
+@mixin globals() {
+    --container-width: 100%;
+    --container-sm-max-width: 54rem;
+    --container-md-max-width: 72rem;
+    --container-lg-max-width: 96rem;
+    --container-xl-max-width: 114rem;
+    --container-fluid-width: 100%;
+}

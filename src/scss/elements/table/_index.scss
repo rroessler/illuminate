@@ -1,0 +1,75 @@
+/*
+-----------------------------------------------------------------------
+1.5.    Table
+-----------------------------------------------------------------------
+*/
+
+.table-fluid-wrapper {
+    overflow-x: auto;
+
+    .table th,
+    .table td {
+        white-space: nowrap;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    thead tr {
+        border-bottom: var(--table-thead-border-bottom-width) solid var(--table-border-color);
+    }
+
+    tfoot tr {
+        border-top: var(--table-tfoot-border-top-width) solid var(--table-border-color);
+    }
+
+    tbody tr:not(:last-child) {
+        border-bottom: var(--table-border-width) solid var(--table-border-color);
+    }
+
+    th {
+        font-weight: var(--table-header-font-weight);
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: var(--table-padding);
+    }
+
+    &.table-bordered,
+    &.table-outer-bordered {
+        border: var(--table-border-width) solid var(--table-border-color);
+    }
+
+    &.table-bordered th:not(:last-child),
+    &.table-bordered td:not(:last-child),
+    &.table-inner-bordered th:not(:last-child),
+    &.table-inner-bordered td:not(:last-child) {
+        border-right: var(--table-border-width) solid var(--table-border-color);
+    }
+
+    &.text-left {
+        th,
+        td {
+            text-align: left !important;
+        }
+    }
+
+    &.text-center {
+        th,
+        td {
+            text-align: center !important;
+        }
+    }
+
+    &.text-right {
+        th,
+        td {
+            text-align: right !important;
+        }
+    }
+}

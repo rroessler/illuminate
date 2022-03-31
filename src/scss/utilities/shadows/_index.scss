@@ -1,0 +1,23 @@
+/*
+-----------------------------------------------------------------------
+5.1.    Box Shadows
+-----------------------------------------------------------------------
+*/
+
+@use '../../mixins/shadows' as shadows;
+
+.shadow-none {
+    @include shadows.box(none);
+}
+
+.shadow-sm {
+    @include shadows.box(var(--shadow-sm));
+}
+
+.shadow {
+    @include shadows.box(var(--shadow));
+}
+
+.shadow-lg {
+    @include shadows.box(var(--shadow-lg));
+}
