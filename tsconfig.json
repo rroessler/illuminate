@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "lib": ["ES6", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": false,
+        "strict": true,
+        "target": "ES6",
+        "outDir": "prebuild/lib",
+        "rootDir": "src/lib",
+        "declarationDir": "types"
+    }
+}
