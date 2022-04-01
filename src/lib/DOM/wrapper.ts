@@ -6,8 +6,12 @@ import { Factory } from './factory';
  **************/
 
 /// jQuery-like interface.
-interface I$ {
-    <T extends HTMLElement = HTMLElement>(selector: string | T): Wrapper<T>;
+export interface I$ {
+    <T extends HTMLElement = HTMLElement>(selector: string | T, safe?: boolean): Wrapper<T>;
+    all: <K extends keyof HTMLElementTagNameMap>(
+        selector: string,
+        parent?: HTMLElement | Wrapper<HTMLElement>
+    ) => Wrapper<HTMLElementTagNameMap[K]>[];
     create: <K extends keyof HTMLElementTagNameMap>(tagName: K) => Wrapper<HTMLElementTagNameMap[K]>;
 }
 
@@ -39,9 +43,9 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      */
     constructor(public readonly element: T) {}
 
-    /********************
-     *  GETTER METHODS  *
-     ********************/
+    /*****************************
+     *  GETTER / SETTER METHODS  *
+     *****************************/
 
     /**
      * Gets an attribute from a given element.
@@ -49,20 +53,12 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      */
     attr<T = string>(prop: string): T | null;
 
-    /********************
-     *  SETTER METHODS  *
-     ********************/
-
     /**
      * Sets an attribute of a wrapper element.
      * @param prop                          Attribute to set.
      * @param value                         Value to set.
      */
     attr<T = string>(prop: string, value: T): void;
-
-    /*****************************
-     *  GETTER / SETTER METHODS  *
-     *****************************/
 
     /**
      * Getter/Setter implementation for 'attr' method.
@@ -75,6 +71,21 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
         // since given a value, we instead set
         this.element.setAttribute(prop, value);
+    }
+
+    /// Getter for elements text.
+    text(): string;
+
+    /// Setter for elements text.
+    text(value: string): void;
+
+    /**
+     * Getter/Setter implementation for 'text' method.
+     * @param value                         Value to set if given.
+     */
+    text(value?: string): any {
+        if (value === undefined) return this.element.innerHTML;
+        else this.element.innerHTML = value;
     }
 
     /*******************
@@ -165,6 +176,9 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
             else this.element.appendChild(item);
         }
     }
+
+    /// Returns the previous element.
+    prev = <T extends HTMLElement = HTMLElement>() => $(this.element.previousElementSibling as T);
 }
 
 /*********************************
@@ -174,13 +188,30 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 /**
  * Constructs a wrapped element from given selector.
  * @param item                          Selector or HTML element to wrap.
+ * @param safe                          Safe constructor use.
  */
-export const $: I$ = function <T extends HTMLElement>(item: string | T) {
+export const $: I$ = function <T extends HTMLElement>(item: string | T, safe = true) {
     const element = typeof item === 'string' ? document.querySelector(item) : item;
-    if (element !== null) return new Wrapper<T>(element as T);
+    if (!safe) return element !== null ? new Wrapper<T>(element as T) : (null as any);
+    else if (element !== null) return new Wrapper<T>(element as T);
 
+    // since not safe, then declare an error
     if (typeof item === 'string') throw new ReferenceError(`$: Invalid selector "${item}".`);
     else throw new ReferenceError(`$: Invalid element. Received null.`);
+};
+
+/**
+ * Gets all items by the given selector.
+ * @param selector                      Selector of elements.
+ * @param parent                        Parent element.
+ */
+$.all = <K extends keyof HTMLElementTagNameMap>(selector: string, parent?: HTMLElement | Wrapper<HTMLElement>) => {
+    // resolve the chosen base parent
+    let base = parent ?? document;
+    if ('element' in base) base = base.element;
+
+    // and return the resulting elements
+    return [...base.querySelectorAll(selector)].map((element) => $<HTMLElementTagNameMap[K]>(element as any));
 };
 
 /**
@@ -188,7 +219,5 @@ export const $: I$ = function <T extends HTMLElement>(item: string | T) {
  * @param tagName                       Base Tag Name.
  * @param opts                          Constructor Options.
  */
-$.create = <K extends keyof HTMLElementTagNameMap>(tagName: K, opts: Factory.CustomCreationOptions<K> = {}) => {
-    const element = Factory.create<K>(tagName, opts);
-    return $<HTMLElementTagNameMap[K]>(element as any);
-};
+$.create = <K extends keyof HTMLElementTagNameMap>(tagName: K, opts: string | Factory.CustomCreationOptions<K> = {}) =>
+    $<HTMLElementTagNameMap[K]>(Factory.create<K>(tagName, opts) as any);

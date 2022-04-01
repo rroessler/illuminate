@@ -58,7 +58,10 @@ button::-moz-focusring,
     @include button.base('sm');
     @include button.base('lg');
 
-    /// Context buttons
+    /// Inverted Buttons
+    @include button.variant('inverted');
+
+    /// Context Buttons
     @each $context in color.$contexts {
         @include button.variant($context);
     }
@@ -92,17 +95,6 @@ button::-moz-focusring,
     &:disabled {
         cursor: auto;
         opacity: 0.6;
-
-        &:hover,
-        &:focus,
-        &.active {
-            color: unset;
-            background-color: unset;
-            background-image: unset;
-            border-color: unset;
-            outline: none;
-
-            @include shadows.box(unset);
-        }
+        pointer-events: none;
     }
 }

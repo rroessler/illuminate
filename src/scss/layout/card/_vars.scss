@@ -21,7 +21,7 @@ Variables : Cards
     --card-subtitle-color: var(--muted-text-color);
 
     --card-text-color: var(--base-text-color);
-    --card-bg-color: var(--dawn-light-color);
+    --card-bg-color: var(--dawn-color);
     --card-bg-image: none;
     --card-border: none;
     --card-border-color: var(--base-border-color);
@@ -30,5 +30,5 @@ Variables : Cards
 }
 
 @mixin dark-only() {
-    --card-bg-color: var(--dusk-light-color);
+    --card-bg-color: var(--dusk-color);
 }

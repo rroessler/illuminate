@@ -1,0 +1,32 @@
+/*
+-----------------------------------------------------------------------
+5.#.    Flex
+-----------------------------------------------------------------------
+*/
+
+/*----------  Flex Mixins  ----------*/
+
+@mixin -prepend-ms-flex($name, $prop) {
+    -ms-flex-#{$name}: $prop !important;
+    flex-#{$name}: $prop !important;
+}
+
+/*----------  Flex Modifiers  ----------*/
+
+.flex-row {
+    @include -prepend-ms-flex(direction, row);
+}
+
+.flex-column {
+    @include -prepend-ms-flex(direction, column);
+}
+
+/*----------  Alignment  ----------*/
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}

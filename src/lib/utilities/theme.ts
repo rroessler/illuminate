@@ -69,7 +69,7 @@ export namespace Theme {
     };
 
     /// Gets the currently set theme (evident on the "data-theme" attribute).
-    export const current = (): Mode => $('html').attr<Mode>('data-theme') ?? 'light';
+    export const current = (): Mode => DOM.html.attr<Mode>('data-theme') ?? 'light';
 
     /// Current preferred theme.
     export const prefers = (): Mode => (localStorage.getItem('illuminate:theme') ?? m_prefers) as Mode;

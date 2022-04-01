@@ -34,12 +34,12 @@ Variables : Colors
     @include c.system('pink', #fbb1bd, #fcc5ce, #fa9ead, #ffffff);
 
     /*----------  Context Colors  ----------*/
-    @include c.context('primary', 'sky');
+    @include c.context('primary', 'blue');
     @include c.context('secondary', 'steel');
     @include c.context('success', 'green');
     @include c.context('warning', 'yellow');
     @include c.context('danger', 'red');
-    @include c.context('info', 'blue');
+    @include c.context('info', 'sky');
 
     /*----------  Global Colors  ----------*/
     --base-body-bg-color: #fff;

@@ -1,0 +1,43 @@
+/*
+-----------------------------------------------------------------------
+5.#.    Display
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:map';
+@use '../mixins/breakpoint' as breakpoints;
+
+/// Available Displays.
+$displays: (
+    'none': none,
+    'inline': inline,
+    'inline-block': inline-block,
+    'block': block,
+    'flex': flex,
+    'inline-flex': inline-flex,
+    'table': table,
+    'table-row': table-row,
+    'table-cell': table-cell,
+);
+
+/*----------  Display Mixin  ----------*/
+
+@mixin -display($selector, $prop) {
+    #{'.d-#{$selector}'} {
+        display: #{$prop} !important;
+    }
+}
+
+/*----------  Display Factory  ----------*/
+
+@each $display, $prop in $displays {
+    @include -display($display, $prop);
+}
+
+@each $bp in breakpoints.$names {
+    @include breakpoints.with($bp) {
+        @each $display, $prop in $displays {
+            @include -display('#{$bp}-#{$display}', $prop);
+        }
+    }
+}

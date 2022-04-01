@@ -23,13 +23,13 @@
 
     @include shadows.box(var(--sidebar-box-shadow));
 
-    &:not(.sidebar-right) {
+    &:not(.right) {
         left: 0;
         transition: left var(--sidebar-animation-duration) var(--sidebar-animation-easing);
         border-right: var(--sidebar-border-width) solid var(--sidebar-border-color);
     }
 
-    &.sidebar-right {
+    &.right {
         right: 0;
         transition: right var(--sidebar-animation-duration) var(--sidebar-animation-easing);
         border-left: var(--sidebar-border-width) solid var(--sidebar-border-color);

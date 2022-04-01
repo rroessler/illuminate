@@ -43,7 +43,7 @@ Mixin : Button
 /*----------  Component Mixins  ----------*/
 
 @mixin base($size: '') {
-    &.btn-#{size} {
+    &.btn-#{$size} {
         height: var(--button-#{$size}-height);
         line-height: var(--button-#{$size}-line-height);
         padding: var(--button-#{$size}-padding);

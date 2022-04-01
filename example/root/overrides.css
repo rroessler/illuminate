@@ -6,15 +6,27 @@
 =            Misc Styling            =
 =====================================*/
 
-.cards-container {
-    padding: var(--card-padding) 0 0 0;
-    background-color: rgba(0, 0, 0, 0.02);
+.code-container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-html[data-theme='dark'] .cards-container {
-    background-color: rgba(255, 255, 255, 0.03);
+html[data-theme='dark'] .code-container {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.cards-container > .card:first-of-type {
-    margin-top: 0;
+.code-container .copy-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.code-container pre {
+    overflow: auto;
+}
+
+.code-container code {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem 2rem;
 }

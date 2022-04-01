@@ -1,4 +1,5 @@
 /// Native Modules
+const fs = require('fs');
 const path = require('path');
 
 /// Node Modules
@@ -16,7 +17,10 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, './root/index.html')));
 
 // docs retrieval
-app.get('/docs/:name', (req, res) => res.sendFile(path.join(__dirname, `../docs/${req.params.name}.html`)));
+app.get('/docs/:name', (req, res) => {
+    const filePath = path.join(__dirname, `../docs/${req.params.name}.html`);
+    fs.existsSync(filePath) ? res.sendFile(filePath) : res.send('');
+});
 
 // server runner
 app.listen(PORT, () => console.log(`\x1b[36milluminate\x1b[0m -> \x1b[3;34mhttp://127.0.0.1:${PORT}\x1b[0m`));

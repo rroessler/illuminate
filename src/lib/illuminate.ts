@@ -1,7 +1,9 @@
 /// Illuminate Imports.
-import { DOM } from './DOM';
+import { $ as _$_impl, DOM as _DOM_impl } from './DOM';
 import { __init__ } from './utilities/init';
+
 import { Theme as _Theme_impl } from './utilities/theme';
+import { Sidebar as _Sidebar_impl } from './components/sidebar';
 
 /// Core Illuminate Namespace.
 export namespace Illuminate {
@@ -9,8 +11,11 @@ export namespace Illuminate {
      *  RE-EXPORTS  *
      ****************/
 
-    // Theme Interface.
-    export const Theme = _Theme_impl;
+    export const $ = _$_impl; // Element Wrapper.
+    export const DOM = _DOM_impl; // DOM Namespace.
+
+    export const Theme = _Theme_impl; // Theme Accessor.
+    export const Sidebar = _Sidebar_impl; // Sidebar Accessor.
 
     /**************
      *  TYPEDEFS  *
@@ -29,7 +34,7 @@ export namespace Illuminate {
     export const preload = DOM.html.attr('data-preload-illuminate') !== null;
 
     /// Base Initialistion Options.
-    const m_options: IOptions = { theme: _Theme_impl.__options__ };
+    const m_options: IOptions = { theme: Theme.__options__ };
 
     /// Initialisation details.
     let m_initialised = false;
