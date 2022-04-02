@@ -6,32 +6,36 @@
 
 @use '../../mixins/select' as select;
 
-code,
-.code {
+%font-family {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+code:not(.ignore-style),
+.code:not(.ignore-style) {
     font-family: monospace, monospace;
     font-size: var(--code-font-size);
     line-height: var(--code-line-height);
     padding: var(--code-padding);
     margin: var(--code-margin);
-    color: var(--lm-code-text-color);
-    background-color: var(--lm-code-bg-color);
-    border: var(--code-border-width) solid var(--lm-code-border-color);
+    color: var(--code-text-color);
+    background-color: var(--code-bg-color);
+    border: var(--code-border-width) solid var(--code-border-color);
     border-radius: var(--code-border-radius);
 
     &:not(.monospace) {
-        font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        @extend %font-family;
     }
 }
 
 kbd {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    @extend %font-family;
     font-size: var(--kbd-font-size);
     line-height: var(--kbd-line-height);
     padding: var(--kbd-padding);
     margin: var(--kbd-margin);
     color: var(--kbd-text-color);
     background-color: var(--kbd-bg-color);
-    border: var(--kbd-border-width) solid var(--lm-kbd-border-color);
+    border: var(--kbd-border-width) solid var(--kbd-border-color);
     border-radius: var(--kbd-border-radius);
 
     @include select.user(none);

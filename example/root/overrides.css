@@ -8,11 +8,15 @@
 
 .code-container {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom-right-radius: var(--base-border-radius);
+    border-bottom-left-radius: var(--base-border-radius);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 html[data-theme='dark'] .code-container {
     background-color: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .code-container .copy-button {
@@ -28,5 +32,5 @@ html[data-theme='dark'] .code-container {
 .code-container code {
     display: block;
     overflow-x: auto;
-    padding: 1rem 2rem;
+    padding: 2rem;
 }

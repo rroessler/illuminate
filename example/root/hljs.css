@@ -1,0 +1,124 @@
+/*=================================================
+=            Illuminate Example - HLJS            =
+==================================================*/
+
+.hljs-punctuation,
+.hljs-tag {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.hljs-comment,
+.hljs-quote {
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+    color: var(--indigo-color) !important;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+    color: var(--red-color) !important;
+}
+
+.hljs-literal {
+    color: var(--blue-color) !important;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+    color: var(--green-color) !important;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+    color: var(--orange-dark-color) !important;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+    color: var(--orange-dark-color) !important;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+    color: var(--sky-dark) !important;
+}
+
+.hljs-emphasis {
+    font-style: italic !important;
+}
+.hljs-strong {
+    font-weight: bold !important;
+}
+.hljs-link {
+    text-decoration: underline !important;
+}
+
+.hljs-attribute,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-name,
+.hljs-selector-tag {
+    font-weight: unset;
+}
+
+html[data-theme='dark']:root .code-container .hljs {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme='dark']:root .hljs-punctuation,
+html[data-theme='dark']:root .hljs-tag {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+html[data-theme='dark']:root .hljs-comment,
+html[data-theme='dark']:root .hljs-quote {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+html[data-theme='dark']:root .hljs-section,
+html[data-theme='dark']:root .hljs-name,
+html[data-theme='dark']:root .hljs-selector-tag,
+html[data-theme='dark']:root .hljs-deletion,
+html[data-theme='dark']:root .hljs-subst {
+    color: var(--red-light-color) !important;
+}
+
+html[data-theme='dark']:root .hljs-string,
+html[data-theme='dark']:root .hljs-regexp,
+html[data-theme='dark']:root .hljs-addition,
+html[data-theme='dark']:root .hljs-attribute,
+html[data-theme='dark']:root .hljs-meta-string {
+    color: var(--green-color) !important;
+}
+
+html[data-theme='dark']:root .hljs-attr,
+html[data-theme='dark']:root .hljs-variable,
+html[data-theme='dark']:root .hljs-template-variable,
+html[data-theme='dark']:root .hljs-type,
+html[data-theme='dark']:root .hljs-selector-class,
+html[data-theme='dark']:root .hljs-selector-attr,
+html[data-theme='dark']:root .hljs-selector-pseudo,
+html[data-theme='dark']:root .hljs-number {
+    color: var(--yellow-dark-color) !important;
+}

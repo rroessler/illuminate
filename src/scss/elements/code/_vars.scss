@@ -13,8 +13,8 @@ Variables : Code
     --code-border-radius: 0.2rem;
 
     --code-text-color: var(--base-text-color);
-    --code-bg-color: var(--dawn-color);
-    --code-border-color: rgba(0, 0, 0, 0.05);
+    --code-bg-color: var(--dawn-light-color);
+    --code-border-color: rgba(0, 0, 0, 0.2);
 
     --kbd-font-size: var(--code-font-size);
     --kbd-line-height: var(--code-line-height);
@@ -29,8 +29,8 @@ Variables : Code
 }
 
 @mixin dark-only() {
-    --code-bg-color: rgba(0, 0, 0.1);
-    --code-border-color: rgba(0, 0, 0, 0.15);
+    --code-bg-color: rgba(0, 0, 0, 0.35);
+    --code-border-color: rgba(255, 255, 255, 0.2);
 
     --kbd-bg-color: transparent;
     --kbd-border-color: rgba(255, 255, 255, 0.2);

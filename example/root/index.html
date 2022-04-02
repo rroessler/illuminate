@@ -19,6 +19,7 @@
         <!-- STYLESHEETS -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css" />
         <link href="dist/illuminate.min.css" rel="stylesheet" />
+        <link href="hljs.css" rel="stylesheet" />
         <link href="overrides.css" rel="stylesheet" />
 
         <!-- LIBRARIES -->
@@ -111,16 +112,25 @@
                         { value: '', spaces: Infinity }
                     );
 
+                    // remove the ending and starting "\n" characters
+                    text.value = text.value.substr(1, text.value.length - 2);
+
                     // convert the current block into suitable display
                     const language = block.attr('data-language');
                     const code = hljs.highlight(text.value, { language }).value;
 
                     // construct and append each required item
-                    const pre = $.create('pre', { className: 'm-0', innerHTML: `<code>${code}</code>` });
+                    const pre = $.create('pre', {
+                        className: 'm-0',
+                        innerHTML: `<code class="ignore-style">${code}</code>`
+                    });
+
                     const copy = $.create('button', {
                         className: 'btn btn-sm btn-inverted copy-button',
-                        innerHTML: '<i class="las la-copy"></i>&nbsp;Copy',
+                        innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
+                        onclick: () => navigator.clipboard.writeText(text.value)
                     });
+
                     block.append(pre, copy);
                 };
             })();
