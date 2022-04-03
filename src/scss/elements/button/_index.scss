@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/color' as color;
 @use '../../mixins/button' as button;
 @use '../../mixins/shadows' as shadows;
@@ -37,22 +38,22 @@ button::-moz-focusring,
     text-align: center;
     white-space: nowrap;
     cursor: pointer;
-    border-radius: var(--button-border-radius);
-    border-width: var(--button-border-width);
+    border-radius: vars.get('button-border-radius');
+    border-width: vars.get('button-border-width');
     border-style: solid;
     text-transform: none;
     overflow: visible;
 
-    color: var(--button-text-color);
-    background-color: var(--button-bg-color);
-    background-image: var(--button-bg-image);
-    border-color: var(--button-border-color);
-    @include shadows.box(var(--button-box-shadow));
+    color: vars.get('button-text-color');
+    background-color: vars.get('button-bg-color');
+    background-image: vars.get('button-bg-image');
+    border-color: vars.get('button-border-color');
+    @include shadows.box(vars.get('button-box-shadow'));
 
-    height: var(--button-height);
-    line-height: var(--button-line-height);
-    padding: var(--button-padding);
-    font-size: var(--button-font-size);
+    height: vars.get('button-height');
+    line-height: vars.get('button-line-height');
+    padding: vars.get('button-padding');
+    font-size: vars.get('button-font-size');
 
     /// Different sized buttons
     @include button.base('sm');
@@ -68,27 +69,27 @@ button::-moz-focusring,
 
     &:hover {
         text-decoration: none;
-        color: var(--button-text-color-hover);
-        background-color: var(--button-bg-color-hover);
-        background-image: var(--button-bg-image-hover);
-        border-color: var(--button-border-color-hover);
-        @include shadows.box(var(--button-box-shadow-hover));
+        color: vars.get('button-text-color-hover');
+        background-color: vars.get('button-bg-color-hover');
+        background-image: vars.get('button-bg-image-hover');
+        border-color: vars.get('button-border-color-hover');
+        @include shadows.box(vars.get('button-box-shadow-hover'));
     }
 
     &:focus,
     &.active {
-        color: var(--button-text-color-focus);
-        background-color: var(--button-bg-color-focus);
-        background-image: var(--button-bg-image-focus);
-        border-color: var(--button-border-color-focus);
-        @include shadows.box(var(--button-box-shadow-focus));
+        color: vars.get('button-text-color-focus');
+        background-color: vars.get('button-bg-color-focus');
+        background-image: vars.get('button-bg-image-focus');
+        border-color: vars.get('button-border-color-focus');
+        @include shadows.box(vars.get('button-box-shadow-focus'));
     }
 
     &:focus:hover,
     &.active:hover {
-        color: var(--button-text-color-hover);
-        background-color: var(--button-bg-color-hover);
-        background-image: var(--button-bg-image-hover);
+        color: vars.get('button-text-color-hover');
+        background-color: vars.get('button-bg-color-hover');
+        background-image: vars.get('button-bg-image-hover');
     }
 
     &.disabled,

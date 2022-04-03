@@ -4,13 +4,15 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
+
 a {
-    color: var(--link-text-color);
+    color: vars.get('link-text-color');
     text-decoration: none;
     background-color: transparent;
 }
 
 a:hover {
-    color: var(--link-text-color-hover);
+    color: vars.get('link-text-color-hover');
     text-decoration: underline;
 }

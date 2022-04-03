@@ -4,6 +4,8 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
+
 .table-fluid-wrapper {
     overflow-x: auto;
 
@@ -19,37 +21,37 @@
     border-spacing: 0;
 
     thead tr {
-        border-bottom: var(--table-thead-border-bottom-width) solid var(--table-border-color);
+        border-bottom: vars.get('table-thead-border-bottom-width') solid vars.get('table-border-color');
     }
 
     tfoot tr {
-        border-top: var(--table-tfoot-border-top-width) solid var(--table-border-color);
+        border-top: vars.get('table-tfoot-border-top-width') solid vars.get('table-border-color');
     }
 
     tbody tr:not(:last-child) {
-        border-bottom: var(--table-border-width) solid var(--table-border-color);
+        border-bottom: vars.get('table-border-width') solid vars.get('table-border-color');
     }
 
     th {
-        font-weight: var(--table-header-font-weight);
+        font-weight: vars.get('table-header-font-weight');
     }
 
     th,
     td {
         text-align: left;
-        padding: var(--table-padding);
+        padding: vars.get('table-padding');
     }
 
     &.table-bordered,
     &.table-outer-bordered {
-        border: var(--table-border-width) solid var(--table-border-color);
+        border: vars.get('table-border-width') solid vars.get('table-border-color');
     }
 
     &.table-bordered th:not(:last-child),
     &.table-bordered td:not(:last-child),
     &.table-inner-bordered th:not(:last-child),
     &.table-inner-bordered td:not(:last-child) {
-        border-right: var(--table-border-width) solid var(--table-border-color);
+        border-right: vars.get('table-border-width') solid vars.get('table-border-color');
     }
 
     &.text-left {

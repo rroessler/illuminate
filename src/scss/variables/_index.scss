@@ -1,60 +1,23 @@
 /*
 -----------------------------------------------------------------------
-Global CSS Variables
+Importing Global Variables
 -----------------------------------------------------------------------
 */
 
-@use './colors' as color;
+@import './colors';
 
-@use '../elements/button/vars' as button;
-@use '../elements/code/vars' as code;
-@use '../elements/link/vars' as link;
-@use '../elements/table/vars' as table;
-@use '../elements/typography/vars' as typography;
+@import '../utilities/border/vars';
+@import '../utilities/shadows/vars';
 
-@use '../layout/containers/vars' as containers;
-@use '../layout/page/vars' as page;
-@use '../layout/card/vars' as card;
-@use '../layout/divider/vars' as divider;
-@use '../layout/navbar/vars' as navbar;
-@use '../layout/sidebar/vars' as sidebar;
+@import '../elements/typography/vars';
+@import '../elements/button/vars';
+@import '../elements/code/vars';
+@import '../elements/link/vars';
+@import '../elements/table/vars';
 
-@use '../utilities/border/vars' as border;
-@use '../utilities/shadows/vars' as shadows;
-
-:root {
-    @include color.globals();
-
-    @include button.globals();
-    @include code.globals();
-    @include link.globals();
-    @include table.globals();
-    @include typography.globals();
-
-    @include containers.globals();
-    @include page.globals();
-    @include card.globals();
-    @include divider.globals();
-    @include navbar.globals();
-    @include sidebar.globals();
-
-    @include border.globals();
-    @include shadows.globals();
-}
-
-html[data-theme='dark']:root {
-    @include color.dark-only();
-
-    @include button.dark-only();
-    @include code.dark-only();
-    @include table.dark-only();
-    @include typography.dark-only();
-
-    @include card.dark-only();
-    @include divider.dark-only();
-    @include navbar.dark-only();
-    @include sidebar.dark-only();
-
-    @include border.dark-only();
-    @include shadows.dark-only();
-}
+@import '../layout/containers/vars';
+@import '../layout/page/vars';
+@import '../layout/divider/vars';
+@import '../layout/card/vars';
+@import '../layout/navbar/vars';
+@import '../layout/sidebar/vars';

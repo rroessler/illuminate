@@ -4,28 +4,26 @@ Variables : Navbar
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --navbar-height: 4.5rem;
-    --navbar-padding: 0 1.5rem;
-    --navbar-text-color: var(--base-text-light-color);
-    --navbar-bg-color: var(--dawn-dark-color);
-    --navbar-bg-image: none;
-    --navbar-border: none;
-    --navbar-box-shadow: 0 0.1rem 0.4rem var(--shadow-color);
+/*----------  Base Variables  ----------*/
+@include vars.setBase('navbar-height', 4.5rem);
+@include vars.setBase('navbar-padding', 0 1.5rem);
+@include vars.setBase('navbar-text-color', vars.get('base-text-light-color'));
+@include vars.setBase('navbar-bg-color', vars.get('dawn-dark-color'));
+@include vars.setBase('navbar-bg-image', none);
+@include vars.setBase('navbar-border', none);
+@include vars.setBase('navbar-box-shadow', 0 0.1rem 0.4rem vars.get('shadow-color'));
 
-    --navbar-horizontal-spacing: 1rem;
+@include vars.setBase('navbar-horizontal-spacing', 1rem);
 
-    --navbar-brand-font-size: 2rem;
-    --navbar-brand-font-weight: 500;
-    --navbar-brand-text-color: var(--base-text-color);
-    --navbar-brand-text-color-hover: var(--base-text-light-color);
-    --navbar-brand-image-height: 2.2rem;
-    --navbar-brand-image-margin-right: 1rem;
+@include vars.setBase('navbar-brand-font-size', 2rem);
+@include vars.setBase('navbar-brand-font-weight', 500);
+@include vars.setBase('navbar-brand-text-color', vars.get('base-text-color'));
+@include vars.setBase('navbar-brand-text-color-hover', vars.get('base-text-light-color'));
+@include vars.setBase('navbar-brand-image-height', 2.2rem);
+@include vars.setBase('navbar-brand-image-margin-right', 1rem);
 
-    --navbar-action-button-width: 3.6rem;
-    --navbar-action-padding: 0;
-}
+@include vars.setBase('navbar-action-button-width', 3.6rem);
+@include vars.setBase('navbar-action-button-padding', 0);
 
-@mixin dark-only() {
-    --navbar-bg-color: var(--dusk-dark-color);
-}
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('navbar-bg-color', vars.get('dusk-dark-color'));

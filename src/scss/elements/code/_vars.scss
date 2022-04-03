@@ -4,34 +4,32 @@ Variables : Code
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --code-font-size: 1.2rem;
-    --code-line-height: var(--base-line-height);
-    --code-padding: 0.1rem 0.5rem;
-    --code-margin: 0 0.1rem;
-    --code-border-width: var(--base-border-width);
-    --code-border-radius: 0.2rem;
+/*----------  Base Variables  ----------*/
+@include vars.setBase('code-font-size', 1.2rem);
+@include vars.setBase('code-line-height', vars.get('base-line-height'));
+@include vars.setBase('code-padding', 0.1rem 0.5rem);
+@include vars.setBase('code-margin', 0 0.1rem);
+@include vars.setBase('code-border-width', vars.get('base-border-width'));
+@include vars.setBase('code-border-radius', 0.2rem);
 
-    --code-text-color: var(--base-text-color);
-    --code-bg-color: var(--dawn-light-color);
-    --code-border-color: rgba(0, 0, 0, 0.2);
+@include vars.setBase('code-text-color', vars.get('base-text-color'));
+@include vars.setBase('code-bg-color', vars.get('dawn-light-color'));
+@include vars.setBase('code-border-color', rgba(0, 0, 0, 0.2));
 
-    --kbd-font-size: var(--code-font-size);
-    --kbd-line-height: var(--code-line-height);
-    --kbd-padding: var(--code-padding);
-    --kbd-margin: var(--code-margin);
-    --kbd-border-width: var(--code-border-width);
-    --kbd-border-radius: 0.35rem;
+@include vars.setBase('kbd-font-size', vars.get('code-font-size'));
+@include vars.setBase('kbd-line-height', vars.get('code-line-height'));
+@include vars.setBase('kbd-padding', vars.get('code-padding'));
+@include vars.setBase('kbd-margin', vars.get('code-margin'));
+@include vars.setBase('kbd-border-width', vars.get('code-border-width'));
+@include vars.setBase('kbd-border-radius', 0.35rem);
 
-    --kbd-text-color: var(--base-text-color);
-    --kbd-bg-color: var(--white-color);
-    --kbd-border-color: rgba(0, 0, 0, 0.2);
-}
+@include vars.setBase('kbd-text-color', vars.get('base-text-color'));
+@include vars.setBase('kbd-bg-color', vars.get('white-color'));
+@include vars.setBase('kbd-border-color', rgba(0, 0, 0, 0.2));
 
-@mixin dark-only() {
-    --code-bg-color: rgba(0, 0, 0, 0.35);
-    --code-border-color: rgba(255, 255, 255, 0.2);
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('code-bg-color', rgba(0, 0, 0, 0.35));
+@include vars.setDark('code-border-color', rgba(255, 255, 255, 0.2));
 
-    --kbd-bg-color: transparent;
-    --kbd-border-color: rgba(255, 255, 255, 0.2);
-}
+@include vars.setDark('kbd-bg-color', transparent);
+@include vars.setDark('kbd-border-color', rgba(255, 255, 255, 0.2));

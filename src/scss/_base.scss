@@ -4,18 +4,14 @@
 -----------------------------------------------------------------------
 */
 
-/*======================================
-=            Base Variables            =
-=======================================*/
-
-@import './variables';
+@use './variables/map' as vars;
 
 /*====================================
 =            Base Styling            =
 =====================================*/
 
 html {
-    font-size: var(--base-html-font-size);
+    font-size: vars.get('base-html-font-size');
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-box-sizing: border-box;
@@ -25,19 +21,19 @@ html {
 
 @media (min-width: 1600px) {
     html {
-        font-size: var(--base-html-font-size-1600);
+        font-size: vars.get('base-html-font-size-1600');
     }
 }
 
 @media (min-width: 1920px) {
     html {
-        font-size: var(--base-html-font-size-1920);
+        font-size: vars.get('base-html-font-size-1920');
     }
 }
 
 p {
-    margin-block-start: var(--paragraph-margin-start);
-    margin-block-end: var(--paragraph-margin-end);
+    margin-block-start: vars.get('paragraph-margin-start');
+    margin-block-end: vars.get('paragraph-margin-end');
 }
 
 *,
@@ -52,12 +48,12 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    font-weight: var(--base-font-weight);
-    font-size: var(--base-font-size);
-    line-height: var(--base-line-height);
-    color: var(--base-text-color);
-    background-color: var(--base-body-bg-color);
-    background-image: var(--base-body-bg-image);
+    font-weight: vars.get('base-font-weight');
+    font-size: vars.get('base-font-size');
+    line-height: vars.get('base-line-height');
+    color: vars.get('base-text-color');
+    background-color: vars.get('base-body-bg-color');
+    background-image: vars.get('base-body-bg-image');
 }
 
 [data-theme='dark'] body {

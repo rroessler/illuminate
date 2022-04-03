@@ -9,4 +9,5 @@ export declare namespace Theme {
     const toggle: (theme?: Mode | undefined) => void;
     const current: () => Mode;
     const prefers: () => Mode;
+    const cssMode: () => 'dynamic' | 'fixed';
 }

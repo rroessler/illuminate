@@ -4,12 +4,13 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/breakpoint' as breakpoint;
 
 .container-fluid {
     margin-left: auto;
     margin-right: auto;
-    width: var(--container-fluid-width);
+    width: vars.get('container-fluid-width');
 }
 
 .container,
@@ -19,14 +20,14 @@
 .container-xl {
     margin-left: auto;
     margin-right: auto;
-    width: var(--container-width);
+    width: vars.get('container-width');
 }
 
 @each $bp in breakpoint.$names {
     @include breakpoint.with($bp) {
         .container,
         .container-#{$bp} {
-            max-width: var(--container-#{$bp}-max-width);
+            max-width: vars.get('container-#{$bp}-max-width');
         }
     }
 }

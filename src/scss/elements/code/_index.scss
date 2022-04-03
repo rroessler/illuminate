@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/select' as select;
 
 %font-family {
@@ -13,14 +14,14 @@
 code:not(.ignore-style),
 .code:not(.ignore-style) {
     font-family: monospace, monospace;
-    font-size: var(--code-font-size);
-    line-height: var(--code-line-height);
-    padding: var(--code-padding);
-    margin: var(--code-margin);
-    color: var(--code-text-color);
-    background-color: var(--code-bg-color);
-    border: var(--code-border-width) solid var(--code-border-color);
-    border-radius: var(--code-border-radius);
+    font-size: vars.get('code-font-size');
+    line-height: vars.get('code-line-height');
+    padding: vars.get('code-padding');
+    margin: vars.get('code-margin');
+    color: vars.get('code-text-color');
+    background-color: vars.get('code-bg-color');
+    border: vars.get('code-border-width') solid vars.get('code-border-color');
+    border-radius: vars.get('code-border-radius');
 
     &:not(.monospace) {
         @extend %font-family;
@@ -29,14 +30,14 @@ code:not(.ignore-style),
 
 kbd {
     @extend %font-family;
-    font-size: var(--kbd-font-size);
-    line-height: var(--kbd-line-height);
-    padding: var(--kbd-padding);
-    margin: var(--kbd-margin);
-    color: var(--kbd-text-color);
-    background-color: var(--kbd-bg-color);
-    border: var(--kbd-border-width) solid var(--kbd-border-color);
-    border-radius: var(--kbd-border-radius);
+    font-size: vars.get('kbd-font-size');
+    line-height: vars.get('kbd-line-height');
+    padding: vars.get('kbd-padding');
+    margin: vars.get('kbd-margin');
+    color: vars.get('kbd-text-color');
+    background-color: vars.get('kbd-bg-color');
+    border: vars.get('kbd-border-width') solid vars.get('kbd-border-color');
+    border-radius: vars.get('kbd-border-radius');
 
     @include select.user(none);
 }

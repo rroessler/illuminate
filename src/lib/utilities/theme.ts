@@ -24,7 +24,7 @@ export namespace Theme {
 
     /// Base Illuminate Options.
     export const __options__: IOptions = {
-        preload: DOM.html.attr('data-preload-theme') !== 'false',
+        preload: DOM.html.attr('data-preload-theme') !== 'false'
     };
 
     /// Preferred Color Scheme.
@@ -40,7 +40,7 @@ export namespace Theme {
         const base: IOptions = Object.assign({}, __options__, opts);
 
         // if allowing preloading, then set the current theme
-        if (base.preload) toggle(prefers());
+        if (base.preload && cssMode() === 'dynamic') toggle(prefers());
     };
 
     /********************
@@ -52,6 +52,9 @@ export namespace Theme {
      * @param theme                     Theme to set.
      */
     export const toggle = (theme?: Mode) => {
+        // assert the current CSS mode
+        m_assertMode();
+
         // get the current mode
         const cur = current();
 
@@ -73,4 +76,18 @@ export namespace Theme {
 
     /// Current preferred theme.
     export const prefers = (): Mode => (localStorage.getItem('illuminate:theme') ?? m_prefers) as Mode;
+
+    /// Gets the current CSS Mode.
+    export const cssMode = (): 'dynamic' | 'fixed' =>
+        getComputedStyle(DOM.html.element).getPropertyValue('--default-css-mode') as any;
+
+    /*********************
+     *  PRIVATE METHODS  *
+     *********************/
+
+    /// Asserts the current styling mode.
+    const m_assertMode = () => {
+        if (cssMode() === 'dynamic') return;
+        throw new ReferenceError('CSS mode does not allow for dynamic themes.');
+    };
 }

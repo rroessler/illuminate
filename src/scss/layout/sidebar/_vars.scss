@@ -4,90 +4,89 @@ Variables : Sidebar
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --sidebar-width: 24rem;
-    --sidebar-border-width: var(--base-border-width);
+/*----------  Base Variables  ----------*/
+@include vars.setBase("sidebar-width",  24rem);
+@include vars.setBase("sidebar-border-width",  vars.get("base-border-width"));
 
-    --sidebar-bg-color: var(--dawn-color);
-    --sidebar-bg-image: none;
-    --sidebar-border-color: rgba(0, 0, 0, 0.2);
-    --sidebar-box-shadow: none;
+@include vars.setBase("sidebar-bg-color",  vars.get("dawn-color"));
+@include vars.setBase("sidebar-bg-image",  none);
+@include vars.setBase("sidebar-border-color",  rgba(0, 0, 0, 0.2));
+@include vars.setBase("sidebar-box-shadow",  none);
 
-    --sidebar-animation-duration: 0.2s;
-    --sidebar-animation-easing: ease-in-out;
+@include vars.setBase("sidebar-animation-duration",  0.2s);
+@include vars.setBase("sidebar-animation-easing",  ease-in-out);
 
-    --sidebar-menu-vertical-margin: 2.5rem;
+@include vars.setBase("sidebar-menu-vertical-margin",  2.5rem);
 
-    --sidebar-item-vertical-spacing: 0.5rem;
-    --sidebar-item-horizontal-spacing: 2.5rem;
+@include vars.setBase("sidebar-item-vertical-spacing",  0.5rem);
+@include vars.setBase("sidebar-item-horizontal-spacing",  2.5rem);
 
-    --sidebar-section-padding: 0;
-    --sidebar-section-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
+@include vars.setBase("sidebar-section-padding",  0);
+@include vars.setBase("sidebar-section-margin",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
 
-    --sidebar-link-height: 3rem;
-    --sidebar-link-padding: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
-    --sidebar-link-margin: 0;
-    --sidebar-link-border-width: 0;
-    --sidebar-link-border-radius: 0;
+@include vars.setBase("sidebar-link-height",  3rem);
+@include vars.setBase("sidebar-link-padding",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
+@include vars.setBase("sidebar-link-margin",  0);
+@include vars.setBase("sidebar-link-border-width",  0);
+@include vars.setBase("sidebar-link-border-radius",  0);
 
-    --sidebar-link-text-color: var(--base-text-light-color);
-    --sidebar-link-text-color-hover: var(--base-text-color);
-    --sidebar-link-text-color-active: var(--primary-color);
-    --sidebar-link-text-color-active-hover: var(--primary-light-color);
-    --sidebar-link-bg-color: transparent;
-    --sidebar-link-bg-color-hover: transparent;
-    --sidebar-link-bg-color-active: transparent;
-    --sidebar-link-bg-color-active-hover: transparent;
-    --sidebar-link-border-color: transparent;
-    --sidebar-link-border-color-hover: transparent;
-    --sidebar-link-border-color-active: transparent;
-    --sidebar-link-border-color-active-hover: transparent;
+@include vars.setBase("sidebar-link-text-color",  vars.get("base-text-light-color"));
+@include vars.setBase("sidebar-link-text-color-hover",  vars.get("base-text-color"));
+@include vars.setBase("sidebar-link-text-color-active",  vars.get("primary-color"));
+@include vars.setBase("sidebar-link-text-color-active-hover",  vars.get("primary-light-color"));
+@include vars.setBase("sidebar-link-bg-color",  transparent);
+@include vars.setBase("sidebar-link-bg-color-hover",  transparent);
+@include vars.setBase("sidebar-link-bg-color-active",  transparent);
+@include vars.setBase("sidebar-link-bg-color-active-hover",  transparent);
+@include vars.setBase("sidebar-link-border-color",  transparent);
+@include vars.setBase("sidebar-link-border-color-hover",  transparent);
+@include vars.setBase("sidebar-link-border-color-active",  transparent);
+@include vars.setBase("sidebar-link-border-color-active-hover",  transparent);
 
-    --sidebar-title-padding: 0;
-    --sidebar-title-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
-    --sidebar-title-font-size: 1.5rem;
-    --sidebar-title-font-weight: var(--content-title-font-weight);
-    --sidebar-title-text-color: var(--base-text-color);
+@include vars.setBase("sidebar-title-padding",  0);
+@include vars.setBase("sidebar-title-margin",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
+@include vars.setBase("sidebar-title-font-size",  1.5rem);
+@include vars.setBase("sidebar-title-font-weight",  vars.get("content-title-font-weight"));
+@include vars.setBase("sidebar-title-text-color",  vars.get("base-text-color"));
 
-    --sidebar-icon-dims: 3.2rem;
-    --sidebar-icon-font-size: 1.6rem;
-    --sidebar-icon-margin-right: 1rem;
-    --sidebar-icon-border-width: 1px;
-    --sidebar-icon-border-radius: var(--base-border-radius);
+@include vars.setBase("sidebar-icon-dims",  3.2rem);
+@include vars.setBase("sidebar-icon-font-size",  1.6rem);
+@include vars.setBase("sidebar-icon-margin-right",  1rem);
+@include vars.setBase("sidebar-icon-border-width",  1px);
+@include vars.setBase("sidebar-icon-border-radius",  vars.get("base-border-radius"));
 
-    --sidebar-icon-text-color: var(--base-text-light-color);
-    --sidebar-icon-text-color-hover: var(--base-text-color);
-    --sidebar-icon-text-color-active: var(--primary-color);
-    --sidebar-icon-text-color-active-hover: var(--primary-light-color);
-    --sidebar-icon-bg-color: var(--dawn-dark-color);
-    --sidebar-icon-bg-color-hover: var(--sidebar-icon-bg-color);
-    --sidebar-icon-bg-color-active: var(--sidebar-icon-bg-color);
-    --sidebar-icon-bg-color-active-hover: var(--sidebar-icon-bg-color);
-    --sidebar-icon-border-color: rgba(0, 0, 0, 0.1);
-    --sidebar-icon-border-color-hover: var(--sidebar-icon-border-color);
-    --sidebar-icon-border-color-active: var(--sidebar-icon-border-color);
-    --sidebar-icon-border-color-active-hover: var(--sidebar-icon-border-color);
+@include vars.setBase("sidebar-icon-text-color",  vars.get("base-text-light-color"));
+@include vars.setBase("sidebar-icon-text-color-hover",  vars.get("base-text-color"));
+@include vars.setBase("sidebar-icon-text-color-active",  vars.get("primary-color"));
+@include vars.setBase("sidebar-icon-text-color-active-hover",  vars.get("primary-light-color"));
+@include vars.setBase("sidebar-icon-bg-color",  vars.get("dawn-dark-color"));
+@include vars.setBase("sidebar-icon-bg-color-hover",  vars.get("sidebar-icon-bg-color"));
+@include vars.setBase("sidebar-icon-bg-color-active",  vars.get("sidebar-icon-bg-color"));
+@include vars.setBase("sidebar-icon-bg-color-active-hover",  vars.get("sidebar-icon-bg-color"));
+@include vars.setBase("sidebar-icon-border-color",  rgba(0, 0, 0, 0.1));
+@include vars.setBase("sidebar-icon-border-color-hover",  vars.get("sidebar-icon-border-color"));
+@include vars.setBase("sidebar-icon-border-color-active",  vars.get("sidebar-icon-border-color"));
+@include vars.setBase("sidebar-icon-border-color-active-hover",  vars.get("sidebar-icon-border-color"));
 
-    --sidebar-brand-padding: 0;
-    --sidebar-brand-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
-    --sidebar-brand-font-size: var(--navbar-brand-font-size);
-    --sidebar-brand-font-weight: var(--navbar-brand-font-weight);
-    --sidebar-brand-text-color: var(--base-text-color);
-    --sidebar-brand-text-color-hover: var(--base-text-light-color);
-    --sidebar-brand-image-height: var(--navbar-brand-image-height);
-    --sidebar-brand-image-margin-right: var(--navbar-brang-image-margin-right);
+@include vars.setBase("sidebar-brand-padding",  0);
+@include vars.setBase("sidebar-brand-margin",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
+@include vars.setBase("sidebar-brand-font-size",  vars.get("navbar-brand-font-size"));
+@include vars.setBase("sidebar-brand-font-weight",  vars.get("navbar-brand-font-weight"));
+@include vars.setBase("sidebar-brand-text-color",  vars.get("base-text-color"));
+@include vars.setBase("sidebar-brand-text-color-hover",  vars.get("base-text-light-color"));
+@include vars.setBase("sidebar-brand-image-height",  vars.get("navbar-brand-image-height"));
+@include vars.setBase("sidebar-brand-image-margin-right",  vars.get("navbar-brand-image-margin-right"));
 
-    --sidebar-divider-padding: 0;
-    --sidebar-divider-margin: var(--sidebar-item-vertical-spacing) var(--sidebar-item-horizontal-spacing);
-}
+@include vars.setBase("sidebar-divider-padding",  0);
+@include vars.setBase("sidebar-divider-margin",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
 
-@mixin dark-only() {
-    --sidebar-bg-color: var(--dusk-color);
-    --sidebar-border-color: rgba(255, 255, 255, 0.2);
+/*----------  Dark mode Variables  ----------*/
+@include vars.setDark("sidebar-bg-color",  vars.get("dusk-color"));
+@include vars.setDark("sidebar-border-color",  rgba(255, 255, 255, 0.2));
 
-    --sidebar-icon-bg-color: rgba(255, 255, 255, 0.1);
-    --sidebar-icon-border-color: transparent;
-    --sidebar-icon-border-color-hover: transparent;
-    --sidebar-icon-border-color-active: transparent;
-    --sidebar-icon-border-color-active-hover: transparent;
-}
+@include vars.setDark("sidebar-icon-bg-color",  rgba(255, 255, 255, 0.1));
+@include vars.setDark("sidebar-icon-border-color",  transparent);
+@include vars.setDark("sidebar-icon-border-color-hover",  transparent);
+@include vars.setDark("sidebar-icon-border-color-active",  transparent);
+@include vars.setDark("sidebar-icon-border-color-active-hover",  transparent);
+

@@ -4,17 +4,15 @@ Variables : Table
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --table-header-font-weight: 600;
-    --table-padding: 1.2rem 1.5rem;
+/*----------  Base Variables  ----------*/
+@include vars.setBase('table-header-font-weight', 600);
+@include vars.setBase('table-padding', 1.2rem 1.5rem);
 
-    --table-border-width: 1px;
-    --table-thead-border-bottom-width: 1px;
-    --table-tfoot-border-top-width: 1px;
+@include vars.setBase('table-border-width', 1px);
+@include vars.setBase('table-thead-border-bottom-width', 1px);
+@include vars.setBase('table-tfoot-border-top-width', 1px);
 
-    --table-border-color: var(--dusk-light-color);
-}
+@include vars.setBase('table-border-color', vars.get('dusk-light-color'));
 
-@mixin dark-only() {
-    --table-border-color: var(--dawn-color);
-}
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('table-border-color', vars.get('dawn-color'));

@@ -4,31 +4,29 @@ Variables : Cards
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --card-margin: var(--content-spacing);
-    --card-padding: var(--content-spacing);
-    --card-margin-sm: var(--content-sm-spacing);
-    --card-padding-sm: var(--content-sm-spacing);
+/*----------  Base Variables  ----------*/
+@include vars.setBase('card-margin', vars.get('content-spacing'));
+@include vars.setBase('card-padding', vars.get('content-spacing'));
+@include vars.setBase('card-margin-sm', vars.get('content-sm-spacing'));
+@include vars.setBase('card-padding-sm', vars.get('content-sm-spacing'));
 
-    --card-header-divider-width: 1px;
-    --card-header-divider-color: var(--divider-color);
-    --card-header-divider-margin: 0.5rem;
+@include vars.setBase('card-header-divider-width', 1px);
+@include vars.setBase('card-header-divider-color', vars.get('divider-color'));
+@include vars.setBase('card-header-divider-margin', 0.5rem);
 
-    --card-title-font-size: var(--content-title-font-size);
-    --card-title-font-weight: var(--content-title-font-weight);
-    --card-subtitle-font-size: var(--base-font-size);
-    --card-subtitle-font-weight: var(--base-font-weight);
-    --card-subtitle-color: var(--muted-text-color);
+@include vars.setBase('card-title-font-size', vars.get('content-title-font-size'));
+@include vars.setBase('card-title-font-weight', vars.get('content-title-font-weight'));
+@include vars.setBase('card-subtitle-font-size', vars.get('base-font-size'));
+@include vars.setBase('card-subtitle-font-weight', vars.get('base-font-weight'));
+@include vars.setBase('card-subtitle-color', vars.get('muted-text-color'));
 
-    --card-text-color: var(--base-text-color);
-    --card-bg-color: var(--dawn-color);
-    --card-bg-image: none;
-    --card-border: none;
-    --card-border-color: var(--base-border-color);
-    --card-border-radius: var(--base-border-radius);
-    --card-box-shadow: 0 0.1rem 0.4rem 0 var(--shadow-color);
-}
+@include vars.setBase('card-text-color', vars.get('base-text-color'));
+@include vars.setBase('card-bg-color', vars.get('dawn-color'));
+@include vars.setBase('card-bg-image', none);
+@include vars.setBase('card-border', none);
+@include vars.setBase('card-border-color', vars.get('base-border-color'));
+@include vars.setBase('card-border-radius', vars.get('base-border-radius'));
+@include vars.setBase('card-box-shadow', 0 0.1rem 0.4rem 0 vars.get('shadow-color'));
 
-@mixin dark-only() {
-    --card-bg-color: var(--dusk-color);
-}
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('card-bg-color', vars.get('dusk-color'));

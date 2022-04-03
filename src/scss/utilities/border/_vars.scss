@@ -4,13 +4,11 @@ Variables : Borders
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --base-border-width: 1px;
-    --base-border-radius: 0.3rem;
+/*----------  Base Variables  ----------*/
+@include vars.setBase('base-border-width', 1px);
+@include vars.setBase('base-border-radius', 0.3rem);
 
-    --base-border-color: rgba(0, 0, 0, 0.2);
-}
+@include vars.setBase('base-border-color', rgba(0, 0, 0, 0.2));
 
-@mixin dark-only() {
-    --base-border-color: rgba(255, 255, 255, 0.2);
-}
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('base-border-color', rgba(255, 255, 255, 0.2));

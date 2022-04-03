@@ -4,11 +4,10 @@ Variables : Containers
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --container-width: 100%;
-    --container-sm-max-width: 54rem;
-    --container-md-max-width: 72rem;
-    --container-lg-max-width: 96rem;
-    --container-xl-max-width: 114rem;
-    --container-fluid-width: 100%;
-}
+/*----------  Base Variables  ----------*/
+@include vars.setBase('container-width', 100%);
+@include vars.setBase('container-sm-max-width', 54rem);
+@include vars.setBase('container-md-max-width', 72rem);
+@include vars.setBase('container-lg-max-width', 96rem);
+@include vars.setBase('container-xl-max-width', 114rem);
+@include vars.setBase('container-fluid-width', 100%);

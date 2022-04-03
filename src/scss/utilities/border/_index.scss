@@ -4,24 +4,26 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
+
 .border,
 .border-top {
-    border-top: var(--base-border-width) solid var(--border-color) !important;
+    border-top: vars.get('base-border-width') solid vars.get('base-border-color') !important;
 }
 
 .border,
 .border-bottom {
-    border-bottom: var(--base-border-width) solid var(--border-color) !important;
+    border-bottom: vars.get('base-border-width') solid vars.get('base-border-color') !important;
 }
 
 .border,
 .border-left {
-    border-left: var(--base-border-width) solid var(--border-color) !important;
+    border-left: vars.get('base-border-width') solid vars.get('base-border-color') !important;
 }
 
 .border,
 .border-right {
-    border-right: var(--base-border-width) solid var(--border-color) !important;
+    border-right: vars.get('base-border-width') solid vars.get('base-border-color') !important;
 }
 
 .border-none,

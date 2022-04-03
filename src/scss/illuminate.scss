@@ -26,6 +26,10 @@ Notes:
 -----------------------------------------------------------------------
 */
 
+/// Global Variables
+@use './variables/map' as vars;
+@import './variables';
+
 /// Base Styling
 @import './base';
 
@@ -41,3 +45,6 @@ Notes:
 
 /// Helper Utilities
 @import './utilities';
+
+/// EMIT VARIABLES
+@include vars.prepare();

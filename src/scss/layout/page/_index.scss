@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/breakpoint' as breakpoints;
 
 /*----------  Page Styling  ----------*/
@@ -32,13 +33,13 @@
         }
 
         > .content-wrapper {
-            top: var(--navbar-height);
-            height: calc(100% - var(--navbar-height));
+            top: vars.get('navbar-height');
+            height: calc(100% - vars.get('navbar-height'));
         }
 
         > .sidebar {
-            top: var(--navbar-height);
-            height: calc(100% - var(--navbar-height));
+            top: vars.get('navbar-height');
+            height: calc(100% - vars.get('navbar-height'));
         }
     }
 
@@ -49,16 +50,16 @@
             flex-direction: column;
 
             &:not(.right) + .content-wrapper {
-                left: var(--sidebar-width);
+                left: vars.get('sidebar-width');
             }
 
             &.right + .content-wrapper {
-                right: var(--sidebar-width);
+                right: vars.get('sidebar-width');
             }
         }
 
         > .content-wrapper {
-            width: calc(100% - var(--sidebar-width));
+            width: calc(100% - vars.get('sidebar-width'));
 
             @media (max-width: map-get(breakpoints.$values, 'sm')) {
                 width: 100%;
@@ -92,15 +93,15 @@
 /*----------  Content Styling  ----------*/
 
 .content {
-    margin: var(--content-spacing);
+    margin: vars.get('content-spacing');
 
     @media (max-width: map-get(breakpoints.$values, 'sm')) {
-        margin: var(--content-sm-spacing);
+        margin: vars.get('content-sm-spacing');
     }
 
     > .title {
-        font-size: var(--content-title-font-size);
-        font-weight: var(--content-title-font-weight);
+        font-size: vars.get('content-title-font-size');
+        font-weight: vars.get('content-title-font-weight');
         margin-top: 0;
     }
 }
@@ -114,6 +115,6 @@
     width: 100%;
     overflow: auto;
     transition-property: left, width;
-    transition-duration: var(--sidebar-animation-duration);
-    transition-timing-function: var(--sidebar-animation-easing);
+    transition-duration: vars.get('sidebar-animation-duration');
+    transition-timing-function: vars.get('sidebar-animation-easing');
 }

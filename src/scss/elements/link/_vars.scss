@@ -4,7 +4,6 @@ Variables : Links
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --link-text-color: var(--primary-color);
-    --link-text-color-hover: var(--primary-light-color);
-}
+/*----------  Base Variables  ----------*/
+@include vars.setBase('link-text-color', vars.get('primary-color'));
+@include vars.setBase('link-text-color-hover', vars.get('primary-light-color'));

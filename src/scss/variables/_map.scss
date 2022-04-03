@@ -1,0 +1,62 @@
+/*
+-----------------------------------------------------------------------
+Global CSS Variables
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:map';
+@use 'sass:string';
+
+/// GLOBALLY ACCESIBLE VALUES
+$__globals__: ();
+$__dark__: ();
+
+/// USE CSS-VARIABLES FLAG
+$USE_VARS_FLAG: true;
+$USE_DARK_THEME: false;
+
+/// Sets a base variable value.
+@mixin setBase($name, $value) {
+    $__globals__: map.set($__globals__, $name, $value) !global;
+}
+
+/// Sets a dark-mode variable value.
+@mixin setDark($name, $value) {
+    $__dark__: map.set($__dark__, $name, $value) !global;
+}
+
+/// Gets a variable as required.
+@function get($name) {
+    @if $USE_VARS_FLAG {
+        @return var(--#{$name});
+    } @else {
+        $map: if($USE_DARK_THEME, $__dark__, $__globals__);
+        @if map.has-key($map, $name) {
+            @return map.get($map, $name);
+            // @return if(type-of($value) == 'string', string.unquote($value), $value);
+        } @else {
+            @error "Invalid variable key '#{$name}'.";
+        }
+    }
+}
+
+/// Prepares all required variables.
+@mixin prepare {
+    :root {
+        --default-css-mode: #{if($USE_VARS_FLAG, 'dynamic', 'fixed')};
+    }
+
+    @if $USE_VARS_FLAG {
+        :root {
+            @each $name, $value in $__globals__ {
+                --#{$name}: #{$value};
+            }
+        }
+
+        html[data-theme='dark']:root {
+            @each $name, $value in $__dark__ {
+                --#{$name}: #{$value};
+            }
+        }
+    }
+}

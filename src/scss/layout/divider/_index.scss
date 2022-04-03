@@ -4,19 +4,21 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
+
 hr,
 .divider {
     display: block;
-    height: var(--divider-height);
+    height: vars.get('divider-height');
     width: 100%;
-    color: var(--divider-color);
-    background-color: var(--divider-color);
-    margin: var(--divider-spacing) 0;
+    color: vars.get('divider-color');
+    background-color: vars.get('divider-color');
+    margin: vars.get('divider-spacing') 0;
     border: none;
 
     &:not(hr).vertical {
         height: 100%;
-        width: var(--divider-height);
-        margin: 0 var(--divider-spacing);
+        width: vars.get('divider-height');
+        margin: 0 vars.get('divider-spacing');
     }
 }

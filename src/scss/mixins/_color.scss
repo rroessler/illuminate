@@ -4,6 +4,10 @@ Mixin : Color
 -----------------------------------------------------------------------
 */
 
+/// Accessible Variables.
+@use '../variables/map' as vars;
+@use 'sass:string';
+
 /*----------  Helpers  ----------*/
 
 /// Available Contexts
@@ -11,20 +15,20 @@ $contexts: 'primary', 'secondary', 'success', 'info', 'warning', 'danger';
 
 /// Converts HEX to RGB list
 @function -hex-to-rgb($hex) {
-    @return red($hex) + ', ' + green($hex) + ', ' + blue($hex);
+    @return string.unquote(red($hex) + ', ' + green($hex) + ', ' + blue($hex));
 }
 
 /*----------  Property Mixins  ----------*/
 
 @mixin text($name, $alpha) {
-    color: rgba(var(--#{$name}-rgb), $alpha);
+    color: RGBA(vars.get('#{$name}-rgb'), $alpha);
 }
 
 /*----------  Component Mixins  ----------*/
 
 @mixin variable($name, $hex) {
-    --#{$name}-rgb: #{-hex-to-rgb($hex)};
-    --#{$name}-color: rgba(var(--#{$name}-rgb), 1);
+    @include vars.setBase('#{$name}-rgb', -hex-to-rgb($hex));
+    @include vars.setBase('#{$name}-color', RGBA(vars.get('#{$name}-rgb'), 1));
 }
 
 @mixin system($name, $base, $light, $dark, $text) {
@@ -32,22 +36,22 @@ $contexts: 'primary', 'secondary', 'success', 'info', 'warning', 'danger';
     @include variable($name + '-light', $light);
     @include variable($name + '-dark', $dark);
 
-    --#{$name}-box-shadow-color: rgba(var(--#{$name}-rgb), 0.4);
-    --#{$name}-box-shadow-color-darker: rgba(var(--#{$name}-rgb), 0.6);
-    --#{$name}-text-color: #{$text};
+    @include vars.setBase('#{$name}-box-shadow-color', RGBA(vars.get('#{$name}-rgb'), 0.4));
+    @include vars.setBase('#{$name}-box-shadow-color-darker', RGBA(vars.get('#{$name}-rgb'), 0.6));
+    @include vars.setBase('#{$name}-text-color', $text);
 }
 
 @mixin context($name, $parent) {
     $shades: '', '-light', '-dark';
-    $suffixes: 'hex', 'rgb', 'color';
+    $suffixes: 'rgb', 'color';
 
     @each $shade in $shades {
         @each $suffix in $suffixes {
-            --#{$name+$shade}-#{$suffix}: var(--#{$parent + $shade}-#{$suffix});
+            @include vars.setBase('#{$name+$shade}-#{$suffix}', vars.get('#{$parent + $shade}-#{$suffix}'));
         }
     }
 
-    --#{$name}-box-shadow-color: var(--#{$parent}-box-shadow-color);
-    --#{$name}-box-shadow-color-darker: var(--#{$parent}-box-shadow-color-darker);
-    --#{$name}-text-color: var(--#{$parent}-text-color);
+    @include vars.setBase('#{$name}-box-shadow-color', vars.get('#{$parent}-box-shadow-color'));
+    @include vars.setBase('#{$name}-box-shadow-color-darker', vars.get('#{$parent}-box-shadow-color-darker'));
+    @include vars.setBase('#{$name}-text-color', vars.get('#{$parent}-text-color'));
 }

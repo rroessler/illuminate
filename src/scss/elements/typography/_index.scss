@@ -5,8 +5,8 @@
 */
 
 [data-scale-font-size='false'] {
-    --base-html-font-size-1600: var(--base-html-font-size);
-    --base-html-font-size-1920: var(--base-html-font-size);
+    --base-html-font-size-1600: vars.get('base-html-font-size');
+    --base-html-font-size-1920: vars.get('base-html-font-size');
 }
 
 h1,
@@ -18,7 +18,7 @@ h6 {
     margin: 0.67em 0;
     margin-top: 0.8rem;
     margin-bottom: 1.5rem;
-    font-weight: var(--heading-font-weight);
+    font-weight: vars.get('heading-font-weight');
 }
 
 h1 {

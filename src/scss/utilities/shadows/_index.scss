@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/shadows' as shadows;
 
 .shadow-none {
@@ -11,13 +12,13 @@
 }
 
 .shadow-sm {
-    @include shadows.box(var(--shadow-sm));
+    @include shadows.box(vars.get('shadow-sm'));
 }
 
 .shadow {
-    @include shadows.box(var(--shadow));
+    @include shadows.box(vars.get('shadow'));
 }
 
 .shadow-lg {
-    @include shadows.box(var(--shadow-lg));
+    @include shadows.box(vars.get('shadow-lg'));
 }

@@ -4,16 +4,15 @@ Variables : Page / Content
 -----------------------------------------------------------------------
 */
 
-@mixin globals() {
-    --content-spacing: 2.5rem;
-    --content-sm-spacing: 1.75rem;
+/*----------  Base Variables  ----------*/
+@include vars.setBase('content-spacing', 2.5rem);
+@include vars.setBase('content-sm-spacing', 1.75rem);
 
-    --content-title-font-size: 2rem;
-    --content-title-font-weight: 500;
+@include vars.setBase('content-title-font-size', 2rem);
+@include vars.setBase('content-title-font-weight', 500);
 
-    --sidebar-animation-duration: 0.2s;
-    --sidebar-animation-easing: ease-in-out;
+@include vars.setBase('sidebar-animation-duration', 0.2s);
+@include vars.setBase('sidebar-animation-easing', ease-in-out);
 
-    --navbar-height: 4.5rem;
-    --sidebar-width: 24rem;
-}
+@include vars.setBase('navbar-height', 4.5rem);
+@include vars.setBase('sidebar-width', 24rem);

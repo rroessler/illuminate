@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/breakpoint' as breakpoints;
 @use '../../mixins/shadows' as shadows;
 
@@ -12,15 +13,15 @@
 }
 
 %card-title {
-    font-size: var(--card-title-font-size);
-    font-weight: var(--card-title-font-weight);
+    font-size: vars.get('card-title-font-size');
+    font-weight: vars.get('card-title-font-weight');
     @extend %card-title-margin;
 }
 
 %card-subtitle {
-    font-size: var(--card-subtitle-font-size);
-    font-weight: var(--card-subtitle-font-weight);
-    color: var(--card-subtitle-color);
+    font-size: vars.get('card-subtitle-font-size');
+    font-weight: vars.get('card-subtitle-font-weight');
+    color: vars.get('card-subtitle-color');
     @extend %card-title-margin;
 }
 
@@ -36,21 +37,21 @@
 
 .card {
     position: relative;
-    margin: var(--card-margin);
-    padding: var(--card-padding);
+    margin: vars.get('card-margin');
+    padding: vars.get('card-padding');
 
-    color: var(--card-text-color);
-    background-color: var(--card-bg-color);
-    background-image: var(--card-bg-image);
+    color: vars.get('card-text-color');
+    background-color: vars.get('card-bg-color');
+    background-image: vars.get('card-bg-image');
 
-    border: var(--card-border);
-    border-radius: var(--card-border-radius);
+    border: vars.get('card-border');
+    border-radius: vars.get('card-border-radius');
 
-    @include shadows.box(var(--card-box-shadow));
+    @include shadows.box(vars.get('card-box-shadow'));
 
     @media (max-width: map-get(breakpoints.$values,'sm')) {
-        margin: var(--card-margin-sm);
-        padding: var(--card-padding-sm);
+        margin: vars.get('card-margin-sm');
+        padding: vars.get('card-padding-sm');
     }
 
     @extend %card-header;
@@ -64,13 +65,13 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: var(--card-header-divider-width);
-            margin: var(--card-header-divider-margin) 0;
-            background-color: var(--card-header-divider-color);
+            height: vars.get('card-header-divider-width');
+            margin: vars.get('card-header-divider-margin') 0;
+            background-color: vars.get('card-header-divider-color');
         }
 
         + .body {
-            margin-top: var(--card-header-divider-margin);
+            margin-top: vars.get('card-header-divider-margin');
         }
     }
 }

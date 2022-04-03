@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/breakpoint' as breakpoints;
 @use '../../mixins/shadows' as shadows;
 
@@ -11,28 +12,28 @@
     position: fixed;
     top: 0;
     bottom: 0;
-    width: var(--sidebar-width);
+    width: vars.get('sidebar-width');
     max-width: 100%;
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     z-index: 25;
-    background-color: var(--sidebar-bg-color);
-    background-image: var(--sidebar-bg-image);
+    background-color: vars.get('sidebar-bg-color');
+    background-image: vars.get('sidebar-bg-image');
     -webkit-overflow-scrolling: touch;
 
-    @include shadows.box(var(--sidebar-box-shadow));
+    @include shadows.box(vars.get('sidebar-box-shadow'));
 
     &:not(.right) {
         left: 0;
-        transition: left var(--sidebar-animation-duration) var(--sidebar-animation-easing);
-        border-right: var(--sidebar-border-width) solid var(--sidebar-border-color);
+        transition: left vars.get('sidebar-animation-duration') vars.get('sidebar-animation-easing');
+        border-right: vars.get('sidebar-border-width') solid vars.get('sidebar-border-color');
     }
 
     &.right {
         right: 0;
-        transition: right var(--sidebar-animation-duration) var(--sidebar-animation-easing);
-        border-left: var(--sidebar-border-width) solid var(--sidebar-border-color);
+        transition: right vars.get('sidebar-animation-duration') vars.get('sidebar-animation-easing');
+        border-left: vars.get('sidebar-border-width') solid vars.get('sidebar-border-color');
     }
 
     @media (max-width: map-get(breakpoints.$values, 'sm')) {
@@ -41,14 +42,14 @@
     }
 
     .menu {
-        margin-top: var(--sidebar-menu-vertical-margin);
-        margin-bottom: var(--sidebar-menu-vertical-margin);
+        margin-top: vars.get('sidebar-menu-vertical-margin');
+        margin-bottom: vars.get('sidebar-menu-vertical-margin');
     }
 
     .section {
         display: block;
-        padding: var(--sidebar-section-padding);
-        margin: var(--sidebar-section-margin);
+        padding: vars.get('sidebar-section-padding');
+        margin: vars.get('sidebar-section-margin');
 
         > ul,
         > ol {
@@ -57,48 +58,48 @@
     }
 
     .divider {
-        padding: var(--sidebar-divider-padding);
-        margin: var(--sidebar-divider-margin);
+        padding: vars.get('sidebar-divider-padding');
+        margin: vars.get('sidebar-divider-margin');
         width: auto;
     }
 
     .link {
         display: block;
-        padding: var(--sidebar-link-padding);
-        margin: var(--sidebar-link-margin);
-        min-height: var(--sidebar-link-height);
+        padding: vars.get('sidebar-link-padding');
+        margin: vars.get('sidebar-link-margin');
+        min-height: vars.get('sidebar-link-height');
         height: auto;
-        color: var(--sidebar-link-text-color);
-        background-color: var(--sidebar-link-bg-color);
-        border: var(--sidebar-link-border-width) solid var(--sidebar-link-border-color);
-        border-radius: var(--sidebar-link-border-radius);
+        color: vars.get('sidebar-link-text-color');
+        background-color: vars.get('sidebar-link-bg-color');
+        border: vars.get('sidebar-link-border-width') solid vars.get('sidebar-link-border-color');
+        border-radius: vars.get('sidebar-link-border-radius');
 
         &:hover {
             text-decoration: none;
-            color: var(--sidebar-link-text-color-hover);
-            background-color: var(--sidebar-link-bg-color-hover);
-            border-color: var(--sidebar-link-border-color-hover);
+            color: vars.get('sidebar-link-text-color-hover');
+            background-color: vars.get('sidebar-link-bg-color-hover');
+            border-color: vars.get('sidebar-link-border-color-hover');
         }
 
         &.active {
-            color: var(--sidebar-link-text-color-active);
-            background-color: var(--sidebar-link-bg-color-active);
-            border-color: var(--sidebar-link-border-color-active);
+            color: vars.get('sidebar-link-text-color-active');
+            background-color: vars.get('sidebar-link-bg-color-active');
+            border-color: vars.get('sidebar-link-border-color-active');
         }
 
         &.active:hover {
-            color: var(--sidebar-link-text-color-active-hover);
-            background-color: var(--sidebar-link-bg-color-active-hover);
-            border-color: var(--sidebar-link-border-color-active-hover);
+            color: vars.get('sidebar-link-text-color-active-hover');
+            background-color: vars.get('sidebar-link-bg-color-active-hover');
+            border-color: vars.get('sidebar-link-border-color-active-hover');
         }
     }
 
     .title {
-        padding: var(--sidebar-title-padding);
-        margin: var(--sidebar-title-margin);
-        font-size: var(--sidebar-title-font-size);
-        font-weight: var(--sidebar-title-font-weight);
-        color: var(--sidebar-title-text-color);
+        padding: vars.get('sidebar-title-padding');
+        margin: vars.get('sidebar-title-margin');
+        font-size: vars.get('sidebar-title-font-size');
+        font-weight: vars.get('sidebar-title-font-weight');
+        color: vars.get('sidebar-title-text-color');
     }
 
     .link-with-icon {
@@ -114,32 +115,32 @@
             align-items: center;
             -ms-flex-pack: center;
             justify-content: center;
-            width: var(--sidebar-icon-dims);
-            height: var(--sidebar-icon-dims);
-            font-size: var(--sidebar-icon-font-size);
-            margin-right: var(--sidebar-icon-margin-right);
-            color: var(--sidebar-icon-text-color);
-            background-color: var(--sidebar-icon-bg-color);
-            border: var(--sidebar-icon-border-width) solid var(--sidebar-icon-border-color);
-            border-radius: var(--sidebar-icon-border-radius);
+            width: vars.get('sidebar-icon-dims');
+            height: vars.get('sidebar-icon-dims');
+            font-size: vars.get('sidebar-icon-font-size');
+            margin-right: vars.get('sidebar-icon-margin-right');
+            color: vars.get('sidebar-icon-text-color');
+            background-color: vars.get('sidebar-icon-bg-color');
+            border: vars.get('sidebar-icon-border-width') solid vars.get('sidebar-icon-border-color');
+            border-radius: vars.get('sidebar-icon-border-radius');
         }
 
         &:hover .icon-wrapper {
-            color: var(--sidebar-icon-text-color-hover);
-            background-color: var(--sidebar-icon-bg-color-hover);
-            border-color: var(--sidebar-icon-border-color-hover);
+            color: vars.get('sidebar-icon-text-color-hover');
+            background-color: vars.get('sidebar-icon-bg-color-hover');
+            border-color: vars.get('sidebar-icon-border-color-hover');
         }
 
         &.active .icon-wrapper {
-            color: var(--sidebar-icon-text-color-active);
-            background-color: var(--sidebar-icon-bg-color-active);
-            border-color: var(--sidebar-icon-border-color-active);
+            color: vars.get('sidebar-icon-text-color-active');
+            background-color: vars.get('sidebar-icon-bg-color-active');
+            border-color: vars.get('sidebar-icon-border-color-active');
         }
 
         &.active:hover .icon-wrapper {
-            color: var(--sidebar-icon-text-color-active-hover);
-            background-color: var(--sidebar-icon-bg-color-active-hover);
-            border-color: var(--sidebar-icon-border-color-active-hover);
+            color: vars.get('sidebar-icon-text-color-active-hover');
+            background-color: vars.get('sidebar-icon-bg-color-active-hover');
+            border-color: vars.get('sidebar-icon-border-color-active-hover');
         }
     }
 
@@ -148,20 +149,20 @@
         display: flex;
         -ms-flex-align: center;
         align-items: center;
-        padding: var(--sidebar-brand-padding);
-        margin: var(--sidebar-brand-margin);
-        font-size: var(--sidebar-brand-font-size);
-        font-weight: var(--sidebar-brand-font-weight);
-        color: var(--sidebar-brand-text-color);
+        padding: vars.get('sidebar-brand-padding');
+        margin: vars.get('sidebar-brand-margin');
+        font-size: vars.get('sidebar-brand-font-size');
+        font-weight: vars.get('sidebar-brand-font-weight');
+        color: vars.get('sidebar-brand-text-color');
     }
 
     .brand:hover {
-        color: var(--sidebar-brand-text-color-hover);
+        color: vars.get('sidebar-brand-text-color-hover');
         text-decoration: none;
     }
 
     .brand img {
-        height: var(--sidebar-brand-image-height);
-        margin-right: var(--sidebar-brand-image-margin-right);
+        height: vars.get('sidebar-brand-image-height');
+        margin-right: vars.get('sidebar-brand-image-margin-right');
     }
 }

@@ -4,6 +4,7 @@
 -----------------------------------------------------------------------
 */
 
+@use '../../variables/map' as vars;
 @use '../../mixins/shadows' as shadows;
 
 .navbar {
@@ -17,12 +18,12 @@
     -ms-flex-pack: start;
     justify-content: flex-start;
     width: 100%;
-    height: var(--navbar-height);
-    padding: var(--navbar-padding);
-    background-color: var(--navbar-bg-color);
-    background-image: var(--navbar-bg-image);
-    border: var(--navbar-border);
-    @include shadows.box(var(--navbar-box-shadow));
+    height: vars.get('navbar-height');
+    padding: vars.get('navbar-padding');
+    background-color: vars.get('navbar-bg-color');
+    background-image: vars.get('navbar-bg-image');
+    border: vars.get('navbar-border');
+    @include shadows.box(vars.get('navbar-box-shadow'));
 
     .brand,
     .text,
@@ -35,34 +36,34 @@
     }
 
     *:not(:first-child) {
-        margin-left: var(--navbar-horizontal-spacing);
+        margin-left: vars.get('navbar-horizontal-spacing');
     }
 
     .text {
-        color: var(--navbar-text-color);
+        color: vars.get('navbar-text-color');
     }
 
     .brand {
-        font-size: var(--navbar-brand-font-size);
-        font-weight: var(--navbar-brand-font-weight);
-        color: var(--navbar-brand-text-color);
+        font-size: vars.get('navbar-brand-font-size');
+        font-weight: vars.get('navbar-brand-font-weight');
+        color: vars.get('navbar-brand-text-color');
 
         &:hover {
-            color: var(--navbar-brand-text-color-hover);
+            color: vars.get('navbar-brand-text-color-hover');
             text-decoration: none;
         }
 
         > img {
-            height: var(--navbar-brand-image-height);
+            height: vars.get('navbar-brand-image-height');
 
             &:not(:only-child) {
-                margin-right: var(--navbar-brand-image-margin-right);
+                margin-right: vars.get('navbar-brand-image-margin-right');
             }
         }
     }
 
     .btn-action {
-        width: var(--navbar-action-button-width);
-        padding: var(--navbar-action-button-padding);
+        width: vars.get('navbar-action-button-width');
+        padding: vars.get('navbar-action-button-padding');
     }
 }
