@@ -1,0 +1,67 @@
+/*
+-----------------------------------------------------------------------
+5.#.    Sizing
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:math';
+@use '../mixins/breakpoint' as breakpoints;
+
+/// Available Sizes.
+$sizes: 25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600;
+
+/*----------  Sizing Mixins  ----------*/
+
+@mixin -sizing($size, $value) {
+    .w-#{$size} {
+        width: #{$value} !important;
+    }
+
+    .h-#{$size} {
+        height: #{$value} !important;
+    }
+
+    .mw-#{$size} {
+        max-width: #{$value} !important;
+    }
+
+    .mh-#{$size} {
+        max-height: #{$value} !important;
+    }
+
+    @each $bp in breakpoints.$names {
+        .w-#{$bp}-#{$size} {
+            @include breakpoints.with($bp) {
+                width: #{$value} !important;
+            }
+        }
+
+        .h-#{$bp}-#{$size} {
+            @include breakpoints.with($bp) {
+                height: #{$value} !important;
+            }
+        }
+
+        .mw-#{$bp}-#{$size} {
+            @include breakpoints.with($bp) {
+                max-width: #{$value} !important;
+            }
+        }
+
+        .mh-#{$bp}-#{$size} {
+            @include breakpoints.with($bp) {
+                max-height: #{$value} !important;
+            }
+        }
+    }
+}
+
+/*----------  Sizing Factory  ----------*/
+
+@include -sizing(auto, auto);
+@include -sizing(full, 100%);
+
+@each $size in $sizes {
+    $value: #{math.div($size, 10)}rem;
+    @include -sizing($size, $value);
+}

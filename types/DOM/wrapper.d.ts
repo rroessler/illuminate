@@ -9,6 +9,7 @@ export interface IWrapper<T extends HTMLElement = HTMLElement> {
 export declare class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     readonly element: T;
     private m_boundEvents;
+    get tag(): keyof HTMLElementTagNameMap;
     constructor(element: T);
     attr<T = string>(prop: string): T | null;
     attr<T = string>(prop: string, value: T): void;
@@ -20,5 +21,6 @@ export declare class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     clear: () => string;
     append(...items: (HTMLElement | string | IWrapper)[]): void;
     prev: <T_1 extends HTMLElement = HTMLElement>() => Wrapper<T_1>;
+    private m_assert;
 }
 export declare const $: I$;

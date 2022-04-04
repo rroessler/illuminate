@@ -6,7 +6,7 @@
 
 @use '../../variables/map' as vars;
 
-.table-fluid-wrapper {
+.table-fluid {
     overflow-x: auto;
 
     .table th,
@@ -15,7 +15,7 @@
     }
 }
 
-.table {
+table.table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;

@@ -22,7 +22,7 @@ Variables : Sidebar
 @include vars.setBase("sidebar-item-horizontal-spacing",  2.5rem);
 
 @include vars.setBase("sidebar-section-padding",  0);
-@include vars.setBase("sidebar-section-margin",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
+@include vars.setBase("sidebar-section-margin",  vars.get("sidebar-item-vertical-spacing") 0);
 
 @include vars.setBase("sidebar-link-height",  3rem);
 @include vars.setBase("sidebar-link-padding",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
@@ -45,7 +45,7 @@ Variables : Sidebar
 
 @include vars.setBase("sidebar-title-padding",  0);
 @include vars.setBase("sidebar-title-margin",  vars.get("sidebar-item-vertical-spacing") vars.get("sidebar-item-horizontal-spacing"));
-@include vars.setBase("sidebar-title-font-size",  1.5rem);
+@include vars.setBase("sidebar-title-font-size",  1.8rem);
 @include vars.setBase("sidebar-title-font-weight",  vars.get("content-title-font-weight"));
 @include vars.setBase("sidebar-title-text-color",  vars.get("base-text-color"));
 

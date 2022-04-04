@@ -9,7 +9,7 @@ Variables : Page / Content
 @include vars.setBase('content-sm-spacing', 1.75rem);
 
 @include vars.setBase('content-title-font-size', 2rem);
-@include vars.setBase('content-title-font-weight', 500);
+@include vars.setBase('content-title-font-weight', 300);
 
 @include vars.setBase('sidebar-animation-duration', 0.2s);
 @include vars.setBase('sidebar-animation-easing', ease-in-out);

@@ -47,11 +47,11 @@
                         <i aria-hidden="true" class="lab la-lg la-github"></i>
                     </button>
 
-                    <button class="btn btn-sm btn-action" type="button" onclick="Illuminate.Theme.toggle();">
+                    <button class="btn btn-sm btn-action" type="button" onclick="toggleTheme();">
                         <i aria-hidden="true" class="las la-lg la-tint"></i>
                     </button>
 
-                    <button class="btn btn-sm btn-info" type="button">Download</button>
+                    <button class="btn btn-sm btn-primary" type="button">Download</button>
                 </div>
             </div>
 
@@ -63,9 +63,17 @@
 
                     <a class="link" href="#elements/buttons">Buttons</a>
                     <a class="link" href="#elements/code">Code</a>
-                    <a class="link" href="#elements/image">Image</a>
                     <a class="link" href="#elements/links">Links</a>
                     <a class="link" href="#elements/tables">Tables</a>
+
+                    <h5 class="title mt-25">Layout</h5>
+                    <div class="divider"></div>
+
+                    <a class="link" href="#layout/page">Page</a>
+                    <a class="link" href="#layout/content">Content & Cards</a>
+                    <a class="link" href="#layout/dividers">Dividers</a>
+                    <a class="link" href="#layout/navbar">Navbar</a>
+                    <a class="link" href="#layout/sidebar">Sidebar</a>
                 </div>
 
                 <div class="menu mt-auto">
@@ -83,77 +91,21 @@
             </div>
         </div>
 
-        <script>
-            /// Loads a code block.
-            const loadCode = (() => {
-                // sanitizable items
-                const santizable = [[/&/g, '&amp;']];
+        <!-- THEME TOGGLE OVERRIDE -->
+        <script type="text/javascript">
+            const toggleTheme = () => {
+                // toggle the base theme
+                Illuminate.Theme.toggle();
+                const theme = Illuminate.Theme.current();
 
-                // code loader
-                return (block) => {
-                    // retrieve the required text
-                    let text = block.prev().text().split(/\r?\n/);
-
-                    // and modify for suitable display
-                    text = text.reduce(
-                        (acc, line, ii) => {
-                            // get the current spaces on the left
-                            const left = line.length - line.trimLeft().length;
-
-                            // trim as necessary if left is less than current spaces
-                            if (left < acc.spaces && ii > 0 && line.length > 0) acc.spaces = left;
-
-                            // remove the front of the string
-                            acc.value += `${line.substr(acc.spaces)}\n`;
-
-                            // return the result
-                            return acc;
-                        },
-                        { value: '', spaces: Infinity }
-                    );
-
-                    // remove the ending and starting "\n" characters
-                    text.value = text.value.substr(1, text.value.length - 2);
-
-                    // convert the current block into suitable display
-                    const language = block.attr('data-language');
-                    const code = hljs.highlight(text.value, { language }).value;
-
-                    // construct and append each required item
-                    const pre = $.create('pre', {
-                        className: 'm-0',
-                        innerHTML: `<code class="ignore-style">${code}</code>`
-                    });
-
-                    const copy = $.create('button', {
-                        className: 'btn btn-sm btn-inverted copy-button',
-                        innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
-                        onclick: () => navigator.clipboard.writeText(text.value)
-                    });
-
-                    block.append(pre, copy);
-                };
-            })();
-
-            /// Coordinates updating the current route.
-            const updateRoute = async () => {
-                const hash = encodeURIComponent(window.location.hash.substring(1));
-                const title = hash.includes('%2F') ? hash.substr(hash.lastIndexOf('%2F') + 3) : hash;
-                const content = await fetch(`docs/${hash}`, { method: 'GET' }).then((res) => res.text());
-
-                $('#content-title').text(title[0].toUpperCase() + title.substring(1));
-                $('#content-body').text(content);
-
-                // once complete, load in any CODE to display
-                const blocks = $.all('.code-container', $('#content-body'));
-                blocks.map((block) => loadCode(block));
+                // gets all the IFRAME documents and modify the current theme
+                $.all('iframe', $('#content-body'))
+                    .map((wrapper) => wrapper.element.contentWindow.document)
+                    .map((doc) => doc.documentElement.setAttribute('data-theme', theme));
             };
-
-            // pre-emptively update the route
-            updateRoute();
-
-            // and update whenever it changes
-            window.onhashchange = updateRoute;
         </script>
+
+        <!-- DYNAMIC FUNCTIONALITY -->
+        <script src="/loader.js"></script>
     </body>
 </html>

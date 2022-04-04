@@ -12,7 +12,7 @@ Variables : Cards
 
 @include vars.setBase('card-header-divider-width', 1px);
 @include vars.setBase('card-header-divider-color', vars.get('divider-color'));
-@include vars.setBase('card-header-divider-margin', 0.5rem);
+@include vars.setBase('card-header-divider-margin', 1.5rem);
 
 @include vars.setBase('card-title-font-size', vars.get('content-title-font-size'));
 @include vars.setBase('card-title-font-weight', vars.get('content-title-font-weight'));

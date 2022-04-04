@@ -1,0 +1,67 @@
+/*
+-----------------------------------------------------------------------
+5.3.    Colors
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+@use '../../mixins/color' as color;
+
+/// Available DAWN/DUSK variables
+$themes: 'dawn', 'dusk';
+$shades: 'light', 'dark';
+$USE_THEME_SHADES: true;
+
+/*----------  Text Colors  ----------*/
+
+.text-white {
+    color: #fff;
+}
+
+.text-muted {
+    color: vars.get('muted-text-color');
+}
+
+.text-dawn {
+    color: vars.get('dawn-color') !important;
+}
+
+.text-dusk {
+    color: vars.get('dusk-color') !important;
+}
+
+@each $context in color.$contexts {
+    .text-#{$context} {
+        color: vars.get('#{$context}-color') !important;
+    }
+}
+
+/*----------  Background Colors  ----------*/
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+@each $context in color.$contexts {
+    .bg-#{$context} {
+        background-color: vars.get('#{$context}-color') !important;
+    }
+}
+
+@each $theme in $themes {
+    .bg-#{$theme} {
+        background-color: vars.get('#{$theme}-color') !important;
+    }
+
+    @if $USE_THEME_SHADES {
+        @each $shade in $shades {
+            .bg-#{$theme}-#{$shade} {
+                background-color: vars.get('#{$theme}-#{$shade}-color') !important;
+            }
+        }
+    }
+}

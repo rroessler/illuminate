@@ -9,10 +9,10 @@ Variables : Table
 @include vars.setBase('table-padding', 1.2rem 1.5rem);
 
 @include vars.setBase('table-border-width', 1px);
-@include vars.setBase('table-thead-border-bottom-width', 1px);
+@include vars.setBase('table-thead-border-bottom-width', 2px);
 @include vars.setBase('table-tfoot-border-top-width', 1px);
 
-@include vars.setBase('table-border-color', vars.get('dusk-light-color'));
+@include vars.setBase('table-border-color', RGBA(vars.get('dusk-light-rgb'), 0.55));
 
 /*----------  Dark Mode Variables  ----------*/
-@include vars.setDark('table-border-color', vars.get('dawn-color'));
+@include vars.setDark('table-border-color', RGBA(vars.get('dawn-rgb'), 0.55));

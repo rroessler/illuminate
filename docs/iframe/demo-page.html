@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html data-preload-illuminate>
+    <head>
+        <!-- MISC -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="width=device-width" name="viewport" />
+
+        <!-- TITLE -->
+        <title>Illuminate - Demo Page</title>
+
+        <!-- ICONS -->
+        <link
+            href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- STYLESHEETS -->
+        <link href="/dist/illuminate.min.css" rel="stylesheet" />
+        <link href="/overrides.css" rel="stylesheet" />
+
+        <!-- LIBRARIES -->
+        <script src="/dist/illuminate.js"></script>
+    </head>
+
+    <body>
+        <div class="page-wrapper with-navbar with-sidebar" data-sidebar-state="closed">
+            <div class="navbar">
+                <div class="section">
+                    <button class="btn btn-sm btn-action" type="button" onclick="Illuminate.Sidebar.toggle()">
+                        <i aria-hidden="true" class="las la-lg la-bars"></i>
+                    </button>
+                </div>
+
+                <a class="brand ml-xs-auto ml-sm-15" href="javascript:void(0);"
+                    ><i class="las la-lg la-star"></i>&nbsp;Brand</a
+                >
+
+                <div class="section ml-auto d-none d-sm-block">
+                    <button class="btn btn-sm btn-primary" type="button">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="menu">
+                    <h5 class="title">Start Here</h5>
+                    <div class="divider"></div>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-code"></i>
+                        </div>
+                        Installation
+                    </a>
+
+                    <a class="link link-with-icon active" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-question-circle"></i>
+                        </div>
+                        FAQ
+                    </a>
+
+                    <h5 class="title mt-25">Paraphenalia</h5>
+                    <div class="divider"></div>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-folder-open"></i>
+                        </div>
+                        Explorer
+                    </a>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-table"></i>
+                        </div>
+                        Spreadsheets
+                    </a>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-map"></i>
+                        </div>
+                        Maps
+                    </a>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-cog"></i>
+                        </div>
+                        Settings
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-wrapper p-20">
+                <h3>Complex Page</h3>
+                <div class="fake-content"></div>
+                <div class="fake-content"></div>
+                <div class="card mx-0">
+                    <h5 class="title">Card Title</h5>
+                    <div class="fake-content"></div>
+                    <div class="fake-content"></div>
+                    <div class="fake-content mw-100"></div>
+                </div>
+                <div class="fake-content"></div>
+                <div class="fake-content"></div>
+                <div class="fake-content mw-100"></div>
+            </div>
+        </div>
+    </body>
+</html>

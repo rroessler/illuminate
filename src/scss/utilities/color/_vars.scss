@@ -4,8 +4,8 @@ Variables : Colors
 -----------------------------------------------------------------------
 */
 
-@use '../variables/map' as vars;
-@use '../mixins/color' as c;
+@use '../../variables/map' as vars;
+@use '../../mixins/color' as c;
 
 /*----------  White/Black Colors  ----------*/
 @include c.variable('white', #ffffff);

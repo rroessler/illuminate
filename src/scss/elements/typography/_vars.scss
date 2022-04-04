@@ -13,9 +13,10 @@ Variables : Typography
 @include vars.setBase('base-font-weight', 400);
 @include vars.setBase('base-line-height', 1.4);
 
+@include vars.setBase('base-text-rgb', vars.get('dusk-dark-rgb'));
 @include vars.setBase('base-text-color', vars.get('dusk-dark-color'));
 @include vars.setBase('base-text-light-color', vars.get('dusk-color'));
-@include vars.setBase('muted-text-color', vars.get('dusk-light-color'));
+@include vars.setBase('muted-text-color', RGBA(vars.get('dusk-light-rgb'), 0.6));
 
 @include vars.setBase('extra-letter-spacing-size', 0.03rem);
 
@@ -25,6 +26,7 @@ Variables : Typography
 @include vars.setBase('paragraph-margin-end', 0.75rem);
 
 /*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('base-text-rgb', vars.get('dawn-light-rgb'));
 @include vars.setDark('base-text-color', vars.get('dawn-light-color'));
 @include vars.setDark('base-text-light-color', vars.get('dawn-color'));
-@include vars.setDark('muted-text-color', vars.get('dawn-dark-color'));
+@include vars.setDark('muted-text-color', RGBA(vars.get('dawn-dark-rgb'), 0.6));

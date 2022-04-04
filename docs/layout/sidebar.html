@@ -1,0 +1,78 @@
+<div class="card d-flex flex-column p-0">
+    <div class="demo-page-wrapper h-500 p-0">
+        <iframe src="docs/iframe%2Fdemo-sidebar" class="border-none"></iframe>
+    </div>
+
+    <div class="d-none">
+        <!-- Page Wrapper -->
+        <div class="page-wrapper with-navbar with-sidebar" data-sidebar-state="open">
+            <!-- Navbar Wrapper -->
+            <div class="navbar">...</div>
+
+            <!-- Sidebar Wrapper -->
+            <div class="sidebar">
+                <!-- Sidebar Section -->
+                <div class="section d-flex justify-content-center mt-10">
+                    <!-- Sidebar Brand -->
+                    <div class="brand"><i class="las la-lg la-star"></i>&nbsp;Brand</a></div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <div class="menu mt-0">
+                    <!-- Sidebar Content-->
+                    <h4 class="title">Getting Started</h4>
+                    <div class="divider"></div>
+
+                    <!-- Regular Links -->
+                    <a href="#" class="link">Installation</a>
+                    <a href="#" class="link active">FAQ</a>
+
+                    <h5 class="title mt-25">Paraphenalia</h5>
+                    <div class="divider"></div>
+
+                    <!-- Links With Icons -->
+                    <a class="link link-with-icon" href="#">
+                        <span class="icon-wrapper"><i class="las la-lg la-folder"></i></span>
+                        Explorer
+                    </a>
+                    <a class="link link-with-icon" href="#">
+                        <span class="icon-wrapper"><i class="las la-lg la-table"></i></span>
+                        Spreadsheets
+                    </a>
+                    <a class="link link-with-icon active" href="#">
+                        <span class="icon-wrapper"><i class="las la-lg la-map"></i></span>
+                        Maps
+                    </a>
+                    <a class="link link-with-icon" href="#">
+                        <span class="icon-wrapper"><i class="las la-lg la-cog"></i></span>
+                        Settings
+                    </a>
+                </div>
+            </div>
+
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">...</div>
+        </div>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>
+
+
+<div class="content"><h3>Toggling Sidebars</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <button class="btn btn-info" type="button" onclick="Illuminate.Sidebar.toggle()">Toggle Sidebar</button>
+    </div>
+
+    <div class="d-none">
+        <!-- Toggle Sidebar -->
+        <button class="btn btn-info" type="button" onclick="Illuminate.Sidebar.toggle()">Toggle Sidebar</button>
+
+        <!-- Requires "illuminate.js" -->
+        <script src="illuminate.min.js"></script>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>

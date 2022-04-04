@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html data-preload-illuminate>
+    <head>
+        <!-- MISC -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta content="width=device-width" name="viewport" />
+
+        <!-- TITLE -->
+        <title>Illuminate - Demo Page</title>
+
+        <!-- ICONS -->
+        <link
+            href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- STYLESHEETS -->
+        <link href="/dist/illuminate.min.css" rel="stylesheet" />
+        <link href="/overrides.css" rel="stylesheet" />
+
+        <!-- LIBRARIES -->
+        <script src="/dist/illuminate.js"></script>
+    </head>
+
+    <body>
+        <div class="page-wrapper with-navbar with-sidebar" data-sidebar-state="open">
+            <div class="navbar">
+                <div class="section">
+                    <button class="btn btn-sm btn-action" type="button" onclick="Illuminate.Sidebar.toggle()">
+                        <i aria-hidden="true" class="las la-lg la-bars"></i>
+                    </button>
+
+                    <button class="btn btn-sm btn-inverted" type="button" id="sidebar-swap">
+                        Swap Side
+                    </button>
+                </div>
+
+                <a class="brand ml-auto d-none d-sm-block" href="javascript:void(0);"
+                    ><i class="las la-lg la-star"></i>&nbsp;Brand</a
+                >
+
+                <div class="section ml-15 d-none d-sm-block">
+                    <button class="btn btn-sm btn-primary" type="button">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="section d-flex justify-content-center mt-10">
+                    <div class="brand"><i class="las la-lg la-star"></i>&nbsp;Brand</a></div>
+                </div>
+
+                <div class="menu mt-0">
+                    <h4 class="title">Getting Started</h4>
+                    <div class="divider"></div>
+                    <a href="javascript:void(0);" class="link">Installation</a>
+                    <a href="javascript:void(0);" class="link active">FAQ</a>
+
+                    <h5 class="title mt-25">Paraphenalia</h5>
+                    <div class="divider"></div>
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-folder-open"></i>
+                        </div>
+                        Explorer
+                    </a>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-table"></i>
+                        </div>
+                        Spreadsheets
+                    </a>
+
+                    <a class="link link-with-icon active" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-map"></i>
+                        </div>
+                        Maps
+                    </a>
+
+                    <a class="link link-with-icon" href="javascript:void(0);">
+                        <div class="icon-wrapper">
+                            <i class="las la-lg la-cog"></i>
+                        </div>
+                        Settings
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-wrapper p-20">
+                <h3>Navbar Page</h3>
+                <div class="fake-content"></div>
+                <div class="fake-content"></div>
+                <div class="card mx-0">
+                    <h5 class="title">Card Title</h5>
+                    <div class="fake-content"></div>
+                    <div class="fake-content"></div>
+                    <div class="fake-content mw-100"></div>
+                </div>
+                <div class="fake-content"></div>
+                <div class="fake-content"></div>
+                <div class="fake-content mw-100"></div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            const sidebar = $('.sidebar');
+            const swap = document.getElementById('sidebar-swap');
+            swap.classList.con
+
+            // add a swap handler
+            swap.onclick = () => {
+                const onRight = sidebar.element.classList.contains('right');
+                sidebar.element.classList[onRight? 'remove': 'add']('right');
+            }
+        </script>
+    </body>
+</html>

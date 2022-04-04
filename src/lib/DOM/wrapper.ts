@@ -33,6 +33,15 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     /// Internally bound events.
     private m_boundEvents: Partial<Record<string, any>> = {};
 
+    /***********************
+     *  GETTERS / SETTERS  *
+     ***********************/
+
+    /// Gets the wrappers base tag-name.
+    get tag() {
+        return this.element.tagName.toLowerCase() as keyof HTMLElementTagNameMap;
+    }
+
     /******************
      *  CONSTRUCTORS  *
      ******************/
@@ -179,6 +188,15 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
     /// Returns the previous element.
     prev = <T extends HTMLElement = HTMLElement>() => $(this.element.previousElementSibling as T);
+
+    /*********************
+     *  PRIVATE METHODS  *
+     *********************/
+
+    /// Assertion Helper method.
+    private m_assert = <E extends Error>(cond: boolean, error: E) => {
+        if (!cond) throw error;
+    };
 }
 
 /*********************************
