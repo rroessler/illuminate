@@ -1,0 +1,88 @@
+/*
+-----------------------------------------------------------------------
+3.1.    Inputs
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:string';
+@use '../../helpers/wrap' as wrap;
+@use '../../mixins/shadows' as shadows;
+@use '../../variables/map' as vars;
+
+/*----------  Input Mixins  ----------*/
+
+@mixin -sizing($modifier) {
+    &-#{$modifier} {
+        font-size: vars.get('input-#{$modifier}-font-size');
+        line-height: vars.get('input-#{$modifier}-line-height');
+        height: vars.get('input-#{$modifier}-height');
+    }
+}
+
+@mixin -modifiers($type: '') {
+    color: vars.get('input#{$type}-text-color');
+    background-color: vars.get('input#{$type}-bg-color');
+    border-color: vars.get('input#{$type}-border-color');
+    @include shadows.box(vars.get('input#{$type}-box-shadow'));
+
+    &:hover {
+        color: vars.get('input#{$type}-text-color-hover');
+        background-color: vars.get('input#{$type}-bg-color-hover');
+        border-color: vars.get('input#{$type}-border-color-hover');
+        @include shadows.box(vars.get('input#{$type}-box-shadow-hover'));
+    }
+
+    &:focus,
+    &.active {
+        color: vars.get('input#{$type}-text-color-focus');
+        background-color: vars.get('input#{$type}-bg-color-focus');
+        border-color: vars.get('input#{$type}-border-color-focus');
+        @include shadows.box(vars.get('input#{$type}-box-shadow-focus'));
+    }
+}
+
+%-invalid-input {
+    @include -modifiers('-invalid');
+}
+
+/*----------  Input Styling  ----------*/
+
+.form-input {
+    display: block;
+    font-size: vars.get('input-font-size');
+    line-height: vars.get('input-line-height');
+    height: vars.get('input-height');
+    width: 100%;
+    padding-left: vars.get('input-horizontal-padding');
+    padding-right: vars.get('input-horizontal-padding');
+    color: vars.get('input-text-color');
+    background-color: vars.get('input-bg-color');
+    border-width: vars.get('input-border-width');
+    border-style: solid;
+    border-radius: vars.get('input-border-radius');
+    outline: none;
+
+    @include shadows.box(vars.get('input-box-shadow'));
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    @include -sizing('sm');
+    @include -sizing('lg');
+
+    @include -modifiers();
+    &.invalid {
+        @extend %-invalid-input;
+    }
+
+    ::placeholder,
+    ::-webkit-input-placeholder,
+    ::-ms-input-placeholder {
+        color: vars.get('input-placeholder-text-color');
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}

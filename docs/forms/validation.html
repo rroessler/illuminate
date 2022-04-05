@@ -1,0 +1,43 @@
+<div class="content"><h3>Onload</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <!-- Default Input Validation -->
+        <input type="text" class="form-input mb-10" data-validate value="John" pattern="^\w+$" />
+
+        <!-- Inputs are always pre-validated -->
+        <input type="text" class="form-input" data-validate value="Invalid" pattern="^Valid$" />
+
+        <!-- Requires "illuminate.js" -->
+        <script src="illuminate.min.js"></script>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>
+
+<div class="content"><h3>Deferred</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <!-- Default Input Validation -->
+        <input id="deferred-input" type="text" class="form-input mb-10" value="Jane" pattern="^\w+$" />
+
+        <!-- Toggle Validation -->
+        <div class="text-right">
+            <button class="btn" type="button" onclick="Illuminate.Forms.toggle($('#deferred-input'))">Toggle</button>
+        </div>
+    </div>
+
+    <div class="code-container middle" data-language="html"></div>
+
+    <script type="text">
+        // retrive the required input
+        const input = $('#deferred-input');
+
+        Illuminate.Forms.listen(input); // validate on inputs
+        Illuminate.Forms.ignore(input); // ignore input events
+        Illuminate.Forms.toggle(input); // toggles the listenability of an input
+    </script>
+
+    <div class="code-container" data-language="javascript"></div>
+</div>

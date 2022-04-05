@@ -1,0 +1,53 @@
+/*
+-----------------------------------------------------------------------
+Variables : Inputs
+-----------------------------------------------------------------------
+*/
+
+/*----------  Base Variables  ----------*/
+@include vars.setBase('input-font-size', inherit);
+@include vars.setBase('input-height', vars.get('button-height'));
+@include vars.setBase('input-line-height', vars.get('button-line-height'));
+@include vars.setBase('input-horizontal-padding', 0.8rem);
+@include vars.setBase('input-border-width', vars.get('base-border-width'));
+@include vars.setBase('input-border-radius', vars.get('base-border-radius'));
+
+@include vars.setBase('input-sm-font-size', vars.get('button-sm-font-size'));
+@include vars.setBase('input-sm-height', vars.get('button-sm-height'));
+@include vars.setBase('input-sm-line-height', vars.get('button-sm-line-height'));
+
+@include vars.setBase('input-lg-font-size', vars.get('button-lg-font-size'));
+@include vars.setBase('input-lg-height', vars.get('button-lg-height'));
+@include vars.setBase('input-lg-line-height', vars.get('button-lg-line-height'));
+
+@include vars.setBase('input-placeholder-text-color', RGBA(vars.get('base-text-rgb'), 0.6));
+@include vars.setBase('input-text-color', vars.get('base-text-color'));
+@include vars.setBase('input-bg-color', #fff);
+@include vars.setBase('input-border-color', rgba(0, 0, 0, 0.2));
+@include vars.setBase('input-box-shadow', none);
+@include vars.setBase('input-text-color-hover', vars.get('input-text-color'));
+@include vars.setBase('input-bg-color-hover', vars.get('input-bg-color'));
+@include vars.setBase('input-border-color-hover', vars.get('input-border-color'));
+@include vars.setBase('input-box-shadow-hover', vars.get('input-box-shadow'));
+@include vars.setBase('input-text-color-focus', vars.get('input-text-color'));
+@include vars.setBase('input-bg-color-focus', vars.get('input-bg-color'));
+@include vars.setBase('input-border-color-focus', vars.get('input-border-color'));
+@include vars.setBase('input-box-shadow-focus', 0 0 0 0.25rem vars.get('primary-box-shadow-color'));
+
+@include vars.setBase('input-invalid-text-color', vars.get('input-text-color'));
+@include vars.setBase('input-invalid-bg-color', RGBA(vars.get('danger-rgb'), 0.25));
+@include vars.setBase('input-invalid-border-color', vars.get('danger-color'));
+@include vars.setBase('input-invalid-box-shadow', vars.get('input-box-shadow'));
+@include vars.setBase('input-invalid-text-color-hover', vars.get('input-invalid-text-color'));
+@include vars.setBase('input-invalid-bg-color-hover', vars.get('input-invalid-bg-color'));
+@include vars.setBase('input-invalid-border-color-hover', vars.get('input-invalid-border-color'));
+@include vars.setBase('input-invalid-box-shadow-hover', vars.get('input-invalid-box-shadow'));
+@include vars.setBase('input-invalid-text-color-focus', vars.get('input-invalid-text-color'));
+@include vars.setBase('input-invalid-bg-color-focus', vars.get('input-invalid-bg-color'));
+@include vars.setBase('input-invalid-border-color-focus', vars.get('input-invalid-border-color'));
+@include vars.setBase('input-invalid-box-shadow-focus', 0 0 0 0.25rem vars.get('danger-box-shadow-color'));
+
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('input-bg-color', rgba(255, 255, 255, 0.05));
+@include vars.setDark('input-border-color', rgba(255, 255, 255, 0.2));
+@include vars.setDark('input-border-color-focus', rgba(255, 255, 255, 0.4));

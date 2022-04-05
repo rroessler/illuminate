@@ -33,14 +33,19 @@ const loader = {
 
         // construct and append each required item
         block.append(
+            $.create('div', {
+                className: 'title',
+                children: [
+                    $.create('span', { className: 'code mr-5', innerHTML: language }),
+                    $.create('button', {
+                        className: 'btn btn-sm btn-inverted',
+                        innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
+                        onclick: () => navigator.clipboard.writeText(text.value)
+                    })]
+            }),
             $.create('pre', {
                 className: 'm-0',
                 innerHTML: `<code class="ignore-style">${code}</code>`
-            }),
-            $.create('button', {
-                className: 'btn btn-sm btn-inverted copy-button',
-                innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
-                onclick: () => navigator.clipboard.writeText(text.value)
             })
         );
     },
@@ -57,6 +62,9 @@ const loader = {
         // set the current title and content
         $('#content-title').text(title[0].toUpperCase() + title.substring(1));
         body.text(content);
+
+        // once the body is has content, prepare any form validation
+        Illuminate.Forms.prepare(body);
 
         // preload all the iframes as necessary
         await Promise.all($.all('iframe', body).map(loader.preloadIFrame));

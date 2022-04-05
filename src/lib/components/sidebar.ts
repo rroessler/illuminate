@@ -1,5 +1,4 @@
 /// Illuminate Imports.
-import { DOM } from '../DOM';
 import { Page } from './page';
 
 /// Sidebar Namespace.
