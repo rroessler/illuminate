@@ -12,11 +12,9 @@
 /*----------  Input Mixins  ----------*/
 
 @mixin -sizing($modifier) {
-    &-#{$modifier} {
-        font-size: vars.get('input-#{$modifier}-font-size');
-        line-height: vars.get('input-#{$modifier}-line-height');
-        height: vars.get('input-#{$modifier}-height');
-    }
+    font-size: vars.get('input-#{$modifier}-font-size');
+    line-height: vars.get('input-#{$modifier}-line-height');
+    height: vars.get('input-#{$modifier}-height');
 }
 
 @mixin -modifiers($type: '') {
@@ -41,6 +39,16 @@
     }
 }
 
+/*----------  Input Extensions  ----------*/
+
+%-sm-sizing {
+    @include -sizing('sm');
+}
+
+%-lg-sizing {
+    @include -sizing('lg');
+}
+
 %-invalid-input {
     @include -modifiers('-invalid');
 }
@@ -55,12 +63,11 @@
     width: 100%;
     padding-left: vars.get('input-horizontal-padding');
     padding-right: vars.get('input-horizontal-padding');
-    color: vars.get('input-text-color');
-    background-color: vars.get('input-bg-color');
     border-width: vars.get('input-border-width');
     border-style: solid;
     border-radius: vars.get('input-border-radius');
     outline: none;
+    overflow: visible;
 
     @include shadows.box(vars.get('input-box-shadow'));
 
@@ -68,8 +75,13 @@
     -moz-appearance: none;
     appearance: none;
 
-    @include -sizing('sm');
-    @include -sizing('lg');
+    &-sm {
+        @extend %-sm-sizing;
+    }
+
+    &-lg {
+        @extend %-lg-sizing;
+    }
 
     @include -modifiers();
     &.invalid {
@@ -82,7 +94,34 @@
         color: vars.get('input-placeholder-text-color');
     }
 
+    &[readonly] {
+        cursor: auto;
+    }
+
     &:disabled {
         cursor: not-allowed;
+        color: vars.get('input-text-color');
+        background-color: vars.get('input-bg-color');
+        border-color: vars.get('input-border-color');
+        opacity: 0.7;
+    }
+}
+
+textarea.form-input {
+    max-width: 100%;
+    line-height: vars.get('textarea-line-height');
+}
+
+.input-group-sm {
+    > .form-input,
+    > .label-block {
+        @extend %-sm-sizing;
+    }
+}
+
+.input-group-lg {
+    > .form-input,
+    > .label-block {
+        @extend %-lg-sizing;
     }
 }

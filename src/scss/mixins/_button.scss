@@ -54,12 +54,10 @@ Mixin : Button
 /*----------  Component Mixins  ----------*/
 
 @mixin base($size: '') {
-    &.btn-#{$size} {
-        height: vars.get("button-#{$size}-height");
-        line-height: vars.get("button-#{$size}-line-height");
-        padding: vars.get("button-#{$size}-padding");
-        font-size: vars.get("button-#{$size}-font-size");
-    }
+    height: vars.get("button-#{$size}-height");
+    line-height: vars.get("button-#{$size}-line-height");
+    padding: vars.get("button-#{$size}-padding");
+    font-size: vars.get("button-#{$size}-font-size");
 }
 
 @mixin variant($name) {

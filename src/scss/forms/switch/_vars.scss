@@ -1,0 +1,52 @@
+/*
+-----------------------------------------------------------------------
+Variables : Switches
+-----------------------------------------------------------------------
+*/
+
+/*----------  Base Variables  ----------*/
+@include vars.setBase('switch-border-width', vars.get('base-border-width'));
+@include vars.setBase('switch-border-radius', 2rem);
+@include vars.setBase('switch-width', 3.2rem);
+@include vars.setBase('switch-height', 2rem);
+@include vars.setBase('switch-line-height', vars.get('switch-height'));
+@include vars.setBase('switch-label-horizontal-padding', calc(vars.get('switch-width') + 1rem));
+@include vars.setBase('switch-dual-label-bias', 0.45rem);
+
+@include vars.setBase('switch-slider-dims', 1.2rem);
+@include vars.setBase('switch-slider-border-width', 0);
+@include vars.setBase('switch-slider-border-radius', 50%);
+@include vars.setBase('switch-slider-top', 0.4rem);
+@include vars.setBase('switch-slider-left', 0.5rem);
+@include vars.setBase('switch-slider-top-checked', vars.get('switch-slider-top'));
+@include vars.setBase('switch-slider-left-checked', calc(vars.get('switch-width') - vars.get('switch-slider-dims') - vars.get('switch-slider-left')));
+
+@include vars.setBase('switch-bg-color', #fff);
+@include vars.setBase('switch-border-color', rgba(0, 0, 0, 0.3));
+@include vars.setBase('switch-box-shadow', none);
+@include vars.setBase('switch-bg-color-hover', vars.get('switch-bg-color'));
+@include vars.setBase('switch-border-color-hover', rgba(0, 0, 0, 0.45));
+@include vars.setBase('switch-box-shadow-hover', vars.get('switch-box-shadow'));
+@include vars.setBase('switch-bg-color-checked', vars.get('primary-color'));
+@include vars.setBase('switch-border-color-checked', vars.get('primary-color'));
+@include vars.setBase('switch-box-shadow-checked', none);
+@include vars.setBase('switch-border-color-focus', vars.get('switch-border-color'));
+@include vars.setBase('switch-box-shadow-focus', vars.get('input-box-shadow-focus'));
+@include vars.setBase('switch-border-color-checked-focus', vars.get('switch-border-color-checked'));
+@include vars.setBase('switch-box-shadow-checked-focus', 0 0 0 0.3rem vars.get('primary-box-shadow-color'));
+
+@include vars.setBase('switch-slider-bg-color', rgba(0,0,0,0.2));
+@include vars.setBase('switch-slider-border-color', vars.get('switch-slider-bg-color'));
+@include vars.setBase('switch-slider-bg-color-checked', #fff);
+@include vars.setBase('switch-slider-border-color-checked', vars.get('switch-slider-bg-color-checked'));
+
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('switch-bg-color', transparent);
+@include vars.setDark('switch-border-color', rgba(255, 255, 255, 0.15));
+@include vars.setDark('switch-bg-color-hover', rgba(255, 255, 255, 0.05));
+@include vars.setDark('switch-border-color-hover', rgba(255, 255, 255, 0.3));
+
+@include vars.setDark('switch-slider-bg-color', rgba(255, 255, 255, 0.15));
+@include vars.setDark('switch-slider-border-color', vars.get('switch-slider-bg-color'));
+@include vars.setDark('switch-slider-bg-color-checked', #fff);
+@include vars.setDark('switch-slider-border-color-checked', vars.get('switch-slider-bg-color-checked'));

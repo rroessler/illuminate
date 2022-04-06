@@ -26,7 +26,7 @@ export declare namespace Forms {
         valid: false;
         reason: string;
     };
-    const toggle: (item: Wrapper<HTMLInputElement> | HTMLInputElement) => void;
+    const toggle: (item: Wrapper<HTMLInputElement> | HTMLInputElement, validator?: Validator | undefined) => void;
     const listen: (item: Wrapper<HTMLInputElement> | HTMLInputElement, validator?: Validator | undefined) => void;
     const ignore: (item: Wrapper<HTMLInputElement> | HTMLInputElement) => void;
 }

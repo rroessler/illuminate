@@ -1,0 +1,51 @@
+/*
+-----------------------------------------------------------------------
+1.7.    Scrollbar
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+
+:not([data-revert-scrollbars]) .with-webkit-scrollbars *::-webkit-scrollbar {
+    width: vars.get('scrollbar-dims');
+    height: vars.get('scrollbar-dims');
+    background-color: vars.get('scrollbar-bg-color');
+
+    &-track {
+        &:vertical {
+            border-left: vars.get('scrollbar-track-border-width') solid vars.get('scrollbar-track-border-color');
+        }
+
+        &:horizontal {
+            border-top: vars.get('scrollbar-track-border-width') solid vars.get('scrollbar-track-border-color');
+        }
+    }
+
+    &-thumb {
+        min-width: vars.get('scrollbar-thumb-min-dims');
+        min-height: vars.get('scrollbar-thumb-min-dims');
+        background-color: vars.get('scrollbar-thumb-bg-color');
+        border: vars.get('scrollbar-thumb-border-width') solid vars.get('scrollbar-thumb-border-color');
+        border-radius: vars.get('scrollbar-thumb-border-radius');
+
+        -moz-background-clip: content;
+        -webkit-background-clip: content;
+        background-clip: content;
+
+        &:hover {
+            background-color: vars.get('scrollbar-thumb-bg-color-hover');
+            border-color: vars.get('scrollbar-thumb-border-color-hover');
+        }
+    }
+
+    &-corner {
+        background-color: vars.get('scrollbar-corner-bg-color');
+        border-left: vars.get('scrollbar-corner-border-width') solid vars.get('scrollbar-corner-border-color');
+        border-top: vars.get('scrollbar-corner-border-width') solid vars.get('scrollbar-corner-border-color');
+    }
+}
+
+:not([data-revert-scrollbars]) .with-css-scrollbars * {
+    scrollbar-width: vars.get('scrollbar-css-width');
+    scrollbar-color: vars.get('scrollbar-css-color');
+}

@@ -1,0 +1,138 @@
+/*
+-----------------------------------------------------------------------
+3.3.    Checkboxes
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+@use '../../mixins/select' as select;
+@use '../../mixins/shadows' as shadows;
+
+label.form-checkbox {
+    position: relative;
+    display: inline-block;
+    line-height: vars.get('checkbox-line-height');
+    margin-bottom: 0;
+    padding: vars.get('checkbox-padding');
+    cursor: pointer;
+    @include select.user(none);
+
+    &.disabled {
+        cursor: not-allowed;
+
+        > .label {
+            opacity: 0.7;
+        }
+    }
+
+    &:hover > input[type='checkbox']:not(:disabled, :checked, :focus)::before,
+    > input[type='checkbox']:not(:disabled, :checked, :focus):hover::before {
+        background-color: vars.get('checkbox-bg-color-hover');
+        border-color: vars.get('checkbox-border-color-hover');
+        @include shadows.box(vars.get('checkbox-box-shadow-hover'));
+    }
+
+    &:hover > input[type='checkbox']:not(:disabled, :checked):focus::before,
+    > input[type='checkbox']:not(:disabled, :checked):hover:focus::before {
+        background-color: vars.get('checkbox-bg-color-hover');
+    }
+
+    > .label {
+        padding-left: vars.get('checkbox-label-horizontal-padding');
+        padding-right: vars.get('checkbox-label-horizontal-padding');
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+
+        + input[type='checkbox'] {
+            margin-left: calc(-1 * #{vars.get('checkbox-dims')});
+
+            &:not(:last-child, :first-child) {
+                margin-left: calc(-1 * (#{vars.get('checkbox-dims')} + #{vars.get('checkbox-dual-label-bias')}));
+
+                + .label:last-child {
+                    padding-left: vars.get('checkbox-dual-label-bias');
+                }
+            }
+        }
+    }
+
+    > input[type='checkbox'] {
+        cursor: pointer;
+        position: absolute;
+        height: 0;
+        width: 0;
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        &::before {
+            position: relative;
+            content: '';
+            display: inline-block;
+            top: 0;
+            left: 0;
+            height: vars.get('checkbox-dims');
+            width: vars.get('checkbox-dims');
+            background-color: vars.get('checkbox-bg-color');
+            border: vars.get('checkbox-border-width') solid vars.get('checkbox-border-color');
+            border-radius: vars.get('checkbox-border-radius');
+            @include shadows.box(vars.get('checkbox-box-shadow'));
+        }
+
+        &:checked::before {
+            background-color: vars.get('checkbox-bg-color-checked');
+            border-color: vars.get('checkbox-border-color-checked');
+            @include shadows.box(vars.get('checkbox-box-shadow-checked'));
+        }
+
+        &:focus::before {
+            border-color: vars.get('checkbox-border-color-focus');
+            @include shadows.box(vars.get('checkbox-box-shadow-focus'));
+        }
+
+        &:checked:focus::before {
+            border-color: vars.get('checkbox-border-color-checked-focus');
+            @include shadows.box(vars.get('checkbox-box-shadow-checked-focus'));
+        }
+
+        &::after {
+            content: none;
+        }
+
+        &:checked::after {
+            position: absolute;
+            content: '';
+            display: block;
+            left: vars.get('checkbox-mark-left');
+            top: vars.get('checkbox-mark-top');
+            width: vars.get('checkbox-mark-width');
+            height: vars.get('checkbox-mark-height');
+            border: solid #fff;
+            border-width: vars.get('checkbox-mark-border-width');
+            -webkit-transform: vars.get('checkbox-mark-transform');
+            -ms-transform: vars.get('checkbox-mark-transform');
+            transform: vars.get('checkbox-mark-transform');
+        }
+    }
+
+    /*----------  Blank Checkboxes  ----------*/
+
+    &.blank {
+        width: vars.get('checkbox-dims');
+        height: 100%;
+
+        &::after {
+            position: relative;
+            content: '';
+            display: inline-block;
+        }
+    }
+}

@@ -9,6 +9,7 @@
 hr,
 .divider {
     display: block;
+    box-sizing: content-box;
     height: vars.get('divider-height');
     width: 100%;
     color: vars.get('divider-color');

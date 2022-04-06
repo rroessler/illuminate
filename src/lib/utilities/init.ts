@@ -1,6 +1,6 @@
 /// Illuminate Imports.
 import { Illuminate } from '../illuminate';
-import { Theme } from './theme';
+import { Theme } from '../user/theme';
 import { Forms } from '../forms';
 
 /// Illuminate initialisation namespace.

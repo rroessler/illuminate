@@ -1,0 +1,33 @@
+/*
+-----------------------------------------------------------------------
+Variables : Scrollbars
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+
+/*----------  Base Variables  ----------*/
+@include vars.setBase('scrollbar-dims', 1.4rem);
+@include vars.setBase('scrollbar-track-border-width', vars.get('base-border-width'));
+@include vars.setBase('scrollbar-thumb-min-dims', 3rem);
+@include vars.setBase('scrollbar-thumb-border-width', 0.4rem);
+@include vars.setBase('scrollbar-thumb-border-radius', 1rem);
+@include vars.setBase('scrollbar-corner-border-width', vars.get('base-border-width'));
+
+@include vars.setBase('scrollbar-bg-color', transparent);
+@include vars.setBase('scrollbar-track-border-color', rgba(0, 0, 0, 0.1));
+@include vars.setBase('scrollbar-thumb-bg-color', rgba(0, 0, 0, 0.25));
+@include vars.setBase('scrollbar-thumb-border-color', transparent);
+@include vars.setBase('scrollbar-thumb-bg-color-hover', rgba(0, 0, 0, 0.4));
+@include vars.setBase('scrollbar-thumb-border-color-hover', transparent);
+@include vars.setBase('scrollbar-corner-bg-color', transparent);
+@include vars.setBase('scrollbar-corner-border-color', rgba(0, 0, 0, 0.1));
+
+@include vars.setBase('scrollbar-css-width', thin);
+@include vars.setBase('scrollbar-css-color', vars.get('scrollbar-thumb-bg-color') vars.get('base-body-bg-color'));
+
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('scrollbar-track-border-color', rgba(255, 255, 255, 0.05));
+@include vars.setDark('scrollbar-thumb-bg-color', rgba(255, 255, 255, 0.25));
+@include vars.setDark('scrollbar-thumb-bg-color-hover', rgba(255, 255, 255, 0.4));
+@include vars.setDark('scrollbar-corner-border-color', rgba(255, 255, 255, 0.05));

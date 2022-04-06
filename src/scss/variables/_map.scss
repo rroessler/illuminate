@@ -33,7 +33,8 @@ $USE_DARK_THEME: false;
         $map: if($USE_DARK_THEME, $__dark__, $__globals__);
         @if map.has-key($map, $name) {
             @return map.get($map, $name);
-            // @return if(type-of($value) == 'string', string.unquote($value), $value);
+        } @else if ($USE_DARK_THEME and map.has-key($__globals__, $name)) {
+            @return map.get($__globals__, $name);
         } @else {
             @error "Invalid variable key '#{$name}'.";
         }

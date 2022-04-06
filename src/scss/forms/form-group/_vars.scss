@@ -1,0 +1,28 @@
+/*
+-----------------------------------------------------------------------
+Variables : Form Group
+-----------------------------------------------------------------------
+*/
+
+/*----------  Base Variables  ----------*/
+@include vars.setBase('form-item-padding', 1.5rem);
+@include vars.setBase('form-item-vertical-margin', 0.6rem);
+@include vars.setBase('form-item-margin-bottom', vars.get('form-item-vertical-margin'));
+@include vars.setBase('form-item-border-radius', vars.get('base-border-radius'));
+
+@include vars.setBase('form-item-divider-height', vars.get('divider-height'));
+
+@include vars.setBase('form-item-title-font-size', vars.get('base-font-size'));
+@include vars.setBase('form-item-title-font-weight', 500);
+
+@include vars.setBase('form-item-header-collapse-padding', 0.75rem);
+@include vars.setBase('form-item-body-min-width', 250px);
+@include vars.setBase('form-item-body-children-max-width', 250px);
+
+@include vars.setBase('form-item-bg-color', transparent);
+@include vars.setBase('form-item-bg-color-hover', rgba(0, 0, 0, 0.05));
+@include vars.setBase('form-item-divider-color', vars.get('divider-color'));
+@include vars.setBase('form-item-title-text-color', vars.get('base-text-color'));
+@include vars.setBase('form-item-description-text-color', vars.get('muted-text-color'));
+
+/*----------  Dark Mode Variables  ----------*/

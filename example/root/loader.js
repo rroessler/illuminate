@@ -60,7 +60,7 @@ const loader = {
         const body = $('#content-body');
 
         // set the current title and content
-        $('#content-title').text(title[0].toUpperCase() + title.substring(1));
+        $('#content-title').text(title.replace(/-/g, ' '));
         body.text(content);
 
         // once the body is has content, prepare any form validation

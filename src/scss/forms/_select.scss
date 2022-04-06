@@ -1,0 +1,49 @@
+/*
+-----------------------------------------------------------------------
+3.2.    Select
+-----------------------------------------------------------------------
+*/
+
+@use '../variables/map' as vars;
+
+select.form-input {
+    text-transform: none;
+
+    &:not([multiple]) {
+        cursor: pointer;
+        background-image: vars.get('select-bg-image');
+        background-size: vars.get('select-bg-size');
+        background-repeat: vars.get('select-bg-repeat');
+        background-position: vars.get('select-bg-position');
+        padding-right: vars.get('select-padding-right');
+
+        option:hover {
+            color: vars.get('input-text-color-hover');
+            background-color: vars.get('primary-color');
+        }
+    }
+
+    &[multiple] {
+        overflow: auto;
+        height: auto;
+        padding: vars.get('input-horizontal-padding');
+
+        option {
+            cursor: pointer;
+
+            &:not(:checked):hover {
+                color: vars.get('input-text-color-hover');
+                background-color: RGBA(vars.get('primary-rgb'), 0.2);
+            }
+        }
+    }
+}
+
+html[data-theme='dark'] {
+    select.form-input:not([multiple]) {
+        option,
+        optgroup {
+            background-color: vars.get('dusk-color');
+        }
+    }
+}

@@ -67,7 +67,7 @@ export namespace Forms {
 
     /**
      * Prepares a given root elements inputs with validators.
-     * @param item                      Root to prepare validators of.
+     * @param item                          Root to prepare validators of.
      */
     export const prepare = (item: Wrapper<HTMLElement> | HTMLElement) => {
         // cast the item to a valid wrapper
@@ -96,13 +96,14 @@ export namespace Forms {
     /**
      * Toggles the validation listener for a given input.
      * @param item                          Input to toggle listenability.
+     * @param validator                     Custom validator.
      */
-    export const toggle = (item: Wrapper<HTMLInputElement> | HTMLInputElement) => {
+    export const toggle = (item: Wrapper<HTMLInputElement> | HTMLInputElement, validator?: Validator) => {
         // cast to a wrapper element only
         const input = 'element' in item ? item : $(item);
 
         // and toggle the listenability
-        input.hasEvent('input') ? ignore(input) : listen(input);
+        input.hasEvent('input') ? ignore(input) : listen(input, validator);
     };
 
     /**

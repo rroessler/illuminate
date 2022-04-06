@@ -1,0 +1,115 @@
+/*
+-----------------------------------------------------------------------
+3.#.    Form Group
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+@use '../../mixins/select' as select;
+@use '../../mixins/breakpoint' as breakpoints;
+
+/*----------  Form Group Styling  ----------*/
+
+.form-group > .form-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: calc(#{vars.get('form-item-vertical-margin')} - 1px);
+    margin-bottom: calc(#{vars.get('form-item-vertical-margin')} / 2);
+    padding: vars.get('form-item-padding');
+    border-radius: vars.get('form-item-border-radius');
+    background-color: vars.get('form-item-bg-color');
+    @include select.user(none);
+
+    &.hoverable {
+        cursor: pointer;
+        transition: 0.1s ease-in-out;
+
+        &:hover {
+            background-color: vars.get('form-item-bg-color-hover');
+        }
+    }
+
+    &:not(:last-child)::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: vars.get('form-item-divider-height');
+        left: 0;
+        bottom: calc(-1 * #{vars.get('form-item-margin-bottom')} / 2);
+        background-color: vars.get('form-item-divider-color');
+    }
+
+    &:not(:first-child) {
+        margin-top: 0;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 0;
+    }
+
+    > .header {
+        padding-right: 1.5rem;
+
+        > .title,
+        > .description {
+            margin: 0;
+        }
+
+        > .title {
+            color: vars.get('form-item-title-text-color');
+            font-size: vars.get('form-item-title-font-size');
+            font-weight: vars.get('form-item-title-font-weight');
+        }
+
+        > .description {
+            color: vars.get('form-item-description-text-color');
+        }
+    }
+
+    > .body {
+        flex: 1 1 0%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        height: 100%;
+        min-width: vars.get('form-item-body-min-width');
+
+        > * {
+            max-width: vars.get('form-item-body-children-max-width');
+        }
+    }
+}
+
+/*----------  Collapse Styling  ----------*/
+
+@mixin -collapse() {
+    flex-direction: column;
+    align-items: flex-start;
+
+    > .header {
+        padding-right: 0;
+        padding-bottom: vars.get('form-item-header-collapse-padding');
+    }
+
+    > .body {
+        min-width: 0%;
+
+        > * {
+            max-width: 100%;
+        }
+    }
+}
+
+.form-group.form-collapsed > .form-item {
+    @include -collapse();
+}
+
+@each $bp, $value in breakpoints.$values {
+    @media (max-width: #{$value}) {
+        .form-group.form-#{$bp}-collapse > .form-item {
+            @include -collapse();
+        }
+    }
+}

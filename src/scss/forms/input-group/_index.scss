@@ -1,0 +1,87 @@
+/*
+-----------------------------------------------------------------------
+3.#.    Input Group
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+@use '../../mixins/button' as button;
+
+/*----------  Input Group Styling  ----------*/
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+
+    > .btn {
+        border-radius: 0;
+    }
+
+    > .form-input {
+        position: relative;
+        -ms-flex: 1 1 0%;
+        flex: 1 1 0%;
+        min-width: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+
+    > .label-block {
+        display: -ms-flexbox;
+        display: flex;
+        white-space: nowrap;
+        -ms-flex-align: center;
+        align-items: center;
+        text-align: center;
+        padding-left: vars.get('input-group-block-horizontal-padding');
+        padding-right: vars.get('input-group-block-horizontal-padding');
+        color: vars.get('input-group-block-text-color');
+        background-color: vars.get('input-group-block-bg-color');
+        border: vars.get('input-group-border-width') solid vars.get('input-group-block-border-color');
+        border-radius: 0;
+
+        > label.form-checkbox.blank > input[type='checkbox']:only-child,
+        > label.form-switch.blank > input[type='checkbox']:only-child {
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        > label.form-checkbox.blank > input[type='checkbox']:only-child {
+            top: calc(50% - #{vars.get('checkbox-dims')} / 2);
+        }
+
+        > label.form-switch.blank > input[type='checkbox']:only-child {
+            top: calc(50% - #{vars.get('switch-height')} / 2);
+        }
+    }
+
+    /*----------  Input Group Borders  ----------*/
+
+    > *:first-child {
+        border-top-left-radius: vars.get('input-group-border-radius');
+        border-bottom-left-radius: vars.get('input-group-border-radius');
+    }
+
+    > *:last-child {
+        border-top-right-radius: vars.get('input-group-border-radius');
+        border-bottom-right-radius: vars.get('input-group-border-radius');
+    }
+
+    > *:not(:first-child) {
+        border-left: none;
+    }
+}
+
+.input-group-sm > .btn {
+    @include button.base('sm');
+}
+
+.input-group-lg > .btn {
+    @include button.base('lg');
+}

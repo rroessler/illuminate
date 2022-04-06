@@ -1,0 +1,143 @@
+/*
+-----------------------------------------------------------------------
+3.4.    Switches
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables/map' as vars;
+@use '../../mixins/select' as select;
+@use '../../mixins/shadows' as shadows;
+
+label.form-switch {
+    position: relative;
+    display: inline-block;
+    line-height: vars.get('switch-line-height');
+    margin-bottom: 0;
+    padding: vars.get('switch-padding');
+    cursor: pointer;
+    @include select.user(none);
+
+    &.disabled {
+        cursor: not-allowed;
+
+        > .label {
+            opacity: 0.7;
+        }
+    }
+
+    &:hover > input[type='checkbox']:not(:disabled, :checked, :focus)::before,
+    > input[type='checkbox']:not(:disabled, :checked, :focus):hover::before {
+        background-color: vars.get('switch-bg-color-hover');
+        border-color: vars.get('switch-border-color-hover');
+        @include shadows.box(vars.get('switch-box-shadow-hover'));
+    }
+
+    &:hover > input[type='checkbox']:not(:disabled, :checked):focus::before,
+    > input[type='checkbox']:not(:disabled, :checked):hover:focus::before {
+        background-color: vars.get('switch-bg-color-hover');
+    }
+
+    > .label {
+        padding-left: vars.get('switch-label-horizontal-padding');
+        padding-right: vars.get('switch-label-horizontal-padding');
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+
+        + input[type='checkbox'] {
+            margin-left: calc(-1 * #{vars.get('switch-width')});
+
+            &:not(:last-child, :first-child) {
+                margin-left: calc(-1 * (#{vars.get('switch-width')} + #{vars.get('switch-dual-label-bias')}));
+
+                + .label:last-child {
+                    padding-left: vars.get('switch-dual-label-bias');
+                }
+            }
+        }
+    }
+
+    > input[type='checkbox'] {
+        cursor: pointer;
+        position: absolute;
+        height: 0;
+        width: 0;
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        &::before {
+            position: relative;
+            content: '';
+            display: inline-block;
+            top: 0;
+            left: 0;
+            height: vars.get('switch-height');
+            width: vars.get('switch-width');
+            background-color: vars.get('switch-bg-color');
+            border: vars.get('switch-border-width') solid vars.get('switch-border-color');
+            border-radius: vars.get('switch-border-radius');
+            @include shadows.box(vars.get('switch-box-shadow'));
+        }
+
+        &:checked::before {
+            background-color: vars.get('checkbox-bg-color-checked');
+            border-color: vars.get('checkbox-border-color-checked');
+            @include shadows.box(vars.get('checkbox-box-shadow-checked'));
+        }
+
+        &:focus::before {
+            border-color: vars.get('checkbox-border-color-focus');
+            @include shadows.box(vars.get('checkbox-box-shadow-focus'));
+        }
+
+        &:checked:focus::before {
+            border-color: vars.get('checkbox-border-color-checked-focus');
+            @include shadows.box(vars.get('checkbox-box-shadow-checked-focus'));
+        }
+
+        &::after {
+            position: absolute;
+            content: '';
+            display: block;
+            left: vars.get('switch-slider-left');
+            top: vars.get('switch-slider-top');
+            width: vars.get('switch-slider-dims');
+            height: vars.get('switch-slider-dims');
+            border: vars.get('switch-slider-border-width') solid vars.get('switch-slider-border-color');
+            border-radius: vars.get('switch-slider-border-radius');
+            background-color: vars.get('switch-slider-bg-color');
+
+            -webkit-transition: left 0.1s ease-in-out;
+            -ms-transition: left 0.1s ease-in-out;
+            transition: left 0.1s ease-in-out;
+        }
+
+        &:checked::after {
+            left: vars.get('switch-slider-left-checked');
+            top: vars.get('switch-slider-top-checked');
+            background-color: vars.get('switch-slider-bg-color-checked');
+            border-color: vars.get('switch-slider-border-color-checked');
+        }
+    }
+
+    /*----------  Blank Switches  ----------*/
+
+    &.blank {
+        width: vars.get('switch-width');
+        height: 100%;
+
+        &::after {
+            position: relative;
+            content: '';
+            display: inline-block;
+        }
+    }
+}

@@ -12,6 +12,8 @@ Variables : Inputs
 @include vars.setBase('input-border-width', vars.get('base-border-width'));
 @include vars.setBase('input-border-radius', vars.get('base-border-radius'));
 
+@include vars.setBase('textarea-line-height', vars.get('base-line-height'));
+
 @include vars.setBase('input-sm-font-size', vars.get('button-sm-font-size'));
 @include vars.setBase('input-sm-height', vars.get('button-sm-height'));
 @include vars.setBase('input-sm-line-height', vars.get('button-sm-line-height'));
@@ -47,7 +49,16 @@ Variables : Inputs
 @include vars.setBase('input-invalid-border-color-focus', vars.get('input-invalid-border-color'));
 @include vars.setBase('input-invalid-box-shadow-focus', 0 0 0 0.25rem vars.get('danger-box-shadow-color'));
 
+@include vars.setBase('select-bg-image', url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAI9JREFUeNpiZACCyMjIBCDVD8SOy5cvv8BAAgDqNQBS+4G4EKh3ASPUsPlQ+Q+kGIpkmABUKJEJ6jIYAEnshyok1TAQ6AcZ6Ah1GdGG4jAM7DtGQgrQvU9ILSOxColVw0is7VA2QV8wkhA+DMQECSMJgc5AyDCcBhIwFG9aZSQxrRFM+IwkJGAGYnIRQIABACQuXCKovu2mAAAAAElFTkSuQmCC));
+@include vars.setBase('select-bg-size', 1rem);
+@include vars.setBase('select-bg-repeat', no-repeat);
+@include vars.setBase('select-bg-position', calc(100% - 1rem) center);
+@include vars.setBase('select-padding-right', 3.6rem);
+
 /*----------  Dark Mode Variables  ----------*/
 @include vars.setDark('input-bg-color', rgba(255, 255, 255, 0.05));
+@include vars.setDark('input-bg-color-hover', vars.get('input-bg-color'));
+@include vars.setDark('input-bg-color-focus', vars.get('input-bg-color'));
 @include vars.setDark('input-border-color', rgba(255, 255, 255, 0.2));
+@include vars.setDark('input-border-color-hover', vars.get('input-border-color'));
 @include vars.setDark('input-border-color-focus', rgba(255, 255, 255, 0.4));

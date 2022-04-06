@@ -1,0 +1,43 @@
+/*
+-----------------------------------------------------------------------
+Variables : Checkbox
+-----------------------------------------------------------------------
+*/
+
+/*----------  Base Variables  ----------*/
+@include vars.setBase('checkbox-border-width', vars.get('base-border-width'));
+@include vars.setBase('checkbox-border-radius', vars.get('base-border-radius'));
+@include vars.setBase('checkbox-dims', 1.8rem);
+@include vars.setBase('checkbox-line-height', vars.get('checkbox-dims'));
+@include vars.setBase('checkbox-padding', 0);
+@include vars.setBase('checkbox-label-horizontal-padding', calc(vars.get('checkbox-dims') + 1rem));
+@include vars.setBase('checkbox-dual-label-bias', 0.45rem);
+
+@include vars.setBase('checkbox-mark-left', 0.6rem);
+@include vars.setBase('checkbox-mark-top', 0.3rem);
+@include vars.setBase('checkbox-mark-width', 0.6rem);
+@include vars.setBase('checkbox-mark-height', 1rem);
+@include vars.setBase('checkbox-mark-border-width', 0 0.2rem 0.2rem 0);
+@include vars.setBase('checkbox-mark-transform', rotate(45deg));
+
+@include vars.setBase('checkbox-bg-color', #fff);
+@include vars.setBase('checkbox-border-color', rgba(0, 0, 0, 0.3));
+@include vars.setBase('checkbox-box-shadow', none);
+@include vars.setBase('checkbox-bg-color-hover', vars.get('checkbox-bg-color'));
+@include vars.setBase('checkbox-border-color-hover', rgba(0, 0, 0, 0.45));
+@include vars.setBase('checkbox-box-shadow-hover', vars.get('checkbox-box-shadow'));
+@include vars.setBase('checkbox-bg-color-checked', vars.get('primary-color'));
+@include vars.setBase('checkbox-border-color-checked', vars.get('primary-color'));
+@include vars.setBase('checkbox-box-shadow-checked', none);
+@include vars.setBase('checkbox-border-color-focus', vars.get('checkbox-border-color'));
+@include vars.setBase('checkbox-box-shadow-focus', vars.get('input-box-shadow-focus'));
+@include vars.setBase('checkbox-border-color-checked-focus', vars.get('checkbox-border-color-checked'));
+@include vars.setBase('checkbox-box-shadow-checked-focus', 0 0 0 0.3rem vars.get('primary-box-shadow-color'));
+
+@include vars.setBase('checkbox-mark-color', #fff);
+
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('checkbox-bg-color', transparent);
+@include vars.setDark('checkbox-border-color', rgba(255, 255, 255, 0.15));
+@include vars.setDark('checkbox-bg-color-hover', rgba(255, 255, 255, 0.05));
+@include vars.setDark('checkbox-border-color-hover', rgba(255, 255, 255, 0.3));

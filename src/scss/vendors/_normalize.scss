@@ -8,12 +8,6 @@ main {
     display: block;
 }
 
-hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
-}
-
 pre,
 samp {
     font-family: monospace, monospace;
@@ -52,24 +46,6 @@ sup {
 
 img {
     border-style: none;
-}
-
-input,
-optgroup,
-select,
-textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
-
-input {
-    overflow: visible;
-}
-
-select {
-    text-transform: none;
 }
 
 fieldset {

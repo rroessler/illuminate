@@ -1,0 +1,17 @@
+/*
+-----------------------------------------------------------------------
+Variables : Input Group
+-----------------------------------------------------------------------
+*/
+
+/*----------  Base Variables  ----------*/
+@include vars.setBase('input-group-block-horizontal-padding', vars.get('input-horizontal-padding'));
+@include vars.setBase('input-group-border-width', vars.get('input-border-width'));
+@include vars.setBase('input-group-border-radius', vars.get('input-border-radius'));
+
+@include vars.setBase('input-group-block-text-color', vars.get('base-text-color'));
+@include vars.setBase('input-group-block-bg-color', rgba(0, 0, 0, 0.05));
+@include vars.setBase('input-group-block-border-color', vars.get('input-border-color'));
+
+/*----------  Dark Mode Variables  ----------*/
+@include vars.setDark('input-group-block-bg-color', rgba(0, 0, 0, 0.05));

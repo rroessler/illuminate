@@ -2,9 +2,10 @@
 import { $ as _$_impl, DOM as _DOM_impl } from './DOM';
 import { __init__ } from './utilities/init';
 
-import { Theme as _Theme_impl } from './utilities/theme';
-import { Sidebar as _Sidebar_impl } from './components/sidebar';
 import { Forms as _Forms_impl } from './forms';
+import { Sidebar as _Sidebar_impl } from './components/sidebar';
+import { Theme as _Theme_impl } from './user/theme';
+import { User as _User_impl } from './user';
 
 /// Core Illuminate Namespace.
 export namespace Illuminate {
@@ -15,9 +16,10 @@ export namespace Illuminate {
     export const $ = _$_impl; // Element Wrapper.
     export const DOM = _DOM_impl; // DOM Namespace.
 
-    export const Theme = _Theme_impl; // Theme Accessor.
-    export const Sidebar = _Sidebar_impl; // Sidebar Accessor.
-    export const Forms = _Forms_impl; // Forms Accessor.
+    export const Forms = _Forms_impl; // Forms Namespace.
+    export const Sidebar = _Sidebar_impl; // Sidebar Namespace.
+    export const Theme = _Theme_impl; // Theme Namespace.
+    export const User = _User_impl; // User Namespace.
 
     /**************
      *  TYPEDEFS  *
@@ -25,8 +27,8 @@ export namespace Illuminate {
 
     /// Initialisation Options.
     export interface IOptions {
-        theme: _Theme_impl.IOptions;
         forms: _Forms_impl.IOptions;
+        theme: _Theme_impl.IOptions;
     }
 
     /****************
@@ -38,8 +40,8 @@ export namespace Illuminate {
 
     /// Base Initialistion Options.
     const m_options: IOptions = {
-        theme: Theme.__options__,
-        forms: Forms.__options__
+        forms: Forms.__options__,
+        theme: Theme.__options__
     };
 
     /// Initialisation details.

@@ -1,0 +1,129 @@
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <div class="form-group form-md-collapse">
+            <!-- Basic Item -->
+            <div class="form-item">
+                <!-- Header Wrapper (item title/description) -->
+                <div class="header">
+                    <h4 class="title">Full Name</h4>
+                    <p class="description">Your given names.</p>
+                </div>
+
+                <!-- Body Wrapper (form elements) -->
+                <div class="body">
+                    <input type="text" class="form-input" placeholder="Full Name" />
+                </div>
+            </div>
+
+            <!-- Complex Item -->
+            <div class="form-item">
+                <div class="header">
+                    <h4 class="title">Address</h4>
+                    <p class="description">Your place of residence.</p>
+                </div>
+
+                <div class="body">
+                    <div class="input-group mb-10">
+                        <input type="text" class="form-input" value="Lonsdale" />
+                        <select class="form-input mw-100">
+                            <option selected>Street</option>
+                            <option>Road</option>
+                            <option>Avenue</option>
+                            <option>Court</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="label-block">State</div>
+                        <select class="form-input">
+                            <option selected>VIC</option>
+                            <option>NSW</option>
+                            <option>QLD</option>
+                            <option>ACT</option>
+                            <option>SA</option>
+                            <option>NT</option>
+                            <option>WA</option>
+                            <option>TAS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Examples -->
+            <div class="form-item">
+                <div class="header">
+                    <h4 class="title">Description</h4>
+                    <p class="description">Write a short description about yourself.</p>
+                </div>
+
+                <div class="body">
+                    <textarea class="form-input" placeholder="Type your response here."></textarea>
+                </div>
+            </div>
+
+            <!-- No Header -->
+            <div class="form-item">
+                <div class="body">
+                    <button class="btn btn-primary mw-full mw-md-100 w-full">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>
+
+<div class="content"><h3>Collapsed Form Groups</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <div class="form-group form-collapsed mw-600">
+            <div class="form-item">
+                <div class="header">
+                    <h4 class="title">Username</h4>
+                    <p class="description">Only alphanumeric characters and underscores allowed.</p>
+                </div>
+
+                <div class="body">
+                    <input type="text" class="form-input" placeholder="Username" />
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="header">
+                    <h4 class="title">Password</h4>
+                    <p class="description">
+                        Must be at least 8 characters long, and contain at least one special character.
+                    </p>
+                </div>
+
+                <div class="body">
+                    <input type="text" class="form-input" placeholder="Password" />
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="header">
+                    <h4 class="title">Confirm Password</h4>
+                    <p class="description">Must match the above password exactly.</p>
+                </div>
+
+                <div class="body">
+                    <input type="text" class="form-input" placeholder="Confirm Password" />
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="body">
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-none">
+        <div class="form-group form-collapsed">...</div>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>

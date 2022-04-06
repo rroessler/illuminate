@@ -13,6 +13,7 @@ Importing Global Variables
 @import '../elements/code/vars';
 @import '../elements/link/vars';
 @import '../elements/table/vars';
+@import '../elements/scrollbars/vars';
 
 @import '../layout/containers/vars';
 @import '../layout/page/vars';
@@ -22,3 +23,7 @@ Importing Global Variables
 @import '../layout/sidebar/vars';
 
 @import '../forms/input/vars';
+@import '../forms/checkbox/vars';
+@import '../forms/switch/vars';
+@import '../forms/input-group/vars';
+@import '../forms/form-group/vars';

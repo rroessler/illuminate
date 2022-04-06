@@ -56,8 +56,13 @@ button::-moz-focusring,
     font-size: vars.get('button-font-size');
 
     /// Different sized buttons
-    @include button.base('sm');
-    @include button.base('lg');
+    &.btn-sm {
+        @include button.base('sm');
+    }
+
+    &.btn-lg {
+        @include button.base('lg');
+    }
 
     /// Inverted Buttons
     @include button.variant('inverted');
