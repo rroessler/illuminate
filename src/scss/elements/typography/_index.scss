@@ -4,9 +4,15 @@
 -----------------------------------------------------------------------
 */
 
-[data-scale-font-size='false'] {
-    --base-html-font-size-1600: vars.get('base-html-font-size');
-    --base-html-font-size-1920: vars.get('base-html-font-size');
+:root {
+    --base-html-font-size: 62.5%;
+    --base-html-font-size-1600: 75%;
+    --base-html-font-size-1920: 87.5%;
+}
+
+html[data-scale-font-size='false'] {
+    --base-html-font-size-1600: var(--base-html-font-size);
+    --base-html-font-size-1920: var(--base-html-font-size);
 }
 
 h1,

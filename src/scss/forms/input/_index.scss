@@ -7,7 +7,7 @@
 @use 'sass:string';
 @use '../../helpers/wrap' as wrap;
 @use '../../mixins/shadows' as shadows;
-@use '../../variables/map' as vars;
+@use '../../variables' as vars;
 
 /*----------  Input Mixins  ----------*/
 

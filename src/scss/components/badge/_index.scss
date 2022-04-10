@@ -1,0 +1,63 @@
+/*
+-----------------------------------------------------------------------
+4.#.    Badge
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+@use '../../mixins/color' as color;
+
+/*----------  Badge Extensions  ----------*/
+
+%-pill {
+    border-radius: vars.get('badge-pill-border-radius');
+}
+
+/*----------  Badge Styling  ----------*/
+
+@include flags.component('badge') {
+    .badge {
+        display: inline-block;
+        position: relative;
+        font-size: vars.get('badge-font-size');
+        line-height: vars.get('badge-line-height');
+        padding: vars.get('badge-padding');
+        color: vars.get('badge-text-color');
+        background-color: vars.get('badge-bg-color');
+        border: vars.get('badge-border-width') solid vars.get('badge-border-color');
+        border-radius: vars.get('badge-border-radius');
+
+        &.badge-pill {
+            @extend %-pill;
+        }
+
+        @each $context in color.$contexts {
+            &.badge-#{$context} {
+                color: vars.get('#{$context}-text-color');
+                background-color: vars.get('#{$context}-color');
+                border-color: vars.get('#{$context}-color');
+            }
+        }
+    }
+
+    .badge-group {
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+
+        > .badge:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        > .badge:not(:last-child) {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &.badge-pill > .badge {
+            @extend %-pill;
+        }
+    }
+}

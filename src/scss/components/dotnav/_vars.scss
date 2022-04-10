@@ -1,0 +1,28 @@
+/*
+-----------------------------------------------------------------------
+Variables : Dotnav
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+
+@include flags.component('dotnav') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('dotnav-horizontal-margin', 0.7rem);
+    @include vars.setBase('dotnav-width', vars.get('base-font-size'));
+    @include vars.setBase('dotnav-height', vars.get('dotnav-width'));
+    @include vars.setBase('dotnav-border-radius', 50%);
+    @include vars.setBase('dotnav-border-width', 2px);
+
+    @include vars.setBase('dotnav-bg-color', transparent);
+    @include vars.setBase('dotnav-border-color', rgba(0, 0, 0, 0.4));
+    @include vars.setBase('dotnav-bg-color-hover', vars.get('primary-color'));
+    @include vars.setBase('dotnav-border-color-hover', vars.get('primary-color'));
+
+    /*----------  Dark Mode Variables  ----------*/
+    @include vars.setDark('dotnav-bg-color', transparent);
+    @include vars.setDark('dotnav-border-color', rgba(255, 255, 255, 0.4));
+    @include vars.setDark('dotnav-bg-color-hover', vars.get('primary-color'));
+    @include vars.setDark('dotnav-border-color-hover', vars.get('primary-color'));
+}

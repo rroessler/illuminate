@@ -1,0 +1,33 @@
+/*
+-----------------------------------------------------------------------
+Importing Global Variables
+-----------------------------------------------------------------------
+*/
+
+@import './../utilities/color/vars';
+@import '../utilities/border/vars';
+@import '../utilities/shadows/vars';
+
+@import '../elements/typography/vars';
+@import '../elements/button/vars';
+@import '../elements/code/vars';
+@import '../elements/link/vars';
+@import '../elements/table/vars';
+@import '../elements/scrollbars/vars';
+
+@import '../layout/containers/vars';
+@import '../layout/page/vars';
+@import '../layout/divider/vars';
+@import '../layout/card/vars';
+@import '../layout/navbar/vars';
+@import '../layout/sidebar/vars';
+
+@import '../forms/input/vars';
+@import '../forms/checkbox/vars';
+@import '../forms/switch/vars';
+@import '../forms/input-group/vars';
+@import '../forms/form-group/vars';
+
+@import '../components/badge/vars';
+@import '../components/breadcrumb/vars';
+@import '../components/dotnav/vars';

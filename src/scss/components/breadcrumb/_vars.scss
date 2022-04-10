@@ -1,0 +1,26 @@
+/*
+-----------------------------------------------------------------------
+Variables : Breadcrumbs
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+
+@include flags.component('breadcrumb') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('breadcrumb-padding', 0);
+    @include vars.setBase('breadcrumb-border-width', 0);
+    @include vars.setBase('breadcrumb-border-radius', 0);
+
+    @include vars.setBase('breadcrumb-separator', '"/"');
+    @include vars.setBase('breadcrumb-separator-width', 1rem);
+    @include vars.setBase('breadcrumb-separator-color', vars.get('base-text-color'));
+    @include vars.setBase('breadcrumb-separator-margin-left', 1rem);
+    @include vars.setBase('breadcrumb-separator-margin-right', 1rem);
+
+    @include vars.setBase('breadcrumb-bg-color', transparent);
+    @include vars.setBase('breadcrumb-border-color', transparent);
+
+    /*----------  Dark Mode Variables  ----------*/
+}

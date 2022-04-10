@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------
 */
 
-@use '../../variables/map' as vars;
+@use '../../variables' as vars;
 
 :not([data-revert-scrollbars]) .with-webkit-scrollbars *::-webkit-scrollbar {
     width: vars.get('scrollbar-dims');

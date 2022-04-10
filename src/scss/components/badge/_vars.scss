@@ -1,0 +1,27 @@
+/*
+-----------------------------------------------------------------------
+Variables : Badges
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+
+@include flags.component('badge') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('badge-font-size', 1.2rem);
+    @include vars.setBase('badge-line-height', 1.2);
+    @include vars.setBase('badge-padding', 0.2rem 0.8rem);
+    @include vars.setBase('badge-border-width', vars.get('base-border-width'));
+    @include vars.setBase('badge-border-radius', vars.get('base-border-radius'));
+    @include vars.setBase('badge-pill-border-radius', 3rem);
+
+    @include vars.setBase('badge-text-color', vars.get('base-text-color'));
+    @include vars.setBase('badge-bg-color', #fff);
+    @include vars.setBase('badge-border-color', rgba(0, 0, 0, 0.2));
+
+    /*----------  Dark Mode Variables  ----------*/
+    @include vars.setDark('badge-text-color', vars.get('base-text-color'));
+    @include vars.setDark('badge-bg-color', transparent);
+    @include vars.setDark('badge-border-color', rgba(255, 255, 255, 0.2));
+}

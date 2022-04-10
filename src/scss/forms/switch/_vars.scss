@@ -9,6 +9,7 @@ Variables : Switches
 @include vars.setBase('switch-border-radius', 2rem);
 @include vars.setBase('switch-width', 3.2rem);
 @include vars.setBase('switch-height', 2rem);
+@include vars.setBase('switch-padding', 0);
 @include vars.setBase('switch-line-height', vars.get('switch-height'));
 @include vars.setBase('switch-label-horizontal-padding', calc(vars.get('switch-width') + 1rem));
 @include vars.setBase('switch-dual-label-bias', 0.45rem);

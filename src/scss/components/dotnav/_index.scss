@@ -1,0 +1,52 @@
+/*
+-----------------------------------------------------------------------
+4.3.    Dotnav
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+
+@include flags.component('dotnav') {
+    nav.dotnav {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        height: vars.get('dotnav-height');
+        line-height: vars.get('base-line-height');
+
+        > .dot {
+            display: block;
+            width: vars.get('dotnav-width');
+            height: vars.get('dotnav-height');
+            border-radius: vars.get('dotnav-border-radius');
+            border: vars.get('dotnav-border-width') solid vars.get('dotnav-border-color');
+            background-color: vars.get('dotnav-bg-color');
+            overflow: hidden;
+            white-space: nowrap;
+            transition: background-color 0.1s ease-in-out;
+            cursor: pointer;
+            font-size: 0;
+
+            &:hover,
+            &.active {
+                background-color: vars.get('dotnav-bg-color-hover');
+                border-color: vars.get('dotnav-border-color-hover');
+            }
+
+            &:active {
+                opacity: 0.7;
+            }
+
+            &.active {
+                opacity: 1 !important;
+            }
+
+            &:not(:first-child) {
+                margin-left: vars.get('dotnav-horizontal-margin');
+            }
+        }
+    }
+}

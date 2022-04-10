@@ -4,7 +4,7 @@ Mixin : Button
 -----------------------------------------------------------------------
 */
 
-@use '../variables/map' as vars;
+@use '../variables' as vars;
 @use '../helpers/wrap' as wrap;
 @use './shadows' as shadows;
 
@@ -39,57 +39,69 @@ Mixin : Button
     @include -setter($dark, 'button#{$name}-bg-image', none);
     @include -setter($dark, 'button#{$name}-border-color', $border-color);
     @include -setter($dark, 'button#{$name}-box-shadow', $box-shadow);
-    @include -setter($dark, 'button#{$name}-text-color-hover', if($text-color-hover, $text-color-hover, #{$text-color}));
+    @include -setter(
+        $dark,
+        'button#{$name}-text-color-hover',
+        if($text-color-hover, $text-color-hover, #{$text-color})
+    );
     @include -setter($dark, 'button#{$name}-bg-color-hover', if($bg-color-hover, $bg-color-hover, $bg-color));
     @include -setter($dark, 'button#{$name}-bg-image-hover', none);
-    @include -setter($dark, 'button#{$name}-border-color-hover', if($border-color-hover, $border-color-hover, $border-color));
+    @include -setter(
+        $dark,
+        'button#{$name}-border-color-hover',
+        if($border-color-hover, $border-color-hover, $border-color)
+    );
     @include -setter($dark, 'button#{$name}-box-shadow-hover', if($box-shadow-hover, $box-shadow-hover, $box-shadow));
     @include -setter($dark, 'button#{$name}-text-color-focus', $text-color);
     @include -setter($dark, 'button#{$name}-bg-color-focus', $bg-color);
     @include -setter($dark, 'button#{$name}-bg-image-focus', none);
-    @include -setter($dark, 'button#{$name}-border-color-focus', if($border-color-focus, $border-color-focus, $border-color));
+    @include -setter(
+        $dark,
+        'button#{$name}-border-color-focus',
+        if($border-color-focus, $border-color-focus, $border-color)
+    );
     @include -setter($dark, 'button#{$name}-box-shadow-focus', if($box-shadow-focus, $box-shadow-focus, $box-shadow));
 }
 
 /*----------  Component Mixins  ----------*/
 
 @mixin base($size: '') {
-    height: vars.get("button-#{$size}-height");
-    line-height: vars.get("button-#{$size}-line-height");
-    padding: vars.get("button-#{$size}-padding");
-    font-size: vars.get("button-#{$size}-font-size");
+    height: vars.get('button-#{$size}-height');
+    line-height: vars.get('button-#{$size}-line-height');
+    padding: vars.get('button-#{$size}-padding');
+    font-size: vars.get('button-#{$size}-font-size');
 }
 
 @mixin variant($name) {
     &#{'.btn-#{$name}' } {
-        color: vars.get("button-#{$name}-text-color");
-        background-color: vars.get("button-#{$name}-bg-color");
-        background-image: vars.get("button-#{$name}-bg-image");
-        border-color: vars.get("button-#{$name}-border-color");
-        @include shadows.box(vars.get("button-#{$name}-box-shadow"));
+        color: vars.get('button-#{$name}-text-color');
+        background-color: vars.get('button-#{$name}-bg-color');
+        background-image: vars.get('button-#{$name}-bg-image');
+        border-color: vars.get('button-#{$name}-border-color');
+        @include shadows.box(vars.get('button-#{$name}-box-shadow'));
 
         &:hover {
-            color: vars.get("button-#{$name}-text-color-hover");
-            background-color: vars.get("button-#{$name}-bg-color-hover");
-            background-image: vars.get("button-#{$name}-bg-image-hover");
-            border-color: vars.get("button-#{$name}-border-color-hover");
-            @include shadows.box(vars.get("button-#{$name}-box-shadow-hover"));
+            color: vars.get('button-#{$name}-text-color-hover');
+            background-color: vars.get('button-#{$name}-bg-color-hover');
+            background-image: vars.get('button-#{$name}-bg-image-hover');
+            border-color: vars.get('button-#{$name}-border-color-hover');
+            @include shadows.box(vars.get('button-#{$name}-box-shadow-hover'));
         }
 
         &:focus,
         &.active {
-            color: vars.get("button-#{$name}-text-color-focus");
-            background-color: vars.get("button-#{$name}-bg-color-focus");
-            background-image: vars.get("button-#{$name}-bg-image-focus");
-            border-color: vars.get("button-#{$name}-border-color-focus");
-            @include shadows.box(vars.get("button-#{$name}-box-shadow-focus"));
+            color: vars.get('button-#{$name}-text-color-focus');
+            background-color: vars.get('button-#{$name}-bg-color-focus');
+            background-image: vars.get('button-#{$name}-bg-image-focus');
+            border-color: vars.get('button-#{$name}-border-color-focus');
+            @include shadows.box(vars.get('button-#{$name}-box-shadow-focus'));
         }
 
         &:focus:hover,
         &.active:hover {
-            color: vars.get("button-#{$name}-text-color-hover");
-            background-color: vars.get("button-#{$name}-bg-color-hover");
-            background-image: vars.get("button-#{$name}-bg-image-hover");
+            color: vars.get('button-#{$name}-text-color-hover');
+            background-color: vars.get('button-#{$name}-bg-color-hover');
+            background-image: vars.get('button-#{$name}-bg-image-hover');
         }
     }
 }

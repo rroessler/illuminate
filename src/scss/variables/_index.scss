@@ -1,29 +1,62 @@
 /*
 -----------------------------------------------------------------------
-Importing Global Variables
+Global CSS Variables
 -----------------------------------------------------------------------
 */
 
-@import './../utilities/color/vars';
-@import '../utilities/border/vars';
-@import '../utilities/shadows/vars';
+@use 'sass:map';
+@use 'sass:string';
+@use '../flags' as flags;
 
-@import '../elements/typography/vars';
-@import '../elements/button/vars';
-@import '../elements/code/vars';
-@import '../elements/link/vars';
-@import '../elements/table/vars';
-@import '../elements/scrollbars/vars';
+/// GLOBALLY ACCESIBLE VALUES
+$__base__: ();
+$__dark__: ();
 
-@import '../layout/containers/vars';
-@import '../layout/page/vars';
-@import '../layout/divider/vars';
-@import '../layout/card/vars';
-@import '../layout/navbar/vars';
-@import '../layout/sidebar/vars';
+/// Sets a base variable value.
+@mixin setBase($name, $value) {
+    $__base__: map.set($__base__, $name, $value) !global;
+}
 
-@import '../forms/input/vars';
-@import '../forms/checkbox/vars';
-@import '../forms/switch/vars';
-@import '../forms/input-group/vars';
-@import '../forms/form-group/vars';
+/// Sets a dark-mode variable value.
+@mixin setDark($name, $value) {
+    $__dark__: map.set($__dark__, $name, $value) !global;
+}
+
+/// Gets a variable as required.
+@function get($name) {
+    @if flags.$USE_VARS {
+        @return var(--#{$name});
+    } @else {
+        $map: if(flags.$USE_DARK_THEME, $__dark__, $__base__);
+        @if map.has-key($map, $name) {
+            @return map.get($map, $name);
+        }
+
+        @if (flags.$USE_DARK_THEME and map.has-key($__base__, $name)) {
+            @return map.get($__base__, $name);
+        } @else {
+            @error "Invalid variable key '#{$name}'.";
+        }
+    }
+}
+
+/// Prepares all required variables.
+@mixin prepare {
+    :root {
+        --default-css-mode: #{if(flags.$USE_VARS, 'dynamic', 'fixed')};
+    }
+
+    @if flags.$USE_VARS {
+        :root {
+            @each $name, $value in $__base__ {
+                --#{$name}: #{$value};
+            }
+        }
+
+        html[data-theme='dark']:root {
+            @each $name, $value in $__dark__ {
+                --#{$name}: #{$value};
+            }
+        }
+    }
+}

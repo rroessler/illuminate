@@ -13,9 +13,8 @@ Table of contents:
     1.  Common Elements
     2.  Layout
     3.  Forms
-    4.  ...
-    5.  ...
-    6.  Utilities
+    4.  Components
+    5.  Utilities
 
 Notes:
     ~ All color variables are implemented in two steps. The RGBA phase,
@@ -26,9 +25,12 @@ Notes:
 -----------------------------------------------------------------------
 */
 
+/// Modules
+@use './variables' as vars;
+@use './flags' as flags;
+
 /// Global Variables
-@use './variables/map' as vars;
-@import './variables';
+@import './variables/imports';
 
 /// Base Styling
 @import './base';
@@ -43,6 +45,7 @@ Notes:
 @import './forms';
 
 /// Custom Components
+@import './components';
 
 /// Helper Utilities
 @import './utilities';

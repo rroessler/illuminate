@@ -5,7 +5,7 @@ Mixin : Color
 */
 
 /// Accessible Variables.
-@use '../variables/map' as vars;
+@use '../variables' as vars;
 @use 'sass:string';
 
 /*----------  Helpers  ----------*/

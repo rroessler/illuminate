@@ -4,14 +4,14 @@
 -----------------------------------------------------------------------
 */
 
-@use './variables/map' as vars;
+@use './variables' as vars;
 
 /*====================================
 =            Base Styling            =
 =====================================*/
 
 html {
-    font-size: vars.get('base-html-font-size');
+    font-size: var(--base-html-font-size);
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-box-sizing: border-box;
@@ -21,13 +21,13 @@ html {
 
 @media (min-width: 1600px) {
     html {
-        font-size: vars.get('base-html-font-size-1600');
+        font-size: var(--base-html-font-size-1600);
     }
 }
 
 @media (min-width: 1920px) {
     html {
-        font-size: vars.get('base-html-font-size-1920');
+        font-size: var(--base-html-font-size-1920);
     }
 }
 

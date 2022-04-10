@@ -1,0 +1,57 @@
+/*
+-----------------------------------------------------------------------
+4.#.    Breadcrumbs
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+@use '../../mixins/color' as color;
+
+@include flags.component('breadcrumb') {
+    nav.breadcrumb {
+        --separator: #{vars.get('breadcrumb-separator')};
+        padding: vars.get('breadcrumb-padding');
+        background-color: vars.get('breadcrumb-bg-color');
+        border: vars.get('breadcrumb-border-width') solid vars.get('breadcrumb-border-color');
+        border-radius: vars.get('breadcrumb-border-radius');
+
+        > .item {
+            position: relative;
+            display: inline-block;
+            list-style: none;
+            margin-bottom: 0;
+
+            &:not(:first-child) {
+                margin-left: vars.get('breadcrumb-separator-margin-left');
+            }
+
+            &:not(:last-child) {
+                margin-right: vars.get('breadcrumb-separator-margin-right');
+            }
+
+            &:first-child::before {
+                display: none;
+            }
+
+            &:hover::before {
+                text-decoration: none !important;
+            }
+
+            &::before {
+                pointer-events: none;
+                content: var(--separator, '/');
+                position: absolute;
+                display: inline-block;
+                width: vars.get('breadcrumb-separator-width');
+                left: calc(
+                    -1 * (#{vars.get('breadcrumb-separator-margin-right')} + #{vars.get('breadcrumb-separator-width')} /
+                                2)
+                );
+                top: 50%;
+                transform: translateY(-50%);
+                color: vars.get('breadcrumb-separator-color');
+            }
+        }
+    }
+}

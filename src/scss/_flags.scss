@@ -1,0 +1,32 @@
+/*
+-----------------------------------------------------------------------
+Global Flags
+-----------------------------------------------------------------------
+*/
+
+@use 'sass:map';
+
+/// Variable Flags
+$USE_VARS: true;
+$USE_DARK_THEME: false;
+
+/// Component Flags
+$components: (
+    'badge': true,
+    'breadcrumb': true,
+    'dotnav': true
+);
+
+/*----------  Flag Mixins  ----------*/
+
+@mixin component($name) {
+    @if map-has-key($components, $name) and map-get($components, $name) {
+        @content;
+    }
+}
+
+/*----------  Flag Functions  ----------*/
+
+@function check-component($name) {
+    @return map-get($components, $name);
+}
