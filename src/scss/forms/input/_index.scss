@@ -39,20 +39,6 @@
     }
 }
 
-/*----------  Input Extensions  ----------*/
-
-%-sm-sizing {
-    @include -sizing('sm');
-}
-
-%-lg-sizing {
-    @include -sizing('lg');
-}
-
-%-invalid-input {
-    @include -modifiers('-invalid');
-}
-
 /*----------  Input Styling  ----------*/
 
 .form-input {
@@ -124,4 +110,18 @@ textarea.form-input {
     > .label-block {
         @extend %-lg-sizing;
     }
+}
+
+/*----------  Input Extensions  ----------*/
+
+%-sm-sizing {
+    @include -sizing('sm');
+}
+
+%-lg-sizing {
+    @include -sizing('lg');
+}
+
+%-invalid-input {
+    @include -modifiers('-invalid');
 }

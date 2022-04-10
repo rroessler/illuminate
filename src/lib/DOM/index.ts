@@ -1,9 +1,9 @@
 /// DOM Imports.
 import { Nullable } from '../utilities/nullable';
-import { $, Wrapper } from './wrapper';
+import { $_, Wrapper } from './wrapper';
 
 /// DOM Re-Exports.
-export { $ } from './wrapper';
+export { $_ } from './wrapper';
 
 /// DOM Base Namespace.
 export namespace DOM {
@@ -12,7 +12,7 @@ export namespace DOM {
      ****************/
 
     /// HTML Element Wrapper.
-    export const html = $(document.documentElement);
+    export const html = $_(document.documentElement);
 
     /// Body Element Wrapper.
     export let body: Wrapper<HTMLElement> = Nullable;
@@ -29,4 +29,4 @@ export namespace DOM {
 }
 
 /// Ensure "body" element is loaded.
-DOM.onload(() => (DOM.body = $(document.body)));
+DOM.onload(() => (DOM.body = $_(document.body)));

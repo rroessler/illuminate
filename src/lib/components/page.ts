@@ -1,5 +1,5 @@
 /// Illuminate Imports.
-import { $, DOM } from '../DOM';
+import { $_, DOM } from '../DOM';
 import { Wrapper } from '../DOM/wrapper';
 import { Nullable } from '../utilities/nullable';
 
@@ -21,4 +21,4 @@ export namespace Page {
 }
 
 /// Retrieve the base page wrapper.
-DOM.onload(() => ($page = $('.page-wrapper', false)));
+DOM.onload(() => ($page = $_('.page-wrapper', false)));

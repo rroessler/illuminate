@@ -1,6 +1,6 @@
 /// Illuminate Imports
 import { DOM } from '../DOM';
-import { $, Wrapper } from '../DOM/wrapper';
+import { $_, Wrapper } from '../DOM/wrapper';
 import { throttle } from '../utilities/throttle';
 import { Validators } from './validators';
 
@@ -62,7 +62,7 @@ export namespace Forms {
         if (!base.preload) return;
 
         // otherwise, attach all available validators
-        $.all<'input'>('[data-validate]').forEach((input) => listen(input));
+        $_.all<'input'>('[data-validate]').forEach((input) => listen(input));
     };
 
     /**
@@ -71,10 +71,10 @@ export namespace Forms {
      */
     export const prepare = (item: Wrapper<HTMLElement> | HTMLElement) => {
         // cast the item to a valid wrapper
-        const root = 'element' in item ? item : $(item);
+        const root = 'element' in item ? item : $_(item);
 
         // and prepare input listeners for all items
-        $.all<'input'>('[data-validate]', root).forEach((input) => listen(input));
+        $_.all<'input'>('[data-validate]', root).forEach((input) => listen(input));
     };
 
     /*********************
@@ -87,7 +87,7 @@ export namespace Forms {
      */
     export const validate = (item: Wrapper<HTMLInputElement> | HTMLInputElement) => {
         // retrieve the current aspects
-        const aspects = m_identifyInput('element' in item ? item : $(item));
+        const aspects = m_identifyInput('element' in item ? item : $_(item));
 
         // and return the validation result
         return aspects.validator(aspects);
@@ -100,7 +100,7 @@ export namespace Forms {
      */
     export const toggle = (item: Wrapper<HTMLInputElement> | HTMLInputElement, validator?: Validator) => {
         // cast to a wrapper element only
-        const input = 'element' in item ? item : $(item);
+        const input = 'element' in item ? item : $_(item);
 
         // and toggle the listenability
         input.hasEvent('input') ? ignore(input) : listen(input, validator);
@@ -113,7 +113,7 @@ export namespace Forms {
      */
     export const listen = (item: Wrapper<HTMLInputElement> | HTMLInputElement, validator?: Validator) => {
         // cast to a wrapper element only
-        const input = 'element' in item ? item : $(item);
+        const input = 'element' in item ? item : $_(item);
 
         // depending on the type of input, we can handle as necessary
         const aspects = m_identifyInput(input, validator);
@@ -131,7 +131,7 @@ export namespace Forms {
      */
     export const ignore = (item: Wrapper<HTMLInputElement> | HTMLInputElement) => {
         // cast to a wrapper element only
-        const input = 'element' in item ? item : $(item);
+        const input = 'element' in item ? item : $_(item);
 
         // and unbind the input handler we have attached
         input.unbind('input');

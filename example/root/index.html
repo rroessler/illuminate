@@ -96,6 +96,9 @@
 
                     <h5 class="title mt-25">Utilities</h5>
                     <div class="divider"></div>
+
+                    <h5 class="title mt-25">JavaScript</h5>
+                    <div class="divider"></div>
                 </div>
             </div>
 
@@ -116,7 +119,7 @@
                 const theme = Illuminate.Theme.current();
 
                 // gets all the IFRAME documents and modify the current theme
-                $.all('iframe', $('#content-body'))
+                $_.all('iframe', $_('#content-body'))
                     .map((wrapper) => wrapper.element.contentWindow.document)
                     .map((doc) => doc.documentElement.setAttribute('data-theme', theme));
             };

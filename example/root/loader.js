@@ -33,17 +33,17 @@ const loader = {
 
         // construct and append each required item
         block.append(
-            $.create('div', {
+            $_.create('div', {
                 className: 'title',
                 children: [
-                    $.create('span', { className: 'code mr-5', innerHTML: language }),
-                    $.create('button', {
+                    $_.create('span', { className: 'code mr-5', innerHTML: language }),
+                    $_.create('button', {
                         className: 'btn btn-sm btn-inverted',
                         innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
                         onclick: () => navigator.clipboard.writeText(text.value)
                     })]
             }),
-            $.create('pre', {
+            $_.create('pre', {
                 className: 'm-0',
                 innerHTML: `<code class="ignore-style">${code}</code>`
             })
@@ -57,20 +57,20 @@ const loader = {
         const content = await fetch(`docs/${hash}`, { method: 'GET' }).then((res) => res.text());
 
         // denote a reference to the content body
-        const body = $('#content-body');
+        const body = $_('#content-body');
 
         // set the current title and content
-        $('#content-title').text(title.replace(/-/g, ' '));
+        $_('#content-title').text(title.replace(/-/g, ' '));
         body.text(content);
 
         // once the body is has content, prepare any form validation
         Illuminate.Forms.prepare(body);
 
         // preload all the iframes as necessary
-        await Promise.all($.all('iframe', body).map(loader.preloadIFrame));
+        await Promise.all($_.all('iframe', body).map(loader.preloadIFrame));
 
         // once complete, load in any CODE to display
-        $.all('.code-container', body).map((block) => loader.prepareCode(block));
+        $_.all('.code-container', body).map((block) => loader.prepareCode(block));
     },
 
 }

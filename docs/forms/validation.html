@@ -24,7 +24,7 @@
 
         <!-- Toggle Validation -->
         <div class="text-right">
-            <button class="btn" type="button" onclick="Illuminate.Forms.toggle($('#deferred-input'))">Toggle</button>
+            <button class="btn" type="button" onclick="Illuminate.Forms.toggle($_('#deferred-input'))">Toggle</button>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
 
     <script type="text">
         // retrive the required input
-        const input = $('#deferred-input');
+        const input = $_('#deferred-input');
 
         Illuminate.Forms.listen(input); // validate on inputs
         Illuminate.Forms.ignore(input); // ignore input events

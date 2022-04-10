@@ -1,4 +1,4 @@
-export interface I$ {
+export interface I$_ {
     <T extends HTMLElement = HTMLElement>(selector: string | T, safe?: boolean): Wrapper<T>;
     all: <K extends keyof HTMLElementTagNameMap>(selector: string, parent?: HTMLElement | Wrapper<HTMLElement>) => Wrapper<HTMLElementTagNameMap[K]>[];
     create: <K extends keyof HTMLElementTagNameMap>(tagName: K) => Wrapper<HTMLElementTagNameMap[K]>;
@@ -30,4 +30,4 @@ export declare class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     private m_assert;
     private m_bound;
 }
-export declare const $: I$;
+export declare const $_: I$_;

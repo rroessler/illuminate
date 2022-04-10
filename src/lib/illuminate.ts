@@ -1,5 +1,5 @@
 /// Illuminate Imports.
-import { $ as _$_impl, DOM as _DOM_impl } from './DOM';
+import { $_ as _$_impl, DOM as _DOM_impl } from './DOM';
 import { __init__ } from './utilities/init';
 
 import { Forms as _Forms_impl } from './forms';
@@ -13,7 +13,7 @@ export namespace Illuminate {
      *  RE-EXPORTS  *
      ****************/
 
-    export const $ = _$_impl; // Element Wrapper.
+    export const $_ = _$_impl; // Element Wrapper.
     export const DOM = _DOM_impl; // DOM Namespace.
 
     export const Forms = _Forms_impl; // Forms Namespace.

@@ -6,7 +6,7 @@ import { Factory } from './factory';
  **************/
 
 /// jQuery-like interface.
-export interface I$ {
+export interface I$_ {
     <T extends HTMLElement = HTMLElement>(selector: string | T, safe?: boolean): Wrapper<T>;
     all: <K extends keyof HTMLElementTagNameMap>(
         selector: string,
@@ -48,7 +48,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
     /// Gets the current selector.
     get selector(): string {
-        return $.selector(this);
+        return $_.selector(this);
     }
 
     /******************
@@ -272,7 +272,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     }
 
     /// Returns the previous element.
-    prev = <T extends HTMLElement = HTMLElement>() => $(this.element.previousElementSibling as T);
+    prev = <T extends HTMLElement = HTMLElement>() => $_(this.element.previousElementSibling as T);
 
     /*********************
      *  PRIVATE METHODS  *
@@ -302,7 +302,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
  * @param item                          Selector or HTML element to wrap.
  * @param safe                          Safe constructor use.
  */
-export const $: I$ = function <T extends HTMLElement>(item: string | T, safe = true) {
+export const $_: I$_ = function <T extends HTMLElement>(item: string | T, safe = true) {
     const element = typeof item === 'string' ? document.querySelector(item) : item;
     if (!safe) return element !== null ? new Wrapper<T>(element as T) : (null as any);
     else if (element !== null) return new Wrapper<T>(element as T);
@@ -317,13 +317,13 @@ export const $: I$ = function <T extends HTMLElement>(item: string | T, safe = t
  * @param selector                      Selector of elements.
  * @param parent                        Parent element.
  */
-$.all = <K extends keyof HTMLElementTagNameMap>(selector: string, parent?: HTMLElement | Wrapper<HTMLElement>) => {
+$_.all = <K extends keyof HTMLElementTagNameMap>(selector: string, parent?: HTMLElement | Wrapper<HTMLElement>) => {
     // resolve the chosen base parent
     let base = parent ?? document;
     if ('element' in base) base = base.element;
 
     // and return the resulting elements
-    return [...base.querySelectorAll(selector)].map((element) => $<HTMLElementTagNameMap[K]>(element as any));
+    return [...base.querySelectorAll(selector)].map((element) => $_<HTMLElementTagNameMap[K]>(element as any));
 };
 
 /**
@@ -331,14 +331,14 @@ $.all = <K extends keyof HTMLElementTagNameMap>(selector: string, parent?: HTMLE
  * @param tagName                       Base Tag Name.
  * @param opts                          Constructor Options.
  */
-$.create = <K extends keyof HTMLElementTagNameMap>(tagName: K, opts: string | Factory.CustomCreationOptions<K> = {}) =>
-    $<HTMLElementTagNameMap[K]>(Factory.create<K>(tagName, opts) as any);
+$_.create = <K extends keyof HTMLElementTagNameMap>(tagName: K, opts: string | Factory.CustomCreationOptions<K> = {}) =>
+    $_<HTMLElementTagNameMap[K]>(Factory.create<K>(tagName, opts) as any);
 
 /**
  * Constructs the selector of a given element.
  * @param item                          Item to get selector from.
  */
-$.selector = (item: HTMLElement | Wrapper<HTMLElement>): string => {
+$_.selector = (item: HTMLElement | Wrapper<HTMLElement>): string => {
     const names: string[] = [];
     let el = 'element' in item ? item.element : item;
 

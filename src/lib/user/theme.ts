@@ -1,5 +1,5 @@
 /// Illuminate Imports.
-import { $, DOM } from '../DOM';
+import { $_, DOM } from '../DOM';
 
 /// Theme Utility Namespace.
 export namespace Theme {

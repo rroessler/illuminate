@@ -4,7 +4,7 @@ import { Sidebar as _Sidebar_impl } from './components/sidebar';
 import { Theme as _Theme_impl } from './user/theme';
 import { User as _User_impl } from './user';
 export declare namespace Illuminate {
-    const $: import("./DOM/wrapper").I$;
+    const $_: import("./DOM/wrapper").I$_;
     const DOM: typeof _DOM_impl;
     const Forms: typeof _Forms_impl;
     const Sidebar: typeof _Sidebar_impl;
