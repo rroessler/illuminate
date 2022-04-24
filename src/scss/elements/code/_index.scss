@@ -41,3 +41,7 @@ kbd {
 
     @include select.user(none);
 }
+
+.text-monospace {
+    @extend %font-family;
+}

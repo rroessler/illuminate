@@ -1,0 +1,19 @@
+/*
+-----------------------------------------------------------------------
+Variables : Leader
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+
+@include flags.component('leader') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('leader-bias', 0.4rem);
+    @include vars.setBase('leader-fill-size', 1px);
+    @include vars.setBase('leader-fill-style', solid);
+
+    @include vars.setBase('leader-fill-color', vars.get('base-text-color'));
+
+    /*----------  Dark Mode Variables  ----------*/
+}

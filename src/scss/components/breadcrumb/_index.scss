@@ -6,7 +6,6 @@
 
 @use '../../flags' as flags;
 @use '../../variables' as vars;
-@use '../../mixins/color' as color;
 
 @include flags.component('breadcrumb') {
     nav.breadcrumb {

@@ -48,5 +48,18 @@
                 margin-left: vars.get('dotnav-horizontal-margin');
             }
         }
+
+        &.upright {
+            display: inline-block;
+
+            height: unset;
+            width: vars.get('dotnav-height');
+            line-height: unset;
+
+            > .dot:not(:first-child) {
+                margin-left: unset;
+                margin-top: vars.get('dotnav-horizontal-margin');
+            }
+        }
     }
 }
