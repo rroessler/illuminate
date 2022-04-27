@@ -12,7 +12,10 @@ export interface I$_ {
         selector: string,
         parent?: HTMLElement | Wrapper<HTMLElement>
     ) => Wrapper<HTMLElementTagNameMap[K]>[];
-    create: <K extends keyof HTMLElementTagNameMap>(tagName: K) => Wrapper<HTMLElementTagNameMap[K]>;
+    create: <K extends keyof HTMLElementTagNameMap>(
+        tagName: K,
+        opts?: string | Factory.CustomCreationOptions<K>
+    ) => Wrapper<HTMLElementTagNameMap[K]>;
     selector: (item: HTMLElement | Wrapper<HTMLElement>) => string;
 }
 
