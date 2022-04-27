@@ -1,7 +1,8 @@
+import { Factory } from './factory';
 export interface I$_ {
     <T extends HTMLElement = HTMLElement>(selector: string | T, safe?: boolean): Wrapper<T>;
     all: <K extends keyof HTMLElementTagNameMap>(selector: string, parent?: HTMLElement | Wrapper<HTMLElement>) => Wrapper<HTMLElementTagNameMap[K]>[];
-    create: <K extends keyof HTMLElementTagNameMap>(tagName: K) => Wrapper<HTMLElementTagNameMap[K]>;
+    create: <K extends keyof HTMLElementTagNameMap>(tagName: K, opts?: string | Factory.CustomCreationOptions<K>) => Wrapper<HTMLElementTagNameMap[K]>;
     selector: (item: HTMLElement | Wrapper<HTMLElement>) => string;
 }
 export interface IWrapper<T extends HTMLElement = HTMLElement> {
