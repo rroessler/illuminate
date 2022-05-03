@@ -7,6 +7,13 @@ export { $_ } from './wrapper';
 
 /// DOM Base Namespace.
 export namespace DOM {
+    /**************
+     *  TYPEDEFS  *
+     **************/
+
+    /** Any HTMLElement Casts. */
+    export type Any = string | HTMLElement | Wrapper<HTMLElement>;
+
     /****************
      *  PROPERTIES  *
      ****************/

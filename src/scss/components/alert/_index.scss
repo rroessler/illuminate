@@ -1,0 +1,31 @@
+/*
+-----------------------------------------------------------------------
+4.#.    Toasts
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+@use '../../mixins/color' as color;
+@use '../../mixins/shadows' as shadows;
+
+@use './mixin' as alert;
+
+@include flags.component('alert') {
+    .alert {
+        @include alert.base();
+        @include shadows.box(vars.get('alert-shadow'));
+        @include alert.contexts();
+
+        border: vars.get('alert-border-width') solid vars.get('alert-border-color');
+        border-radius: vars.get('alert-border-radius');
+
+        > .title {
+            @include alert.title();
+        }
+
+        > button.dismiss {
+            @include alert.dismiss();
+        }
+    }
+}

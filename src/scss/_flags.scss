@@ -12,10 +12,12 @@ $USE_DARK_THEME: false;
 
 /// Component Flags
 $components: (
+    'alert': true,
     'badge': true,
     'breadcrumb': true,
     'dotnav': true,
-    'leader': true
+    'leader': true,
+    'toast': true
 );
 
 /*----------  Flag Mixins  ----------*/

@@ -1,0 +1,34 @@
+/*
+-----------------------------------------------------------------------
+Variables : Toast
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+@use '../../mixins/color' as color;
+
+@mixin toast-with-context($context) {
+    @include vars.setBase('toast-#{$context}-text-color', vars.get('#{$context}-text-color'));
+    @include vars.setBase('toast-#{$context}-bg-color', vars.get('#{$context}-color'));
+    @include vars.setBase('toast-#{$context}-bg-image', none);
+    @include vars.setBase('toast-#{$context}-border-color', vars.get('#{$context}-light-color'));
+}
+
+@include flags.component('toast') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('toast-width', 30rem);
+    @include vars.setBase('toast-border-width', vars.get('alert-border-width'));
+    @include vars.setBase('toast-border-radius', 0.4rem);
+    @include vars.setBase('toast-shadow', vars.get('alert-shadow'));
+
+    @include vars.setBase('toast-notch-width', 0.75rem);
+
+    @include vars.setBase('toast-border-color', vars.get('alert-border-color'));
+
+    @each $ctx in color.$contexts {
+        @include toast-with-context($ctx);
+    }
+
+    /*----------  Dark Mode Variables  ----------*/
+}

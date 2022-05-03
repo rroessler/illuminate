@@ -1,0 +1,52 @@
+/*
+-----------------------------------------------------------------------
+Variables : Alert
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+@use '../../mixins/color' as color;
+
+@mixin alert-with-context($context) {
+    @include vars.setBase('alert-#{$context}-text-color', vars.get('#{$context}-text-color'));
+    @include vars.setBase('alert-#{$context}-bg-color', vars.get('#{$context}-color'));
+    @include vars.setBase('alert-#{$context}-bg-image', none);
+    @include vars.setBase('alert-#{$context}-border-color', vars.get('#{$context}-dark-color'));
+    @include vars.setDark('alert-#{$context}-border-color', vars.get('#{$context}-light-color'));
+}
+
+@include flags.component('alert') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('alert-padding', 1rem 2rem);
+    @include vars.setBase('alert-border-width', vars.get('base-border-width'));
+    @include vars.setBase('alert-border-radius', vars.get('base-border-radius'));
+    @include vars.setBase('alert-shadow', 0 0.2rem 0 rgba(0, 0, 0, 0.045));
+
+    @include vars.setBase('alert-title-font-size', 1.6rem);
+    @include vars.setBase('alert-title-font-weight', 500);
+    @include vars.setBase('alert-title-margin', 0 0 0.5rem 0);
+
+    @include vars.setBase('alert-dismiss-padding', 0.4rem);
+    @include vars.setBase('alert-dismiss-font-size', 1.6rem);
+    @include vars.setBase('alert-dismiss-line-height', 1);
+
+    @include vars.setBase('alert-notch-width', 0.75rem);
+    @include vars.setBase('alert-notch-title-font-weight', 500);
+
+    @include vars.setBase('alert-text-color', vars.get('base-text-color'));
+    @include vars.setBase('alert-bg-color', #fff);
+    @include vars.setBase('alert-bg-image', none);
+    @include vars.setBase('alert-border-color', rgba(0, 0, 0, 0.2));
+
+    /// Coloured Alerts
+    @each $ctx in color.$contexts {
+        @include alert-with-context($ctx);
+    }
+
+    /*----------  Dark Mode Variables  ----------*/
+    @include vars.setBase('alert-text-color', vars.get('base-text-color'));
+    @include vars.setDark('alert-bg-color', vars.get('dusk-color'));
+    @include vars.setDark('alert-bg-image', none);
+    @include vars.setDark('alert-border-color', rgba(255, 255, 255, 0.2));
+}

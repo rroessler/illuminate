@@ -79,5 +79,11 @@ const loader = {
  *  SCRIPT RUNNER  *
  *******************/
 
+// prepare some globals
+globalThis.toasts = {
+    initDefault: () => Illuminate.Alerts.create("Default Alert", "This is a default toast alert.")
+};
+
+// and coordinate route displays
 loader.updateRoute();
 window.onhashchange = loader.updateRoute;

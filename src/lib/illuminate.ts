@@ -4,6 +4,7 @@ import { __init__ } from './utilities/init';
 
 import { Forms as _Forms_impl } from './forms';
 import { Sidebar as _Sidebar_impl } from './components/sidebar';
+import { Alerts as _Alerts_impl } from './components/alerts';
 import { Theme as _Theme_impl } from './user/theme';
 import { User as _User_impl } from './user';
 
@@ -18,6 +19,7 @@ export namespace Illuminate {
 
     export const Forms = _Forms_impl; // Forms Namespace.
     export const Sidebar = _Sidebar_impl; // Sidebar Namespace.
+    export const Alerts = _Alerts_impl; // Alerts Namespace.
     export const Theme = _Theme_impl; // Theme Namespace.
     export const User = _User_impl; // User Namespace.
 

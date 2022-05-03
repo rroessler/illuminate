@@ -3,15 +3,19 @@
 4.  Components
 
 Table of contents:
+    4.#.    Alerts
     4.#.    Badges
     4.#.    Breadcrumbs
     4.#.    Dotnav
     4.#.    Leader
+    4.#.    Toasts
 
 -----------------------------------------------------------------------
 */
 
+@import './alert';
 @import './badge';
 @import './breadcrumb';
 @import './dotnav';
 @import './leader';
+@import './toast';

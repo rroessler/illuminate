@@ -1,0 +1,150 @@
+<div class="content"><h3>Dynamic Toasts</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <!-- Displays a toast alert when clicked. -->
+        <button class="btn" type="button" onclick="toasts.initDefault()">Display Toast!</button>
+    </div>
+
+    <div class="code-container middle" data-language="html"></div>
+
+    <script type="text">
+        // Default Toast Alert.
+        function initDefault() {
+            Illuminate.Alerts.create('Default Alert', 'This is a default toast alert.');
+        }
+    </script>
+
+    <div class="code-container" data-language="javascript"></div>
+</div>
+
+<div class="content"><h3>Styling Toasts</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content d-flex flex-column align-items-center">
+        <div class="toast mx-lg-auto" role="alert">
+            <h4 class="title">Default Toast</h4>
+            This is the default toast alert.
+        </div>
+
+        <div class="d-lg-flex flex-row">
+            <div class="toast toast-primary notched mr-lg-10 ml-lg-auto" role="alert">
+                <h4 class="title">Notched Primary Toast</h4>
+                This is the notched primary toast alert.
+            </div>
+
+            <div class="toast toast-primary mr-lg-auto" role="alert">
+                <h4 class="title">Default Primary Toast</h4>
+                This is the default primary toast alert.
+            </div>
+        </div>
+
+        <div class="d-lg-flex flex-row">
+            <div class="toast toast-secondary notched mr-lg-10 ml-lg-auto" role="alert">
+                <h4 class="title">Notched Secondary Toast</h4>
+                This is the notched secondary toast alert.
+            </div>
+
+            <div class="toast toast-secondary mr-lg-auto" role="alert">
+                <h4 class="title">Default Secondary Toast</h4>
+                This is the default secondary toast alert.
+            </div>
+        </div>
+
+        <div class="d-lg-flex flex-row">
+            <div class="toast toast-info notched mr-lg-10 ml-lg-auto" role="alert">
+                <h4 class="title">Notched Info Toast</h4>
+                This is the notched info toast alert.
+            </div>
+
+            <div class="toast toast-info mr-lg-auto" role="alert">
+                <h4 class="title">Default Info Toast</h4>
+                This is the default info toast alert.
+            </div>
+        </div>
+
+        <div class="d-lg-flex flex-row">
+            <div class="toast toast-success notched mr-lg-10 ml-lg-auto" role="alert">
+                <h4 class="title">Notched Success Toast</h4>
+                This is the notched success toast alert.
+            </div>
+
+            <div class="toast toast-success mr-lg-auto" role="alert">
+                <h4 class="title">Default Success Toast</h4>
+                This is the default success toast alert.
+            </div>
+        </div>
+
+        <div class="d-lg-flex flex-row">
+            <div class="toast toast-warning notched mr-lg-10 ml-lg-auto" role="alert">
+                <h4 class="title">Notched Warning Toast</h4>
+                This is the notched warning toast alert.
+            </div>
+
+            <div class="toast toast-warning mr-lg-auto" role="alert">
+                <h4 class="title">Default Warning Toast</h4>
+                This is the default warning toast alert.
+            </div>
+        </div>
+
+        <div class="d-lg-flex flex-row">
+            <div class="toast toast-danger notched mr-lg-10 ml-lg-auto" role="alert">
+                <h4 class="title">Notched Danger Toast</h4>
+                This is the notched danger toast alert.
+            </div>
+
+            <div class="toast toast-danger mr-lg-auto" role="alert">
+                <h4 class="title">Default Danger Toast</h4>
+                This is the default danger toast alert.
+            </div>
+        </div>
+    </div>
+
+    <div class="d-none">
+        <!-- Default Toast (no-context). -->
+        <div class="toast" role="alert">
+            <h4 class="title">Default Toast</h4>
+            This is the default toast alert.
+        </div>
+
+        <!-- Context Alert with Notch. -->
+        <div class="toast toast-primary notched" role="alert">
+            <h4 class="title">Notched Primary Toast</h4>
+            This is the notched primary toast alert.
+        </div>
+
+        <!-- Context Alert Filled. -->
+        <div class="toast toast-primary" role="alert">
+            <h4 class="title">Default Primary Toast</h4>
+            This is the default primary toast alert.
+        </div>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>
+
+<div class="content"><h3>Dismissable Toasts</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content d-flex flex-column align-items-center">
+        <div class="toast" role="alert">
+            <button class="dismiss" type="button" aria-label="Dismiss"></button>
+            <h4 class="title">Dismissable Toast</h4>
+            This is the dismissable toast alert.
+        </div>
+
+        <div class="toast toast-primary notched" role="alert">
+            <button class="dismiss" type="button" aria-label="Dismiss"></button>
+            <h4 class="title">Dismissable Context Toast</h4>
+            This is the dismissable notched context toast.
+        </div>
+
+        <div class="toast toast-primary" role="alert">
+            <button class="dismiss" type="button" aria-label="Dismiss"></button>
+            <h4 class="title">Dismissable Context Toast</h4>
+            This is the dismissable context toast.
+        </div>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>

@@ -1,0 +1,109 @@
+/*
+-----------------------------------------------------------------------
+Mixins : Alert
+-----------------------------------------------------------------------
+*/
+
+@use '../../variables' as vars;
+@use '../../mixins/color' as color;
+
+@mixin -alert-context($ctx) {
+    color: vars.get('alert-#{$ctx}-text-color');
+    background-color: vars.get('alert-#{$ctx}-bg-color');
+    background-image: vars.get('alert-#{$ctx}-bg-image');
+    border-color: vars.get('alert-#{$ctx}-border-color');
+}
+
+/*----------  Placeholders  ----------*/
+
+@each $ctx in color.$contexts {
+    %alert-#{$ctx} {
+        @include -alert-context($ctx);
+    }
+}
+
+%title {
+    color: inherit;
+    font-size: vars.get('alert-title-font-size');
+    font-weight: vars.get('alert-title-font-weight');
+    margin: vars.get('alert-title-margin');
+}
+
+%dismiss {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: inherit;
+    cursor: pointer;
+    padding: vars.get('alert-dismiss-padding');
+    line-height: vars.get('alert-dismiss-line-height');
+    font-size: vars.get('alert-dismiss-font-size');
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+
+    &::after {
+        display: inline-block;
+        content: '✕';
+        font-weight: bold;
+        opacity: 0.8;
+        transition: opacity 0.1s linear;
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+
+    &:active::after {
+        opacity: 0.7;
+    }
+}
+
+%base {
+    position: relative;
+    padding: vars.get('alert-padding');
+    color: vars.get('alert-text-color');
+    background-color: vars.get('alert-bg-color');
+    background-image: vars.get('alert-bg-image');
+}
+
+/*----------  Mixins  ----------*/
+
+@mixin contexts($root: 'alert') {
+    @each $ctx in color.$contexts {
+        &.#{$root}-#{$ctx}:not(.notched) {
+            @extend %alert-#{$ctx};
+        }
+
+        &.#{$root}-#{$ctx}.notched {
+            > .title {
+                color: vars.get('#{$root}-#{$ctx}-bg-color');
+                font-weight: vars.get('alert-notch-font-weight');
+            }
+
+            &::before {
+                position: absolute;
+                content: '';
+                height: 100%;
+                width: vars.get('#{$root}-notch-width');
+                left: 0;
+                top: 0;
+                border-top-left-radius: vars.get('#{$root}-border-radius');
+                border-bottom-left-radius: vars.get('#{$root}-border-radius');
+                background-color: vars.get('#{$root}-#{$ctx}-bg-color');
+            }
+        }
+    }
+}
+
+@mixin title {
+    @extend %title;
+}
+
+@mixin base {
+    @extend %base;
+}
+
+@mixin dismiss {
+    @extend %dismiss;
+}
