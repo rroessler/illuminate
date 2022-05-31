@@ -1,14 +1,23 @@
 <div class="content"><h3>Dynamic Toasts</h3></div>
 
+<div class="alerts-context"></div>
+
 <div class="card d-flex flex-column p-0">
     <div class="content">
-        <!-- Displays a toast alert when clicked. -->
         <button class="btn" type="button" onclick="toasts.initDefault()">Display Toast!</button>
+    </div>
+
+    <div class="content d-none">
+        <!-- Displays a toast alert when clicked. -->
+        <button class="btn" type="button" onclick="initDefault()">Display Toast!</button>
     </div>
 
     <div class="code-container middle" data-language="html"></div>
 
     <script type="text">
+        // Set the toasts target context (if not set, one is created on `.page-wrapper`).
+        Illuminate.Alerts.container('.alerts-context');
+
         // Default Toast Alert.
         function initDefault() {
             Illuminate.Alerts.create('Default Alert', 'This is a default toast alert.');

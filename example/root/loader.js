@@ -4,28 +4,33 @@
 
 /// Base Loader Implementation.
 const loader = {
-
     /// IFRAME Loader.
-    preloadIFrame: async (iframe) => new Promise(resolve =>
-        iframe.element.onload = () => resolve()
-    ),
+    preloadIFrame: async (iframe) => new Promise((resolve) => (iframe.element.onload = () => resolve())),
 
     /// Code Loader.
     prepareCode: async (block) => {
         // retrieve the current text
-        const text = block.prev().text().split(/\r?\n/).reduce((acc, line, ii) => {
-            // get the current spaces on the left
-            const left = line.length - line.trimLeft().length;
+        const text = block
+            .prev()
+            .text()
+            .split(/\r?\n/)
+            .reduce(
+                (acc, line, ii) => {
+                    // get the current spaces on the left
+                    const left = line.length - line.trimLeft().length;
 
-            // trim as necessary if left is less than current spaces
-            if (left < acc.spaces && ii > 0 && line.length > 0) acc.spaces = left;
+                    // trim as necessary if left is less than current spaces
+                    if (left < acc.spaces && ii > 0 && line.length > 0) acc.spaces = left;
 
-            // remove the front of the string
-            acc.value += `${line.substr(acc.spaces)}\n`;
+                    // remove the front of the string
+                    acc.value += `${line.substr(acc.spaces)}\n`;
 
-            // return the result
-            return acc;
-        }, { value: '', spaces: Infinity }).value.trim();
+                    // return the result
+                    return acc;
+                },
+                { value: '', spaces: Infinity }
+            )
+            .value.trim();
 
         // convert to suitable display
         const language = block.attr('data-language');
@@ -41,7 +46,8 @@ const loader = {
                         className: 'btn btn-sm btn-inverted',
                         innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
                         onclick: () => navigator.clipboard.writeText(text.value)
-                    })]
+                    })
+                ]
             }),
             $_.create('pre', {
                 className: 'm-0',
@@ -71,9 +77,8 @@ const loader = {
 
         // once complete, load in any CODE to display
         $_.all('.code-container', body).map((block) => loader.prepareCode(block));
-    },
-
-}
+    }
+};
 
 /*******************
  *  SCRIPT RUNNER  *
@@ -81,7 +86,7 @@ const loader = {
 
 // prepare some globals
 globalThis.toasts = {
-    initDefault: () => Illuminate.Alerts.create("Default Alert", "This is a default toast alert.")
+    initDefault: () => Illuminate.Alerts.create('Default Alert', 'This is a default toast alert.')
 };
 
 // and coordinate route displays

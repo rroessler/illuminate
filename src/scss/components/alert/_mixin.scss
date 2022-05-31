@@ -60,7 +60,9 @@ Mixins : Alert
 }
 
 %base {
+    overflow: hidden;
     position: relative;
+    pointer-events: all;
     padding: vars.get('alert-padding');
     color: vars.get('alert-text-color');
     background-color: vars.get('alert-bg-color');
@@ -88,8 +90,6 @@ Mixins : Alert
                 width: vars.get('#{$root}-notch-width');
                 left: 0;
                 top: 0;
-                border-top-left-radius: vars.get('#{$root}-border-radius');
-                border-bottom-left-radius: vars.get('#{$root}-border-radius');
                 background-color: vars.get('#{$root}-#{$ctx}-bg-color');
             }
         }

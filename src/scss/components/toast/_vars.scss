@@ -26,6 +26,8 @@ Variables : Toast
 
     @include vars.setBase('toast-border-color', vars.get('alert-border-color'));
 
+    @include vars.setBase('toasts-container-padding', 1.5rem);
+
     @each $ctx in color.$contexts {
         @include toast-with-context($ctx);
     }

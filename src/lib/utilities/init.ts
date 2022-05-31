@@ -2,6 +2,7 @@
 import { Illuminate } from '../illuminate';
 import { Theme } from '../user/theme';
 import { Forms } from '../forms';
+import { Alerts } from '../components/alerts';
 
 /// Illuminate initialisation namespace.
 export namespace __init__ {
@@ -23,7 +24,7 @@ export namespace __init__ {
     const m_beforeDOM: IBase[] = [Theme];
 
     /// Initialisable after DOM is ready.
-    const m_afterDOM: IBase[] = [Forms];
+    const m_afterDOM: IBase[] = [Forms, Alerts];
 
     /********************
      *  PUBLIC METHODS  *

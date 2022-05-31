@@ -31,6 +31,7 @@ export namespace Illuminate {
     export interface IOptions {
         forms: _Forms_impl.IOptions;
         theme: _Theme_impl.IOptions;
+        alerts: _Alerts_impl.IOptions;
     }
 
     /****************
@@ -43,7 +44,8 @@ export namespace Illuminate {
     /// Base Initialistion Options.
     const m_options: IOptions = {
         forms: Forms.__options__,
-        theme: Theme.__options__
+        theme: Theme.__options__,
+        alerts: Alerts.__options__
     };
 
     /// Initialisation details.
