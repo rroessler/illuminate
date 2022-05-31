@@ -38,7 +38,7 @@ export namespace Forms {
 
     /// Base Forms Options.
     export const __options__: IOptions = {
-        preload: DOM.html.attr('data-preload-forms') !== 'false'
+        preload: DOM.html.attr('data-preload-forms') !== 'false',
     };
 
     /// Maps types to base types.
@@ -46,7 +46,7 @@ export namespace Forms {
         text: 'str',
         email: 'str',
         password: 'str',
-        number: 'num'
+        number: 'num',
     };
 
     /******************
@@ -164,6 +164,7 @@ export namespace Forms {
     const m_identifyInput = (self: Wrapper<HTMLInputElement>, validator?: Validator): IAspects => {
         // need to determine the suitable input type
         let type = m_inputKindsMap[self.attr('type') ?? 'text'] ?? 'str';
+        type = self.attr('data-input-type') ?? type; // override type
 
         // ensure some types are forcefully done
         if (self.tag === 'textarea') type = 'str';
@@ -173,7 +174,7 @@ export namespace Forms {
             type,
             self,
             pattern: m_preparePattern(self),
-            validator: validator ?? Validators[type]
+            validator: validator ?? Validators[type],
         };
     };
 

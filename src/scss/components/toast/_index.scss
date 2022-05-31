@@ -13,6 +13,7 @@
 
 @include flags.component('toast') {
     .toast {
+        z-index: 100;
         width: vars.get('toast-width');
         margin-top: 1rem;
         @include alert.base();

@@ -15,6 +15,7 @@ export namespace Alerts {
         readonly mode?: 'default' | 'notched';
         readonly duration?: number;
         readonly dismissable?: boolean;
+        readonly autoHide?: boolean;
     }
 
     /********************
@@ -50,17 +51,21 @@ export namespace Alerts {
          *  PROPERTIES  *
          ****************/
 
-        readonly title: string = '';
-        readonly context: Context = 'none';
-        readonly mode: Required<IToast>['mode'] = 'default';
-        readonly duration: number = 5000;
-        readonly dismissable: boolean = true;
+        readonly title: string = ''; // Toast Title.
+        readonly context: Context = 'none'; // Toast Context.
+        readonly mode: Required<IToast>['mode'] = 'default'; // Toast Mode.
+        readonly duration: number = 5000; // Display Duration.
+        readonly dismissable: boolean = true; // Dismissable Flag.
+        readonly autoHide: boolean = true; // Auto-Hide Flag.
 
         /** Base Toast Element. */
         readonly element = $_.create('div', {
             className: 'toast',
-            attrs: [{ name: 'role', value: 'alert' }]
+            attrs: [{ name: 'role', value: 'alert' }],
         });
+
+        /** Denotes if dismissed already. */
+        private m_dismissed = false;
 
         /*****************
          *  CONSTRUCTOR  *
@@ -79,6 +84,25 @@ export namespace Alerts {
             this.m_prepare(children);
 
             // finally, display as the user requested
+            Manager.display(this);
+        }
+
+        /********************
+         *  PUBLIC METHODS  *
+         ********************/
+
+        /** Shows the toast instance. */
+        show = () => (this.element.element.style.opacity = '1');
+
+        /** Hides the toast instance. */
+        hide = () => (this.element.element.style.opacity = '0');
+
+        /** Dismisses the toast instance. */
+        dismiss() {
+            console.log('HELLO!');
+            if (this.m_dismissed) return;
+            this.m_dismissed = true;
+            this.element.element.remove();
         }
 
         /*********************
@@ -91,7 +115,11 @@ export namespace Alerts {
          */
         private m_prepare(children: DOM.Any[]) {
             // prepend the dismiss button if possible
-            if (this.dismissable) this.element.append($_.create('button', { className: 'dismiss', type: 'button' }));
+            if (this.dismissable) {
+                const button = $_.create('button', { className: 'dismiss', type: 'button' });
+                button.bind('click', () => this.dismiss());
+                this.element.append(button);
+            }
 
             // modify the classes required
             if (this.context !== 'none') this.element.element.classList.add(`toast-${this.context}`);
@@ -103,5 +131,47 @@ export namespace Alerts {
             // lastly append all the required children
             this.element.append(...children);
         }
+    }
+
+    /***************************
+     *  MANAGER FUNCTIONALITY  *
+     ***************************/
+
+    /** Alerts Management. */
+    namespace Manager {
+        /****************
+         *  PROPERTIES  *
+         ****************/
+
+        /********************
+         *  PUBLIC METHODS  *
+         ********************/
+
+        /**
+         * Displays a given toast instance.
+         * @param toast                         Toast to display.
+         */
+        export const display = (toast: Toast) => {
+            // set the toast into a "hidden" state
+            toast.hide();
+
+            // set the appropriate position
+            toast.element.element.style.position = 'absolute';
+            toast.element.element.style.bottom = '0';
+            toast.element.element.style.right = '0';
+
+            // append to the current page wrapper
+            $_('.page-wrapper').append(toast.element);
+
+            // set into a show state
+            toast.show();
+
+            // and set up an appropriate dismisser
+            if (toast.autoHide) setTimeout(() => toast.dismiss(), toast.duration);
+        };
+
+        /*********************
+         *  PRIVATE METHODS  *
+         *********************/
     }
 }

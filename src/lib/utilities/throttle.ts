@@ -3,7 +3,10 @@
  * @param cb                    Callback.
  * @param delay                 Throttle Delay.
  */
-export const throttle = (cb: (...args: any) => void, delay: number) => {
+export const throttle = <T extends (...args: any[]) => void>(
+    cb: T,
+    delay: number
+): ((...args: Parameters<T>) => void) => {
     let wait = false;
     let queued: any[] | undefined = undefined;
 
@@ -22,9 +25,12 @@ export const throttle = (cb: (...args: any) => void, delay: number) => {
     };
 
     // return the wrapped callback
-    return (...args: any[]): any => {
+    return (...args: Parameters<T>): void => {
         // if waiting, then set the current queued arguments
-        if (wait) return (queued = args);
+        if (wait) {
+            queued = args;
+            return;
+        }
 
         // otherwise call and set the throttle delay
         cb(...args);
