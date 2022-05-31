@@ -80,7 +80,7 @@ Mixins : Alert
         &.#{$root}-#{$ctx}.notched {
             > .title {
                 color: vars.get('#{$root}-#{$ctx}-bg-color');
-                font-weight: vars.get('alert-notch-font-weight');
+                font-weight: vars.get('alert-notch-title-font-weight');
             }
 
             &::before {
