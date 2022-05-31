@@ -1,6 +1,6 @@
 {
     "name": "illuminate-ui",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Illuminate Front-End Framework",
     "main": "dist/illuminate.js",
     "module": "dist/illuminate.min.mjs",
@@ -15,7 +15,8 @@
         "build:ts": "tsc --project tsconfig.json",
         "bundle:css": "cleancss -o dist/illuminate.min.css prebuild/illuminate.css -O2",
         "bundle:ts": "rollup -c rollup.config.js",
-        "clean": "rimraf prebuild dist"
+        "clean": "rimraf prebuild dist",
+        "prepublishOnly": "npm run dist"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^8.3.1",
