@@ -169,7 +169,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     css(prop?: any, value?: string | number): any {
         if (prop === undefined) return this.m_styleView;
         if (value === undefined) return this.m_styleView.getPropertyValue(prop);
-        this.m_styleView.setProperty(prop, value as any);
+        this.element.style.setProperty(prop, value as any);
     }
 
     /**
