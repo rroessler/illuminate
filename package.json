@@ -1,6 +1,6 @@
 {
     "name": "illuminate-ui",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Illuminate Front-End Framework",
     "main": "dist/illuminate.js",
     "module": "dist/illuminate.min.mjs",

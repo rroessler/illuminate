@@ -149,7 +149,7 @@ export namespace Forms {
         const result = aspects.validator(aspects);
 
         // update the current validity of the element
-        aspects.self.element.classList[result.valid ? 'remove' : 'add']('invalid');
+        aspects.self[result.valid ? 'rem' : 'add']('classes', 'invalid');
     }, 250);
 
     /*********************

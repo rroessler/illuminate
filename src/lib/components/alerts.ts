@@ -42,7 +42,7 @@ export namespace Alerts {
     /// Base alert options.
     export const __options__: IOptions = {
         position: 'bottom-right',
-        fadeDelay: 200
+        fadeDelay: 200,
     };
 
     /*****************
@@ -89,8 +89,8 @@ export namespace Alerts {
      */
     export const position = (pos: Position) => {
         if (!Manager.$container) return;
-        Manager.$container.element.classList.remove(...m_positions);
-        Manager.$container.element.classList.add(pos);
+        Manager.$container.rem('classes', ...m_positions);
+        Manager.$container.add('classes', pos);
     };
 
     /**
@@ -102,8 +102,8 @@ export namespace Alerts {
         Manager.$container = $_(sel);
         if (!pos) return;
 
-        Manager.$container.element.classList.remove(...m_positions);
-        Manager.$container.element.classList.add(pos);
+        Manager.$container.rem('classes', ...m_positions);
+        Manager.$container.add('classes', pos);
     };
 
     /// Aliased Creation method.
@@ -127,9 +127,9 @@ export namespace Alerts {
         readonly autoHide: boolean = true; // Auto-Hide Flag.
 
         /** Base Toast Element. */
-        readonly element = $_.create('div', {
+        readonly $element = $_.create('div', {
             className: 'toast',
-            attrs: [{ name: 'role', value: 'alert' }]
+            attrs: [{ name: 'role', value: 'alert' }],
         });
 
         /** Denotes if dismissed already. */
@@ -149,7 +149,7 @@ export namespace Alerts {
             else {
                 const { classes, ...rest } = input;
                 Object.assign(this, rest);
-                this.element.element.classList.add(...(classes ?? []));
+                this.$element.add('classes', ...(classes ?? []));
             }
 
             // and alter the toast element as necessary
@@ -167,17 +167,17 @@ export namespace Alerts {
          ********************/
 
         /** Shows the toast instance. */
-        show = () => (this.element.element.style.opacity = '1');
+        show = () => this.$element.css('opacity', 1);
 
         /** Hides the toast instance. */
-        hide = () => (this.element.element.style.opacity = '0');
+        hide = () => this.$element.css('opacity', 0);
 
         /** Dismisses the toast instance. */
         dismiss() {
             if (this.m_dismissed) return;
             this.m_dismissed = true;
-            this.element.element.style.opacity = '0';
-            setTimeout(() => this.element.element.remove(), Manager.options.fadeDelay);
+            this.$element.css('opacity', 0);
+            setTimeout(() => this.$element.rem(), Manager.options.fadeDelay);
         }
 
         /*********************
@@ -192,18 +192,18 @@ export namespace Alerts {
             // prepend the dismiss button if possible
             if (this.dismissable) {
                 const button = $_.create('button', { className: 'dismiss', type: 'button' });
-                this.element.append(button);
+                this.$element.append(button);
             }
 
             // modify the classes required
-            if (this.context !== 'none') this.element.element.classList.add(`toast-${this.context}`);
-            if (this.mode === 'notched') this.element.element.classList.add('notched');
+            if (this.context !== 'none') this.$element.add('classes', `toast-${this.context}`);
+            if (this.mode === 'notched') this.$element.add('classes', 'notched');
 
             // prepend the title if one is found
-            if (this.title.trim()) this.element.append($_.create('h4', { className: 'title', innerHTML: this.title }));
+            if (this.title.trim()) this.$element.append($_.create('h4', { className: 'title', innerHTML: this.title }));
 
             // lastly append all the required children
-            this.element.append(...children);
+            this.$element.append(...children);
         }
 
         /********************
@@ -212,7 +212,7 @@ export namespace Alerts {
 
         /** Registers all required toast listeners. */
         private m_registerListeners() {
-            this.element.bind('click', (ev) => this.m_onClick(ev.target as any));
+            this.$element.bind('click', (ev) => this.m_onClick(ev.target as any));
         }
 
         /**
@@ -260,7 +260,7 @@ export namespace Alerts {
             if (!$container) return;
 
             toast.hide(); // set the toast into a "hidden" state
-            $container?.append(toast.element); // append to the current page wrapper
+            $container?.append(toast.$element); // append to the current page wrapper
             requestAnimationFrame(() => toast.show()); // set into a show state on next draw call
 
             // and set up an appropriate dismisser

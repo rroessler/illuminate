@@ -14,12 +14,13 @@ export namespace Factory {
     }
 
     /// Omittable Creation Options.
-    type OmittedCreationOptions = 'children';
+    type OmittedCreationOptions = 'style' | 'children';
 
     /// Element Creation Options.
     export type CustomCreationOptions<K extends keyof HTMLElementTagNameMap> = Partial<
         Omit<HTMLElementTagNameMap[K], OmittedCreationOptions> & {
             children: HTMLElement | HTMLElement[] | IWrapper | IWrapper[];
+            style: Partial<CSSStyleDeclaration>;
             attrs: IAttribute[];
         }
     >;

@@ -8,14 +8,18 @@ import { Factory } from './factory';
 /// jQuery-like interface.
 export interface I$_ {
     <T extends HTMLElement = HTMLElement>(selector: string | T, safe?: boolean): Wrapper<T>;
+    <T extends HTMLElement = HTMLElement>(selector: string | T, parent?: T | IWrapper<T>, safe?: boolean): Wrapper<T>;
+
     all: <K extends keyof HTMLElementTagNameMap>(
         selector: string,
         parent?: HTMLElement | Wrapper<HTMLElement>
     ) => Wrapper<HTMLElementTagNameMap[K]>[];
+
     create: <K extends keyof HTMLElementTagNameMap>(
         tagName: K,
         opts?: string | Factory.CustomCreationOptions<K>
     ) => Wrapper<HTMLElementTagNameMap[K]>;
+
     selector: (item: HTMLElement | Wrapper<HTMLElement>) => string;
 }
 
@@ -40,6 +44,9 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     /// Globally bound events (attached to all known elements).
     private static m_boundEvents: Partial<Record<string, any>> = {};
 
+    /// Internal Style View.
+    private m_styleView: CSSStyleDeclaration;
+
     /***********************
      *  GETTERS / SETTERS  *
      ***********************/
@@ -54,6 +61,11 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         return $_.selector(this);
     }
 
+    /** Gets a reference to the elements class-list. */
+    get classList() {
+        return this.element.classList;
+    }
+
     /******************
      *  CONSTRUCTORS  *
      ******************/
@@ -62,11 +74,37 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      * Constructs a new instance of an Element Wrapper.
      * @param element                       Base Element.
      */
-    constructor(public readonly element: T) {}
+    constructor(public readonly element: T) {
+        this.m_styleView = getComputedStyle(element);
+    }
 
     /*****************************
      *  GETTER / SETTER METHODS  *
      *****************************/
+
+    /**
+     * Adds given properties to the element.
+     * @param kind                          Kind of item to add.
+     * @param values                        Values to add.
+     */
+    add(kind: 'prop', ...values: string[]): void;
+
+    /**
+     * Adds given classes to the element.
+     * @param kind                          Kind of item to add.
+     * @param values                        Values to add.
+     */
+    add(kind: 'classes', ...values: string[]): void;
+
+    /**
+     * Adds given properties or classes from a wrapper element.
+     * @param kind                          Kind of item to add.
+     * @param values                        Values to add.
+     */
+    add<K extends 'prop' | 'classes'>(kind: K, ...values: string[]) {
+        if (kind === 'classes') this.element.classList.add(...values);
+        else if (kind === 'prop') values.forEach((prop) => this.prop(prop, true));
+    }
 
     /**
      * Gets an attribute from a given element.
@@ -92,6 +130,72 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
         // since given a value, we instead set
         this.element.setAttribute(prop, value);
+    }
+
+    /** Base Getter for CSS Style Declaration. */
+    css(): CSSStyleDeclaration;
+
+    /**
+     * Getter for the given CSS property.
+     * @param prop                          Property to get.
+     */
+    css<K extends keyof CSSStyleDeclaration>(prop: K): CSSStyleDeclaration[K];
+
+    /**
+     * Setter for the given CSS property.
+     * @param prop                          Property to set.
+     * @param value                         Value to set.
+     */
+    css<K extends keyof CSSStyleDeclaration>(prop: K, value: string | number): void;
+
+    /**
+     * Getter for the given CSS property.
+     * @param prop                          Property to get.
+     */
+    css(prop: string): string;
+
+    /**
+     * Setter for the given CSS property.
+     * @param prop                          Property to set.
+     * @param value                         Value to set.
+     */
+    css(prop: string, value: string | number): void;
+
+    /**
+     * Getter/Setter for the given CSS property.
+     * @param prop                          Property to get/set.
+     * @param value                         Value to get/set.
+     */
+    css(prop?: any, value?: string | number): any {
+        if (prop === undefined) return this.m_styleView;
+        if (value === undefined) return this.m_styleView.getPropertyValue(prop);
+        this.m_styleView.setProperty(prop, value as any);
+    }
+
+    /**
+     * Getter implementation for 'prop' method.
+     * @param name                          Name of property.
+     */
+    prop(name: string): boolean;
+
+    /**
+     * Setter implementation for 'prop' method.
+     * @param name                          Name of property.
+     * @param state                         State to force.
+     */
+    prop(name: string, state: boolean): boolean;
+
+    /**
+     * Getter/Setter implementation for 'prop' method.
+     * @param name                          Name of property.
+     * @param state                         State to force.
+     */
+    prop(name: string, state?: boolean): boolean {
+        // returns whether an attribute exists on an element
+        if (state === undefined) return this.element.hasAttribute(name);
+
+        // regardless, forcible toggle the desired item
+        return this.element.toggleAttribute(name, state);
     }
 
     /// Getter for elements text.
@@ -133,9 +237,9 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         if (value === undefined) {
             return (
                 (<Record<string, () => V>>{
-                    checkbox: () => this.attr(':checked'),
+                    checkbox: () => this.prop('checked') as V,
                     number: () => parseFloat(input.value ?? 'NaN') as V,
-                    invalid: () => (input.value ?? '') as V
+                    invalid: () => (input.value ?? '') as V,
                 })[this.attr('type') ?? 'invalid']?.() ?? ((input.value ?? '') as V)
             );
         }
@@ -145,7 +249,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
             // checkboxes required a little extra
             case 'checkbox': {
                 this.m_assert(typeof value === 'boolean', new TypeError('$: Checkbox input expects a boolean value.'));
-                this.attr('checked', value);
+                this.prop('checked', value as boolean);
                 break;
             }
 
@@ -252,15 +356,18 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      *  TRIGGER METHODS  *
      *********************/
 
+    /// Force the blur event.
+    blur = () => this.element.blur();
+
     /// Coordinates a click trigger.
     click = () => this.element.click();
+
+    /// Force the focus event.
+    focus = () => this.element.focus();
 
     /******************
      *  NODE METHODS  *
      ******************/
-
-    /// Clears the current element content.
-    clear = () => (this.element.innerHTML = '');
 
     /**
      * Appends items onto the base element.
@@ -274,8 +381,64 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         }
     }
 
+    /**
+     * Gets all the children from an element with an optional filter selector.
+     * @param selector                          Optional Filter.
+     */
+    children(selector?: string) {
+        let kidlets = [...this.element.children];
+        if (selector) kidlets = kidlets.filter((child) => child.matches(selector));
+        return kidlets.map((child) => $_(child as HTMLElement));
+    }
+
+    /// Clears the current element content.
+    clear = () => (this.element.innerHTML = '');
+
+    /**
+     * Wrapper for `element.closest` method.
+     * @param selector                          Selector filter.
+     */
+    closest = <T extends HTMLElement = HTMLElement>(selector: string): Wrapper<T> | null => {
+        const item = this.element.closest<T>(selector);
+        return item ? $_(item) : null;
+    };
+
+    /**
+     * Denotes if the element matches a given selector.
+     * @param selector                      Selector to check.
+     */
+    matches = (selector: string) => this.element.matches(selector);
+
     /// Returns the previous element.
     prev = <T extends HTMLElement = HTMLElement>() => $_(this.element.previousElementSibling as T);
+
+    /**
+     * Queries an element for the descandents with the required selector.
+     * @param selector                      Selector to query.
+     */
+    query = (selector: string) => $_(selector, this.element);
+
+    /** Removes the element from the current DOM. */
+    rem(): void;
+
+    /**
+     * Removes given attributes, properties or classes from a wrapper element.
+     * @param kind                          Kind of item to remove.
+     * @param values                        Values to remove.
+     */
+    rem<K extends 'prop' | 'attr' | 'classes'>(kind: K, ...values: string[]): void;
+
+    /**
+     * Removes given attributes, properties or classes from a wrapper element.
+     * @param kind                          Kind of item to remove.
+     * @param values                        Values to remove.
+     */
+    rem<K extends 'prop' | 'attr' | 'classes'>(kind?: K, ...values: string[]) {
+        if (kind === undefined) this.element.remove();
+        else if (kind === 'attr') values.forEach((attr) => this.element.removeAttribute(attr));
+        else if (kind === 'classes') this.element.classList.remove(...values);
+        else if (kind === 'prop') values.forEach((prop) => this.prop(prop, false));
+    }
 
     /*********************
      *  PRIVATE METHODS  *
@@ -303,10 +466,19 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 /**
  * Constructs a wrapped element from given selector.
  * @param item                          Selector or HTML element to wrap.
+ * @param parent                        Potential parent element.
  * @param safe                          Safe constructor use.
  */
-export const $_: I$_ = function <T extends HTMLElement>(item: string | T, safe = true) {
-    const element = typeof item === 'string' ? document.querySelector(item) : item;
+export const $_: I$_ = function <T extends HTMLElement>(
+    item: string | T,
+    parent?: T | IWrapper<T> | boolean,
+    safe = false
+) {
+    let ancestor: Document | T = document;
+    if (typeof parent === 'boolean') safe = parent;
+    else ancestor = parent ? ('element' in parent ? parent.element : parent) : document;
+
+    const element = typeof item === 'string' ? ancestor.querySelector(item) : item;
     if (!safe) return element !== null ? new Wrapper<T>(element as T) : (null as any);
     else if (element !== null) return new Wrapper<T>(element as T);
 

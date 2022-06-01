@@ -24,7 +24,7 @@ export namespace Theme {
 
     /// Base Illuminate Options.
     export const __options__: IOptions = {
-        preload: DOM.html.attr('data-preload-theme') !== 'false'
+        preload: DOM.html.attr('data-preload-theme') !== 'false',
     };
 
     /// Preferred Color Scheme.
@@ -78,8 +78,7 @@ export namespace Theme {
     export const prefers = (): Mode => (localStorage.getItem('illuminate:theme') ?? m_prefers) as Mode;
 
     /// Gets the current CSS Mode.
-    export const cssMode = (): 'dynamic' | 'fixed' =>
-        getComputedStyle(DOM.html.element).getPropertyValue('--default-css-mode') as any;
+    export const cssMode = (): 'dynamic' | 'fixed' => DOM.html.css().getPropertyValue('--default-css-mode') as any;
 
     /*********************
      *  PRIVATE METHODS  *
