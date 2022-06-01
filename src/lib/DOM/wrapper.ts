@@ -235,12 +235,15 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
         // if we have a getter
         if (value === undefined) {
+            // pre-determine the required typing
+            const type = this.attr('data-input-type') === 'num' ? 'number' : null;
+
             return (
                 (<Record<string, () => V>>{
                     checkbox: () => this.prop('checked') as V,
                     number: () => parseFloat(input.value ?? 'NaN') as V,
-                    invalid: () => (input.value ?? '') as V,
-                })[this.attr('type') ?? 'invalid']?.() ?? ((input.value ?? '') as V)
+                    other: () => (input.value ?? '') as V,
+                })[type ?? this.attr('type') ?? 'other']?.() ?? ((input.value ?? '') as V)
             );
         }
 
