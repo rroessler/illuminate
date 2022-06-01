@@ -125,6 +125,12 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      * @param value                         Value to set if given.
      */
     attr(prop: string, value?: any): any {
+        // alter how we use the "checked" status
+        if (prop === 'checked') {
+            if (value === undefined) return (<any>this.element).checked;
+            return ((<any>this.element).checked = value);
+        }
+
         // getter implementation
         if (value === undefined) return this.element.getAttribute(prop);
 
@@ -191,6 +197,12 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      * @param state                         State to force.
      */
     prop(name: string, state?: boolean): boolean {
+        // alter how we use the "checked" status
+        if (name === 'checked') {
+            if (state === undefined) return (<any>this.element).checked;
+            return ((<any>this.element).checked = state);
+        }
+
         // returns whether an attribute exists on an element
         if (state === undefined) return this.element.hasAttribute(name);
 
@@ -240,7 +252,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
             return (
                 (<Record<string, () => V>>{
-                    checkbox: () => this.prop('checked') as V,
+                    checkbox: () => (<any>this.element).checked as V,
                     number: () => parseFloat(input.value ?? 'NaN') as V,
                     other: () => (input.value ?? '') as V,
                 })[type ?? this.attr('type') ?? 'other']?.() ?? ((input.value ?? '') as V)
@@ -252,7 +264,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
             // checkboxes required a little extra
             case 'checkbox': {
                 this.m_assert(typeof value === 'boolean', new TypeError('$: Checkbox input expects a boolean value.'));
-                this.prop('checked', value as boolean);
+                (<any>this.element).checked = value as boolean;
                 break;
             }
 
