@@ -1,0 +1,132 @@
+<div class="content"><h3>Modals</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <button class="btn btn-primary" type="button" onclick="modals.basic()">Open Modal</button>
+    </div>
+
+    <div class="content d-none">
+        <button class="btn btn-primary" type="button" onclick="basic()">Open Modal</button>
+    </div>
+
+    <div class="code-container middle" data-language="html"></div>
+
+    <script type="text">
+        // Basic Modal Instance.
+        function basicModal() {
+            Illuminate.Modal.create('Modal Title', {
+                content: 'Modal Content',
+                controls: [{ label: 'Close', action: 'close' }]
+            });
+        }
+    </script>
+
+    <div class="code-container" data-language="javascript"></div>
+</div>
+
+<div class="content"><h4>Pre-made Modals</h4></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <!-- Pre-made Modal Instance (hidden until invoked). -->
+        <div id="my-modal" class="modal">
+            <h5 class="title">Modal Title</h5>
+            <div class="body">This is the modal's content. Anything can be placed here!</div>
+
+            <!-- Custom Modal Actions. -->
+            <div class="controls">
+                <button class="btn btn-primary dismiss" role="button" aria-label="Close">Close</button>
+            </div>
+        </div>
+
+        <!-- Shows a pre-prepared modal instance programmatically. -->
+        <button class="btn btn-primary mr-10" type="button" onclick="Illuminate.Modal.show('#my-modal');">
+            Show Modal (JS)
+        </button>
+
+        <!-- ALso shows a pre-prepared modal instance through attribute targeting. -->
+        <button class="btn btn-primary" type="button" data-modal-target="#my-modal">Show Modal (HTML)</button>
+    </div>
+
+    <div class="code-container" data-language="html"></div>
+</div>
+
+<div class="content"><h4>Modifiable Modals</h4></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <button class="btn btn-primary" type="button" onclick="modals.modifiable()">Open Modifiable Modal</button>
+    </div>
+
+    <div class="content d-none">
+        <!-- Opens a custom modal instance that can be modified. -->
+        <button class="btn btn-primary" type="button" onclick="modifiableModal()">Open Modfiable Modal</button>
+    </div>
+
+    <div class="code-container middle" data-language="html"></div>
+
+    <script type="text">
+        // Custom modifications.
+        const mods = [
+            'This is one set of text we can display.',
+            'Or we can change to anything else we desire.',
+            { title: 'Exciting!', content: 'We can even modify the internals if we truly want.' },
+            { title: 'All Done :)', content: '', controls: 'close' }
+        ];
+
+        let counter = mods.length; // helpful counter
+
+        // Opens a basic modal with customizer control.
+        function modifiableModal() {
+            Illuminate.Modal.create('Modal Title', {
+                content: 'Modal Content',
+                controls: [
+                    { label: 'Customize', action: modifyModal, context: 'info' },
+                    { label: 'Close', action: 'close' }
+                ]
+            });
+        }
+
+        // Modifies a current modals content.
+        function modifyModal() {
+            counter = (counter + 1) % mods.length;
+            Illuminate.Modal.update(mods[counter]);
+        }
+    </script>
+
+    <div class="code-container" data-language="javascript"></div>
+</div>
+
+<div class="content"><h3>Overlays Only</h3></div>
+
+<div class="card d-flex flex-column p-0">
+    <div class="content">
+        <button class="btn btn-primary" type="button" onclick="modals.overlay()">Display Overlay!</button>
+    </div>
+
+    <div class="content d-none">
+        <!-- Displays an empty overlay when clicked. -->
+        <button class="btn" type="button" onclick="showOverlay()">Display Overlay!</button>
+    </div>
+
+    <div class="code-container middle" data-language="html"></div>
+
+    <script type="text">
+        // Non-blocking Overlay.
+        function showOverlay() {
+            Illuminate.Modal.show();
+        }
+
+        // Blocking Overlay (can only be dismissed ".dismiss" children or programmatically).
+        function showBlockingOverlay() {
+            Illuminate.Modal.show({ blocking: true });
+        }
+
+        // Example dismissal.
+        function dismissOverlay() {
+            Illuminate.Modal.dismiss();
+        }
+    </script>
+
+    <div class="code-container" data-language="javascript"></div>
+</div>

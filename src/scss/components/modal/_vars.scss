@@ -1,0 +1,42 @@
+/*
+-----------------------------------------------------------------------
+Variables : Overlays/Modals
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+
+@include flags.component('overlay') {
+    /*----------  Base Variables  ----------*/
+    @include vars.setBase('overlay-blur', 2px);
+    @include vars.setBase('overlay-content-max-width', 50rem);
+    @include vars.setBase('overlay-padding', vars.get('card-margin'));
+
+    @include vars.setBase('overlay-bg-color', rgba(0, 0, 0, 0.5));
+
+    /*----------  Dark Mode Variables  ----------*/
+    @include vars.setDark('overlay-bg-color', rgba(0, 0, 0, 0.25));
+
+    @include flags.component('modal') {
+        /*----------  Base Variables  ----------*/
+        @include vars.setBase('modal-padding', vars.get('card-padding'));
+        @include vars.setBase('modal-border-width', 1px);
+        @include vars.setBase('modal-border-radius', vars.get('base-border-radius'));
+
+        @include vars.setBase('modal-title-font-size', vars.get('card-title-font-size'));
+        @include vars.setBase('modal-title-font-weight', vars.get('card-title-font-weight'));
+
+        @include vars.setBase('modal-controls-margin-top', 2rem);
+        @include vars.setBase('modal-controls-alignment', end);
+        @include vars.setBase('modal-controls-spacing', 1rem);
+
+        @include vars.setBase('modal-text-color', vars.get('card-text-color'));
+        @include vars.setBase('modal-bg-color', vars.get('card-bg-color'));
+        @include vars.setBase('modal-bg-image', none);
+        @include vars.setBase('modal-border-color', vars.get('card-border-color'));
+        @include vars.setBase('modal-shadow', vars.get('card-shadow'));
+
+        /*----------  Dark Mode Variables  ----------*/
+    }
+}

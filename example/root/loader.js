@@ -45,13 +45,13 @@ const loader = {
                     $_.create('button', {
                         className: 'btn btn-sm btn-inverted',
                         innerHTML: '<i class="las la-lg la-copy"></i>&nbsp;Copy',
-                        onclick: () => navigator.clipboard.writeText(text.value)
-                    })
-                ]
+                        onclick: () => navigator.clipboard.writeText(text.value),
+                    }),
+                ],
             }),
             $_.create('pre', {
                 className: 'm-0',
-                innerHTML: `<code class="ignore-style">${code}</code>`
+                innerHTML: `<code class="ignore-style">${code}</code>`,
             })
         );
     },
@@ -77,17 +77,48 @@ const loader = {
 
         // once complete, load in any CODE to display
         $_.all('.code-container', body).map((block) => loader.prepareCode(block));
-    }
+    },
 };
 
 /*******************
  *  SCRIPT RUNNER  *
  *******************/
 
-// prepare some globals
-globalThis.toasts = {
-    initDefault: () => Illuminate.Alerts.create('Default Alert', 'This is a default toast alert.')
-};
+// prepare some globals we desire
+Object.assign(globalThis, {
+    /// TOASTS FUNCTIONALITY
+    toasts: {
+        show: () => Illuminate.Alerts.create('Default Alert', 'This is a default toast alert.'),
+    },
+
+    /// MODALS FUNCTIONALITY
+    modals: {
+        overlay: () => Illuminate.Modal.show(),
+        basic: () => Illuminate.Modal.create('Modal Title', { content: 'Modal Content', controls: 'close' }),
+        modifiable: (() => {
+            const mods = [
+                'This is one set of text we can display.',
+                'Or we can change to anything else we desire.',
+                { title: 'Exciting!', content: 'We can even modify the internals if we truly want.' },
+                { title: 'All Done :)', content: '', controls: 'close' },
+            ];
+
+            // helper customize function
+            let counter = mods.length - 1;
+            const customize = () => {
+                counter = (counter + 1) % mods.length;
+                Illuminate.Modal.update(mods[counter]);
+            };
+
+            // instancer
+            return () =>
+                Illuminate.Modal.create('Modal Title', {
+                    content: 'Modal Content',
+                    controls: [{ label: 'Customize', action: customize, context: 'info' }, 'close'],
+                });
+        })(),
+    },
+});
 
 // and coordinate route displays
 loader.updateRoute();

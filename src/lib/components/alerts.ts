@@ -49,7 +49,7 @@ export namespace Alerts {
      *  INITIALISER  *
      *****************/
 
-    /// Coordinates initialising the base theme.
+    /// Coordinates initialising the alerts functionality.
     export const init = (opts: Partial<IOptions> = {}) => {
         // set these onto the manager
         Manager.set(Object.assign({}, __options__, opts));

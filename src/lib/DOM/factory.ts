@@ -1,4 +1,5 @@
 /// DOM Imports.
+import type { DOM } from '.';
 import { IWrapper } from './wrapper';
 
 /// DOM Factory Namespace.
@@ -19,7 +20,7 @@ export namespace Factory {
     /// Element Creation Options.
     export type CustomCreationOptions<K extends keyof HTMLElementTagNameMap> = Partial<
         Omit<HTMLElementTagNameMap[K], OmittedCreationOptions> & {
-            children: HTMLElement | HTMLElement[] | IWrapper | IWrapper[];
+            children: DOM.Any | DOM.Any[];
             style: Partial<CSSStyleDeclaration>;
             attrs: IAttribute[];
         }
@@ -49,8 +50,9 @@ export namespace Factory {
 
         // attach all the desired children now
         if (children !== undefined) {
-            (Array.isArray(children) ? children : [children]).forEach((child: HTMLElement | IWrapper) => {
-                if ('element' in child) element.append(child.element);
+            (Array.isArray(children) ? children : [children]).forEach((child: DOM.Any) => {
+                if (typeof child === 'string') element.append(child);
+                else if ('element' in child) element.append(child.element);
                 else element.append(child);
             });
         }

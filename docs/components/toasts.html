@@ -4,12 +4,12 @@
 
 <div class="card d-flex flex-column p-0">
     <div class="content">
-        <button class="btn" type="button" onclick="toasts.initDefault()">Display Toast!</button>
+        <button class="btn btn-primary" type="button" onclick="toasts.show()">Display Toast!</button>
     </div>
 
     <div class="content d-none">
         <!-- Displays a toast alert when clicked. -->
-        <button class="btn" type="button" onclick="initDefault()">Display Toast!</button>
+        <button class="btn btn-primary" type="button" onclick="showToast()">Display Toast!</button>
     </div>
 
     <div class="code-container middle" data-language="html"></div>
@@ -19,7 +19,7 @@
         Illuminate.Alerts.container('.alerts-context');
 
         // Default Toast Alert.
-        function initDefault() {
+        function showToast() {
             Illuminate.Alerts.create('Default Alert', 'This is a default toast alert.');
         }
     </script>

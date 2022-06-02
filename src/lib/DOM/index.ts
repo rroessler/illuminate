@@ -12,7 +12,7 @@ export namespace DOM {
      **************/
 
     /** Any HTMLElement Casts. */
-    export type Any = string | HTMLElement | Wrapper<HTMLElement>;
+    export type Any<T extends HTMLElement = HTMLElement> = string | T | Wrapper<T>;
 
     /****************
      *  PROPERTIES  *

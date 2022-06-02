@@ -1,8 +1,11 @@
 /// Illuminate Imports.
-import { Illuminate } from '../illuminate';
-import { Theme } from '../user/theme';
+import type { Illuminate } from '../illuminate';
+
 import { Forms } from '../forms';
+import { Theme } from '../user/theme';
+
 import { Alerts } from '../components/alerts';
+import { Modal } from '../components/modals';
 
 /// Illuminate initialisation namespace.
 export namespace __init__ {
@@ -24,7 +27,7 @@ export namespace __init__ {
     const m_beforeDOM: IBase[] = [Theme];
 
     /// Initialisable after DOM is ready.
-    const m_afterDOM: IBase[] = [Forms, Alerts];
+    const m_afterDOM: IBase[] = [Forms, Alerts, Modal];
 
     /********************
      *  PUBLIC METHODS  *

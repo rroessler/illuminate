@@ -1,0 +1,76 @@
+/*
+-----------------------------------------------------------------------
+4.#.    OVerlays / Modals
+-----------------------------------------------------------------------
+*/
+
+@use '../../flags' as flags;
+@use '../../variables' as vars;
+@use '../../mixins/shadows' as shadows;
+
+@include flags.component('overlay') {
+    .overlay {
+        display: none;
+        flex-direction: column;
+        overflow: auto;
+        z-index: 200;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: vars.get('overlay-padding');
+        background-color: vars.get('overlay-bg-color');
+        backdrop-filter: blur(#{vars.get('overlay-blur')});
+
+        &.active {
+            display: flex;
+        }
+    }
+
+    .overlay.dismiss {
+        cursor: pointer;
+    }
+
+    .overlay-content {
+        cursor: auto;
+        margin: auto;
+        width: 100%;
+        max-width: vars.get('overlay-content-max-width');
+    }
+
+    @include flags.component('modal') {
+        .modal {
+            display: none;
+            padding: vars.get('modal-padding');
+
+            color: vars.get('modal-text-color');
+            background-color: vars.get('modal-bg-color');
+            background-image: vars.get('modal-bg-image');
+            @include shadows.box(vars.get('modal-shadow'));
+
+            border: vars.get('modal-border-width') solid vars.get('modal-border-color');
+            border-radius: vars.get('modal-border-radius');
+
+            > .title {
+                font-size: vars.get('modal-title-font-size');
+                font-weight: vars.get('modal-title-font-weight');
+            }
+
+            > .controls {
+                display: flex;
+                flex-direction: row;
+                margin-top: vars.get('modal-controls-margin-top');
+                justify-content: vars.get('modal-controls-alignment');
+
+                > * {
+                    margin-left: vars.get('modal-controls-spacing');
+                }
+            }
+        }
+
+        .overlay-content .modal {
+            display: block;
+        }
+    }
+}

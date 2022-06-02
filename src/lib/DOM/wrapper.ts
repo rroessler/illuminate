@@ -1,4 +1,5 @@
 /// DOM Imports.
+import type { DOM } from '.';
 import { Factory } from './factory';
 
 /**************
@@ -296,7 +297,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      */
     bind<K extends keyof HTMLElementEventMap>(
         eventName: K,
-        listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+        listener: (this: T, ev: HTMLElementEventMap[K]) => any,
         once?: boolean
     ): void;
 
@@ -306,7 +307,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      * @param listener                  Base Event listener.
      * @param once                      Listen only once.
      */
-    bind(eventName: string, listener: (this: HTMLElement, evt: Event) => void, once: boolean = false) {
+    bind(eventName: string, listener: (this: T, ev: Event) => void, once: boolean = false) {
         // unbind any previous event with this name
         this.unbind(eventName as any);
 
@@ -314,7 +315,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         const self = this;
 
         // create a custom listener
-        const handler = function (this: HTMLElement) {
+        const handler = function (this: T) {
             listener.call(this, arguments[0]);
             if (once) self.unbind(eventName as any);
         };
@@ -388,7 +389,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      * Appends items onto the base element.
      * @param items                 Items to append.
      */
-    append(...items: (HTMLElement | string | IWrapper)[]) {
+    append(...items: DOM.Any[]) {
         for (const item of items) {
             if (typeof item === 'string') this.element.innerHTML += item;
             else if ('element' in item) this.element.appendChild(item.element);
@@ -406,8 +407,11 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         return kidlets.map((child) => $_(child as HTMLElement));
     }
 
-    /// Clears the current element content.
+    /** Clears the current element content. */
     clear = () => (this.element.innerHTML = '');
+
+    /** Clones the wrapper instance. */
+    clone = () => $_(this.element.cloneNode(true) as T);
 
     /**
      * Wrapper for `element.closest` method.
@@ -453,6 +457,15 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         else if (kind === 'attr') values.forEach((attr) => this.element.removeAttribute(attr));
         else if (kind === 'classes') this.element.classList.remove(...values);
         else if (kind === 'prop') values.forEach((prop) => this.prop(prop, false));
+    }
+
+    /**
+     * Coordinates replacement between one target and the current instance.
+     * @param other                         Other target.
+     */
+    replace(other: DOM.Any) {
+        if (typeof other === 'string') this.clear(), this.append(other);
+        else this.element.replaceWith('element' in other ? other.element : other);
     }
 
     /*********************

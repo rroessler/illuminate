@@ -21,4 +21,4 @@ export namespace Page {
 }
 
 /// Retrieve the base page wrapper.
-DOM.onload(() => ($page = $_('.page-wrapper', false)));
+DOM.onload(() => ($page = $_('.page-wrapper')));
