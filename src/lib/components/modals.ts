@@ -177,7 +177,8 @@ export namespace Modal {
         $m_current = $overlay;
 
         // add the non-blocking class if required
-        if (!blocking || selector === true) $m_current.add('classes', 'dismiss');
+        const blockable = selector === true || blocking === true;
+        if (!blockable) $m_current.add('classes', 'dismiss');
     };
 
     /**
