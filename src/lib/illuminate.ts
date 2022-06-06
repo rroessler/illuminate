@@ -1,6 +1,7 @@
 /// Illuminate Imports.
 import { $_ as _$_impl, DOM as _DOM_impl } from './DOM';
 import { __init__ } from './utilities/init';
+import * as _Utils_impl from './utilities';
 
 import { Forms as _Forms_impl } from './forms';
 import { Theme as _Theme_impl } from './user/theme';
@@ -18,6 +19,7 @@ export namespace Illuminate {
 
     export const $_ = _$_impl; // Element Wrapper.
     export const DOM = _DOM_impl; // DOM Namespace.
+    export const Utils = _Utils_impl; /// Utitlities.
 
     export const Forms = _Forms_impl; // Forms Namespace.
     export const Theme = _Theme_impl; // Theme Namespace.
