@@ -33,8 +33,11 @@ export const Validators: Record<Forms.InputKind, Forms.Validator> = {
     num: (aspects) => {
         const value = aspects.self.val<number>();
 
-        // if we have a pattern check through that route
-        if (aspects.pattern !== null) return m_validatePattern(value.toString(), aspects.pattern);
+        // if we have a pattern check through that route first
+        if (aspects.pattern !== null) {
+            const result = m_validatePattern(value.toString(), aspects.pattern);
+            if (!result.valid) return result;
+        }
 
         // if we have minimum/maximum values, ensure this is valid
         const min = parseFloat(aspects.self.attr('min') ?? 'NaN');
@@ -45,5 +48,5 @@ export const Validators: Record<Forms.InputKind, Forms.Validator> = {
 
         // otherwise, we declare the value as valid
         return { valid: true };
-    }
+    },
 };
