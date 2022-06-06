@@ -43,8 +43,8 @@ export const Validators: Record<Forms.InputKind, Forms.Validator> = {
         const min = parseFloat(aspects.self.attr('min') ?? 'NaN');
         const max = parseFloat(aspects.self.attr('max') ?? 'NaN');
 
-        if (!isNaN(min) && min >= value) return { valid: false, reason: 'Value exceeds minimum threshold.' };
-        if (!isNaN(max) && max <= value) return { valid: false, reason: 'Value exceeds maximum threshold.' };
+        if (!isNaN(min) && min > value) return { valid: false, reason: 'Value exceeds minimum threshold.' };
+        if (!isNaN(max) && max < value) return { valid: false, reason: 'Value exceeds maximum threshold.' };
 
         // otherwise, we declare the value as valid
         return { valid: true };
