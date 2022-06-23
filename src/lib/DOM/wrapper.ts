@@ -43,7 +43,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     private static m_validInputs: (keyof HTMLElementTagNameMap)[] = ['input', 'select', 'textarea'];
 
     /// Globally bound events (attached to all known elements).
-    private static m_boundEvents: Partial<Record<string, any>> = {};
+    private static m_boundEvents = new Map<Node, Partial<Record<string, any>>>();
 
     /// Internal Style View.
     private m_styleView: CSSStyleDeclaration;
@@ -351,7 +351,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         delete bound[eventName];
 
         // if bound is now empty, delete from the global events
-        if (Object.keys(bound).length === 0) delete Wrapper.m_boundEvents[this.selector];
+        if (Object.keys(bound).length === 0) Wrapper.m_boundEvents.delete(this.element);
     }
 
     /**
@@ -380,6 +380,20 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
 
     /// Force the focus event.
     focus = () => this.element.focus();
+
+    /**
+     * Triggers internally the event to run.
+     * @param eventName                         Event to trigger.
+     */
+    trigger<K extends Exclude<keyof HTMLElementEventMap, 'blur' | 'click' | 'focus'>>(eventName: K): void;
+
+    /**
+     * Triggers internally the event to run.
+     * @param eventName                         Event to trigger.
+     */
+    trigger(eventName: string) {
+        return this.m_bound()[eventName]?.();
+    }
 
     /******************
      *  NODE METHODS  *
@@ -480,10 +494,12 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
     /// Gets the currently bound events.
     private m_bound = (create = false) => {
         // if no bound events, then return none, or create if required
-        if (Wrapper.m_boundEvents[this.selector] === undefined && create) Wrapper.m_boundEvents[this.selector] = {};
+        if (!Wrapper.m_boundEvents.has(this.element) && create) Wrapper.m_boundEvents.set(this.element, {});
+
+        // if (Wrapper.m_boundEvents[this.selector] === undefined && create) Wrapper.m_boundEvents[this.selector] = {};
 
         // return the current bound events
-        return (Wrapper.m_boundEvents[this.selector] ?? {}) as Partial<Record<string, any>>;
+        return Wrapper.m_boundEvents.get(this.element) ?? {};
     };
 }
 
