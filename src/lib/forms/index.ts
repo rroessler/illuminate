@@ -120,10 +120,10 @@ export namespace Forms {
         const aspects = m_identifyInput(input, validator);
 
         // bind the default validator wrapper method to the input
-        input.bind('input', () => m_createInputHandler(aspects));
+        input.bind('input', m_createInputHandler(aspects));
 
         // can an initial validation
-        input.element.dispatchEvent(new Event('input', { bubbles: true }));
+        input.trigger('input');
     };
 
     /**
