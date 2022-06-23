@@ -11,7 +11,7 @@ export namespace Forms {
      **************/
 
     /// Base Input Kinds.
-    export type InputKind = 'str' | 'num';
+    export type InputKind = 'str' | 'num' | 'bool';
 
     /// Validator Function Type.
     export type Validator = (aspects: IAspects) => { valid: true } | { valid: false; reason: string };
@@ -47,6 +47,7 @@ export namespace Forms {
         email: 'str',
         password: 'str',
         number: 'num',
+        checkbox: 'bool',
     };
 
     /******************
@@ -119,7 +120,7 @@ export namespace Forms {
         const aspects = m_identifyInput(input, validator);
 
         // bind the default validator wrapper method to the input
-        input.bind('input', () => m_coreInputHandler(aspects));
+        input.bind('input', () => m_createInputHandler(aspects));
 
         // can an initial validation
         input.element.dispatchEvent(new Event('input', { bubbles: true }));
@@ -144,13 +145,14 @@ export namespace Forms {
      * Handles actioning incoming input requests of an input element.
      * @param aspects                       Input Aspects.
      */
-    const m_coreInputHandler = throttle((aspects: IAspects) => {
-        // make a request for the current input result
-        const result = aspects.validator(aspects);
+    const m_createInputHandler = (aspects: IAspects) =>
+        throttle(() => {
+            // make a request for the current input result
+            const result = aspects.validator(aspects);
 
-        // update the current validity of the element
-        aspects.self[result.valid ? 'rem' : 'add']('classes', 'invalid');
-    }, 250);
+            // update the current validity of the element
+            aspects.self[result.valid ? 'rem' : 'add']('classes', 'invalid');
+        }, 250);
 
     /*********************
      *  PRIVATE METHODS  *

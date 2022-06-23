@@ -49,4 +49,11 @@ export const Validators: Record<Forms.InputKind, Forms.Validator> = {
         // otherwise, we declare the value as valid
         return { valid: true };
     },
+
+    /// Boolean Validator Inputs.
+    bool: (aspects) => {
+        const value = aspects.self.val<boolean>();
+        if (typeof value === 'boolean') return { valid: true };
+        return { valid: false, reason: 'Invalid boolean value.' };
+    },
 };
