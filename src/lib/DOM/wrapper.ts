@@ -282,7 +282,7 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
         }
 
         // once the setter has been called, trigger the core 'input' event
-        this.element.dispatchEvent(new Event('input', { bubbles: true }));
+        this.trigger('input');
     }
 
     /*******************
@@ -385,14 +385,14 @@ export class Wrapper<T extends HTMLElement> implements IWrapper<T> {
      * Triggers internally the event to run.
      * @param eventName                         Event to trigger.
      */
-    trigger<K extends Exclude<keyof HTMLElementEventMap, 'blur' | 'click' | 'focus'>>(eventName: K): void;
+    trigger<K extends Exclude<keyof HTMLElementEventMap, 'blur' | 'click' | 'focus'>>(eventName: K): boolean;
 
     /**
      * Triggers internally the event to run.
      * @param eventName                         Event to trigger.
      */
     trigger(eventName: string) {
-        return this.m_bound()[eventName]?.();
+        return this.element.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
     }
 
     /******************
